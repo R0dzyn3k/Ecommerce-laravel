@@ -9,16 +9,22 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Admin extends User
 {
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::addGlobalScope('admins', static function (Builder $builder) {
+            $builder->where('role', UserType::ADMIN);
+        });
+    }
+
+
     protected static function booted(): void
     {
         parent::booted();
 
-        static::addGlobalScope('admins', function (Builder $builder) {
-            $builder->where('role', UserType::ADMIN);
-        });
-
-        static::creating(function (self $customer) {
-            $customer->role = UserType::admin();
+        static::creating(static function (self $model) {
+            $model->role = UserType::admin();
         });
     }
 

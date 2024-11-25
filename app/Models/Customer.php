@@ -10,19 +10,26 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Customer extends User
 {
+    protected static function boot(): void
+    {
+        parent::boot();
+
+
+        static::addGlobalScope('admins', static function (Builder $builder) {
+            $builder->where('role', UserType::CUSTOMER);
+        });
+    }
+
+
     protected static function booted(): void
     {
         parent::booted();
 
-        static::addGlobalScope('admins', function (Builder $builder) {
-            $builder->where('role', UserType::CUSTOMER);
+        static::creating(static function (self $model) {
+            $model->role = UserType::customer();
         });
 
-        static::creating(function (self $customer) {
-            $customer->role = UserType::customer();
-        });
-
-        static::created(function (self $model) {
+        static::created(static function (self $model) {
             $model->notifications()->create();
         });
     }

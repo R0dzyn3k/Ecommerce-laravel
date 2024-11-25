@@ -12,7 +12,6 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
@@ -27,13 +26,15 @@ abstract class User extends BaseModel implements MustVerifyEmailContract, Authen
     use HasFactory, Notifiable;
 
 
+    protected static string $factory = UserFactory::class;
+
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected
-        $fillable = [
+    protected $fillable = [
         'name',
         'email',
         'role',
@@ -46,21 +47,13 @@ abstract class User extends BaseModel implements MustVerifyEmailContract, Authen
      *
      * @var array<int, string>
      */
-    protected
-        $hidden = [
+    protected $hidden = [
         'password',
         'remember_token',
     ];
 
 
-    protected
-        $table = 'users';
-
-
-    protected static function newFactory(): Factory|UserFactory
-    {
-        return UserFactory::new();
-    }
+    protected $table = 'users';
 
 
     /**
@@ -68,8 +61,7 @@ abstract class User extends BaseModel implements MustVerifyEmailContract, Authen
      *
      * @return array<string, string>
      */
-    protected
-    function casts(): array
+    protected function casts(): array
     {
         return [
             'role' => UserType::class,
