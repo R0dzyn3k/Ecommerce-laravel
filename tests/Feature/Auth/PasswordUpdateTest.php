@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Livewire\Volt\Volt;
 use Tests\TestCase;
 
+
 class PasswordUpdateTest extends TestCase
 {
     use RefreshDatabase;

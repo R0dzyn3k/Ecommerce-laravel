@@ -2,20 +2,23 @@
 
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\Auth\AdminLogoutController;
+use App\Livewire\Admin\Login;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['web', 'guest:admin'])->prefix('/admin')->name('admin.auth.')->group(function (Router $router) {
-    $router->resource('login', AdminLoginController::class)->only(['index', 'store'])->names('login');
+    $router->get('/', fn() => Redirect::route('admin.auth.login'));
+    $router->get('login', Login::class)->name('login');
 });
 
 Route::middleware(['auth:admin'])->prefix('/admin')->name('admin.auth.')->group(function (Router $router) {
-    $router->resource('logout', AdminLogoutController::class)->only(['index', 'destroy'])->names('logout');
+    $router->get('logout', [AdminLogoutController::class, 'index'])->name('logout');
 });
 
-//
-//
+
+
 //Route::middleware('guest')->group(function () {
 //    Volt::route('register', 'pages.auth.register')
 //        ->name('register');

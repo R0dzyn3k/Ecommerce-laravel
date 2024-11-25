@@ -18,7 +18,6 @@
 
 @php
   $id = $id ?? Str::random(8);
-  $newValue = $value ?? $model?->{$name} ?? '';
 @endphp
 
 <x-form-input.base
@@ -35,7 +34,7 @@
   @if($placeholder) placeholder="{{ $placeholder }}" @endif
   @if($autofocus) autofocus="autofocus" @endif
   @required($required)
-  value="{{ old($name, $newValue) }}"
+
     @if($maxlength) maxlength="{{ max((int) $maxlength, 0) }}" @endif
     @disabled($disabled)
     {{ $attributes->merge(['class' =>'block border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 ' .

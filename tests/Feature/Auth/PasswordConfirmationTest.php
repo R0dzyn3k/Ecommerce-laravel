@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
 use Tests\TestCase;
 
+
 class PasswordConfirmationTest extends TestCase
 {
     use RefreshDatabase;

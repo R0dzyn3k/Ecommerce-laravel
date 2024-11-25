@@ -11,19 +11,7 @@ use Redirect;
 
 class AdminLogoutController extends Controller
 {
-    public function destroy(Request $request)
-    {
-        return $this->logout($request);
-    }
-
-
     public function index(Request $request)
-    {
-        return $this->logout($request);
-    }
-
-
-    private function logout(Request $request)
     {
         Auth::guard('admin')->logout();
 

@@ -1,3 +1,5 @@
-<x-layouts.app :title="__('pages.dashboard')">
-  asd
-</x-layouts.app>
+@extends('components.layouts.base-admin', ['title' => __('pages.dashboard')])
+
+@section('content')
+  asddd2
+@endsection

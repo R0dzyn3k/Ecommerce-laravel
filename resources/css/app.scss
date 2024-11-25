@@ -2,5 +2,25 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+:root {
+  --adminMenuBackground: #0a0a0a;
+  --adminSubMenuBackground: #141414;
+  --adminMainBackground: #1f1f1f;
+  --themePrimaryColour: #ff1818;
+  --adminTextColour: #fff;
 
-$baseDark: #000000;
+
+  --baseDark: #000000;
+}
+
+
+
+.form-group:has(input:required) label::after  {
+  content: "*";
+  color: red;
+}
+
+[x-cloak] {
+  display: none;
+}
+

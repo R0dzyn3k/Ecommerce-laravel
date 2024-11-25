@@ -1,10 +1,14 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminDashboardController;
+
 use App\Http\Controllers\Web\HomepageController;
-use App\Http\Middleware\AuthenticateAdmin;
+use App\Livewire\Admin\Administrators;
+use App\Livewire\Admin\Dashboard;
+use App\Livewire\Admin\Profile;
+use App\Livewire\Admin\Settings;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
+
 
 Route::middleware(['web'])->as('web.')->group(function (Router $router) {
     $router->get('/', [HomepageController::class, 'index'])->name('homepage.index');
@@ -14,9 +18,22 @@ Route::middleware(['web'])->as('web.')->group(function (Router $router) {
 
 });
 
-Route::middleware(AuthenticateAdmin::class)->prefix('/admin')->name('admin.')->group(function (Router $router) {
-    $router->get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['auth:admin'])->prefix('/admin')->name('admin.')->group(function (Router $router) {
+    $router->get('dashboard', Dashboard::class)->name('dashboard');
+    $router->get('profile', Profile::class)->name('profile');
+    $router->get('settings', Settings::class)->name('settings');
+
+    $router->as('settings.')->prefix('settings')->group(function (Router $router) {
+        $router->get('administrators', Administrators::class)->name('administrators');
+    });
+
+
+    $router->get('sales', Dashboard::class)->name('sales');
+    $router->get('warehouse', Dashboard::class)->name('warehouse');
+    $router->get('discounts', Dashboard::class)->name('discounts');
+    $router->get('customers', Dashboard::class)->name('customers');
 });
+
 
 //
 //
@@ -30,4 +47,4 @@ Route::middleware(AuthenticateAdmin::class)->prefix('/admin')->name('admin.')->g
 //    ->middleware(['auth'])
 //    ->name('profile');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

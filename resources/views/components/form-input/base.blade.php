@@ -20,7 +20,7 @@
   }
 @endphp
 
-<div class="mb-5">
+<div class="form-group mb-5 relative">
   @if($label)
     <label for="{{ $id }}" {{ $attributes->merge(['class' => '']) }} >
       {{ $label }}
