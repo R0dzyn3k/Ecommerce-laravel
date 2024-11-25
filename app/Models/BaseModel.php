@@ -4,13 +4,23 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 
 abstract class BaseModel extends Model
 {
-    public function __construct(array $attributes = [])
-    {
+    use LogsActivity;
 
-        parent::__construct($attributes);
+
+    /**
+     * Domyślne opcje logowania dla modeli.
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logAll()
+            ->useLogName('default')
+            ->setDescriptionForEvent(static fn(string $eventName) => "This model has been $eventName");
     }
 }
