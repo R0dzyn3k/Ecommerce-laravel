@@ -2,6 +2,8 @@
     'title' => null,
     'titleBefore' => null,
     'toolbox' => null,
+    'showSidebar' => false,
+    'sidebarMenuItems' => [],
 ])
 
 <x-layouts.app :title="$title">
@@ -9,19 +11,21 @@
 
     <!-- Left menu panel -->
     <div class="grid grid-rows-[100px_auto_100px] w-[100px] min-h-full bg-[var(--adminMenuBackground)]">
-      <livewire:admin.components.link-button action="{{ route('admin.dashboard') }}" icon="logo" :title="__('pages.dashboard')" class="bg-[var(--themePrimaryColour)] hover:bg-[var(--themePrimaryColour)]" />
-      <livewire:admin.menu />
-      <livewire:admin.components.link-button action="{{ route('admin.settings') }}" icon="settings" :label="__('pages.settings.title')" :title="__('pages.settings.title')" class="border-t border-[var(--adminMainBackground)]" />
+      <livewire:admin.components.menu-item action="{{ route('admin.dashboard') }}" icon="logo" :title="__('pages.dashboard')" class="bg-[var(--themePrimaryColour)] hover:bg-[var(--themePrimaryColour)]" />
+      <livewire:admin.components.menu />
+      <livewire:admin.components.menu-item action="{{ route('admin.settings') }}" icon="settings" :label="__('pages.settings.title')" :title="__('pages.settings.title')" class="border-t border-[var(--adminMainBackground)]" />
     </div>
 
     <!-- Right -->
     <div class="flex flex-col w-full h-full">
 
       <!-- Header -->
-      <div class="relative bg-[var(--adminMenuBackground)] grid grid-cols-[250px_auto_100px] items-center shadow-md shadow-[var(--adminMenuBackground)]">
-        <div></div>
+      <div class="relative bg-[var(--adminMenuBackground)] grid {{ $showSidebar ? 'grid-cols-[250px_auto_100px]' : 'grid-cols-[auto_100px]'}} items-center shadow-md shadow-[var(--adminMenuBackground)]">
+        @if ($showSidebar)
+          <div></div>
+        @endif
         <div class="p-6">
-          <h1 class="text-2xl font-bold">
+          <h1 class="text-3xl font-bold">
             {{ $title . ($titleBefore ? "- $titleBefore" : '') }}
           </h1>
         </div>
@@ -29,12 +33,12 @@
         <x-dropdown align="right" contentClasses="py-2 bg-white">
           <x-slot name="trigger">
             <button class="flex items-center justify-center w-full h-full focus:outline-none p-6 fill-white">
-              <x-icon name="user" />
+              @svg('heroicon-c-user-circle')
             </button>
           </x-slot>
 
           <x-slot name="content">
-            <x-dropdown-admin-link :href="route('admin.profile')" wire:navigate>
+            <x-dropdown-admin-link :href="route('admin.profile.edit')" wire:navigate>
               {{ __('pages.profile.title') }}
             </x-dropdown-admin-link>
             <x-dropdown-admin-link :href="route('admin.auth.logout')" wire:navigate>
@@ -45,13 +49,13 @@
 
       </div>
 
-      <!-- Bottom -->
+      <!-- Center -->
       <div class="relative flex-1 overflow-auto bg-[var(--adminMainBackground)]">
-        <div class="grid grid-cols-[250px_auto] h-full">
+        <div class="grid {{ $showSidebar ? 'grid-cols-[250px_auto]' : 'grid-cols-[auto]' }} h-full">
           <!-- Left Submenu -->
-          <div class="flex-none flex flex-col p-6 w-[250px] min-h-full bg-[var(--adminSubMenuBackground)]">
-            <livewire:admin.sub-menu />
-          </div>
+          @if ($showSidebar)
+            <livewire:admin.components.sub-menu :menu-items="$sidebarMenuItems" />
+          @endif
 
           <!-- Page content -->
           <div class="flex flex-1 p-6 flex-col overflow-auto">

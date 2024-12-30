@@ -8,10 +8,13 @@ return [
     'dashboard' => 'Panel',
     'profile' => [
         'title' => 'Profil',
-        'name' => 'Nazwa',
         'subTitle' => 'Edycja profilu',
         'passwordExpiryAt' => 'Hasło wygasa: :attribute',
-        'never' => 'nigdy',
+
+    ],
+    'profileSecurity' => [
+        'title' => 'Bezpieczeństwo',
+        'subTitle' => 'Edycja zabezpieczeń konta',
     ],
     'settings' => [
         'title' => 'Ustawienia',
@@ -22,5 +25,16 @@ return [
     'sales' => 'Sprzedaż',
     'warehouse' => 'Magazyn',
     'discounts' => 'Rabaty',
-    'customers' => 'Klienci',
+    'customers' => [
+        'title' => 'Klienci',
+        'name' => 'Nazwa',
+        'email' => 'Email',
+        'email_verified_at' => 'Zweryfikowany',
+        'password' => 'Hasło',
+        'activate' => 'Aktywuuj',
+        'deactivate' => 'Dezaktywuj',
+        'activateSuccess' => 'Użytkownik aktywowany pomyślnie!',
+        'deactivateSuccess' => 'Użytkownik dezaktywowany pomyślnie!',
+        'deleteSuccess' => 'Użytkownik usunięty pomyślnie!',
+    ],
 ];

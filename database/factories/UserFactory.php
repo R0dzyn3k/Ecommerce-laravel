@@ -21,9 +21,6 @@ class UserFactory extends Factory
     protected static string $password = 'admin';
 
 
-    protected $model = Admin::class;
-
-
     /**
      * Define the model's default state.
      *
@@ -32,12 +29,23 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'firstname' => fake()->firstName(),
+            'lastname' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
+            'phone' => fake()->phoneNumber(),
+            'lang' => 'pl',
             'role' => UserType::customer(),
             'email_verified_at' => now(),
             'password' => static::$password,
             'remember_token' => Str::random(10),
         ];
+    }
+
+
+    public function admin(): static
+    {
+        return $this->state( fn(array $attributes) => [
+            'role' => UserType::admin(),
+        ]);
     }
 }

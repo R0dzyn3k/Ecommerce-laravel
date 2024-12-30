@@ -2,5 +2,13 @@
 
 return [
     'save' => 'Zapisz',
-    'updateSuccess' => 'Updated successfully!'
+    'create' => 'Utwórz',
+    'delete' => 'Usuń',
+    'edit' => 'Edytuj',
+    'updated_at' => 'Ostatnia aktualizacja',
+    'created_at' => 'Utworzono',
+    'updateSuccess' => 'Updated successfully!',
+    'id' => 'ID',
+    'action' => 'Akcja',
+    'never' => 'Nigdy',
 ];

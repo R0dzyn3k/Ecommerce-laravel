@@ -15,9 +15,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
+use Livewire\Wireable;
 
 
-abstract class User extends BaseModel implements MustVerifyEmailContract, AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
+class User extends BaseModel implements MustVerifyEmailContract, AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, Wireable
 {
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
 
@@ -35,10 +36,13 @@ abstract class User extends BaseModel implements MustVerifyEmailContract, Authen
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
         'email',
+        'phone',
         'role',
         'password',
+        'lang',
     ];
 
 
@@ -54,6 +58,47 @@ abstract class User extends BaseModel implements MustVerifyEmailContract, Authen
 
 
     protected $table = 'users';
+
+
+    public static function fromLivewire($value): User
+    {
+        $user = isset($value['id']) ? self::find($value['id']) : new self();
+
+        $user->fill([
+            'firstname' => $value['firstname'] ?? $user->firstname,
+            'lastname' => $value['lastname'] ?? $user->lastname,
+            'email' => $value['email'] ?? $user->email,
+            'phone' => $value['phone'] ?? $user->phone,
+            'role' => isset($value['role']) ? UserType::from($value['role']) : $user->role,
+            'lang' => $value['lang'] ?? $user->lang,
+        ]);
+
+        return $user;
+    }
+
+
+    protected static function booted(): void
+    {
+        static::saving(static function (self $model) {
+            if ($model->isDirty('firstname') || $model->isDirty('lastname')) {
+                $model->name = $model->firstname . ' ' . $model->lastname;
+            }
+        });
+    }
+
+
+    public function toLivewire(): array
+    {
+        return [
+            'id' => $this->id,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'role' => $this->role instanceof UserType ? $this->role->value : $this->role,
+            'lang' => $this->lang,
+        ];
+    }
 
 
     /**

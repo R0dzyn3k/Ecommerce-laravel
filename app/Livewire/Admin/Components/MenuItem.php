@@ -9,7 +9,7 @@ use Illuminate\Foundation\Application;
 use Livewire\Component;
 
 
-class LinkButton extends Component
+class MenuItem extends Component
 {
     public string $action;
 
@@ -33,12 +33,12 @@ class LinkButton extends Component
 
 
     public function mount(
-        string $action,
-        string $icon = null,
-        string $label = null,
-        string $title = null,
-        bool   $borderTop = false,
-        string $class = ''
+        string  $action,
+        ?string $icon = null,
+        ?string $label = null,
+        ?string $title = null,
+        bool    $borderTop = false,
+        string  $class = ''
     ): void {
         $this->action = $action;
         $this->icon = $icon;
@@ -53,6 +53,6 @@ class LinkButton extends Component
 
     public function render(): Application|Factory|View|\Illuminate\View\View
     {
-        return view('livewire.admin.components.link-button');
+        return view('livewire.admin.components.menu-item');
     }
 }

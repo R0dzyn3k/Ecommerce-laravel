@@ -12,6 +12,6 @@ class Settings extends BaseAdminComponent
 {
     public function render(): Application|Factory|View|\Illuminate\View\View
     {
-        return $this->renderWithLayout(view('livewire.admin.settings'), __('pages.settings.title'));
+        return $this->renderLayout(view: view('livewire.admin.settings'), title: __('pages.settings.title'));
     }
 }

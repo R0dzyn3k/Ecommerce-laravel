@@ -1,6 +1,14 @@
+@props(['menuItems' => []])
+
 <div class="overflow-auto">
-  <livewire:admin.components.link-button action="{{ route('admin.sales') }}" icon="sales" :label="__('pages.sales')" :title="__('pages.sales')" class="border-b border-[var(--adminMainBackground)]" />
-  <livewire:admin.components.link-button action="{{ route('admin.warehouse') }}" icon="warehouse" :label="__('pages.warehouse')" :title="__('pages.warehouse')" class="border-b border-[var(--adminMainBackground)]" />
-  <livewire:admin.components.link-button action="{{ route('admin.discounts') }}" icon="discounts" :label="__('pages.discounts')" :title="__('pages.discounts')" class="border-b border-[var(--adminMainBackground)]" />
-  <livewire:admin.components.link-button action="{{ route('admin.customers') }}" icon="customers" :label="__('pages.customers')" :title="__('pages.customers')" class="border-b border-[var(--adminMainBackground)]" />
+  @foreach($menuItems as $item)
+    <livewire:admin.components.menu-item
+      :label="$item['label']"
+      :title="$item['title']"
+      :action="$item['action']"
+      :icon="$item['icon']"
+      class="border-b border-[var(--adminMainBackground)]" />
+  @endforeach
+
+  <livewire:admin.components.menu-item action="{{ route('admin.customers.list') }}" icon="customers" :label="__('pages.customers.title')" :title="__('pages.customers.title')" class="border-b border-[var(--adminMainBackground)]" />
 </div>
