@@ -22,21 +22,18 @@ class Menu extends Component
                 'icon' => 'sales',
                 'label' => __('pages.sales'),
                 'title' => __('pages.sales'),
-            ],
-            [
-                'action' => route('admin.warehouse'),
+            ], [
+                'action' => route('admin.warehouse.index'),
                 'icon' => 'warehouse',
-                'label' => __('pages.warehouse'),
-                'title' => __('pages.warehouse'),
-            ],
-            [
+                'label' => __('pages.warehouse.title'),
+                'title' => __('pages.warehouse.title'),
+            ], [
                 'action' => route('admin.discounts'),
                 'icon' => 'discounts',
                 'label' => __('pages.discounts'),
                 'title' => __('pages.discounts'),
-            ],
-            [
-                'action' => route('admin.customers.list'),
+            ], [
+                'action' => route('admin.customers.index'),
                 'icon' => 'customers',
                 'label' => __('pages.customers.title'),
                 'title' => __('pages.customers.title'),

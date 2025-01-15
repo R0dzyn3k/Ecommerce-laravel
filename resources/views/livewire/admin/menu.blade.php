@@ -10,5 +10,11 @@
       class="border-b border-[var(--adminMainBackground)]" />
   @endforeach
 
-  <livewire:admin.components.menu-item action="{{ route('admin.customers.list') }}" icon="customers" :label="__('pages.customers.title')" :title="__('pages.customers.title')" class="border-b border-[var(--adminMainBackground)]" />
+  <livewire:admin.components.menu-item
+    action="{{ route('admin.customers.index') }}"
+    icon="customers"
+    :label="__('pages.customers.title')"
+    :title="__('pages.customers.title')"
+    class="border-b border-[var(--adminMainBackground)]"
+  />
 </div>

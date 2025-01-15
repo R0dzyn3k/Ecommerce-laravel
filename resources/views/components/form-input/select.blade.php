@@ -6,41 +6,43 @@
     'id' => null,
     'name' => null,
     'label' => null,
-    'options' => [],
+    'options' => [], // ['value' => 'label']
+    'placeholder' => null,
     'required' => false,
     'disabled' => false,
-    'placeholder' => false,
-    'model' => null,
-    'value' => null,
+    'readonly' => false,
 ])
 
 @php
   $id = $id ?? Str::random(8);
-  $newValue = $value ?? $model?->{$name} ?? '';
+  $wireModel = $attributes->get('wire:model');
 @endphp
 
 <x-form-input.base
   class="block font-medium text-sm text-gray-700 dark:text-gray-300"
   :id="$id"
-  :name="$name"
-  :model="$model"
   :label="$label"
+  :wireModel="$wireModel"
+  :name="$name"
 >
   <select
     id="{{ $id }}"
-    name="{{ $name }}"
+    @if($name) name="{{ $name }}" @endif
     @required($required)
     @disabled($disabled)
-    {{ $attributes->merge(['class' =>'block border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 ' .
-        'focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 ' .
-        'rounded-md shadow-sm mt-1 w-full']) }}
+    @readonly($readonly)
+    {{ $attributes->merge([
+        'class' => 'block border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 ' .
+                   'focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 ' .
+                   'rounded-md shadow-sm mt-1 w-full',
+    ]) }}
   >
     @if($placeholder)
       <option value="">{{ $placeholder }}</option>
     @endif
 
-    @foreach ($options as $key => $option)
-      <option value="{{ $key }}" @if($key == $newValue) selected @endif>{{ $option }}</option>
+    @foreach ($options as $value => $optionLabel)
+      <option value="{{ $value }}">{{ $optionLabel }}</option>
     @endforeach
   </select>
 </x-form-input.base>

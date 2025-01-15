@@ -14,7 +14,7 @@
 
     <form wire:submit.prevent="auth" class="max-w-[600px]">
       <x-form-input.input name="email" type="email" wire:model="email" :label="__('auth.email')" required />
-      <x-form-input.password name="password" wire:model="password" :label="__('auth.password')" required />
+      <x-form-input.input name="password" type="password" wire:model="password" :label="__('auth.password')" required />
       <x-form-input.checkbox name="remember" wire:model="remember" :label="__('auth.rememberMe')" />
 
       <div class="flex items-center justify-center mt-4">

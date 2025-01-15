@@ -53,9 +53,7 @@ class ProfileSecurity extends BaseProfileComponent
         try {
             $this->validate();
         } catch (ValidationException $e) {
-            $this->password = '';
-            $this->newPassword = '';
-            $this->newPassword_confirmation = '';
+            $this->resetPasswordFields();
 
             if (isset($e->errors()['password'])) {
                 $this->wrongPasswordCounter++;
@@ -71,15 +69,24 @@ class ProfileSecurity extends BaseProfileComponent
         ]);
 
         $this->alertSuccess(__('global.updateSuccess'));
+        $this->resetPasswordFields();
     }
 
 
     protected function rules(): array
     {
         return [
-            'password' => ['', 'nullable', 'string', 'current_password:admin'],
-            'newPassword' => ['', 'nullable', 'string', 'min:3', 'confirmed', 'different:password'],
-            'newPassword_confirmation' => ['', 'nullable', 'string'],
+            'password' => ['required', 'nullable', 'string', 'current_password:admin'],
+            'newPassword' => ['required', 'nullable', 'string', 'min:3', 'confirmed', 'different:password'],
+            'newPassword_confirmation' => ['required', 'nullable', 'string'],
         ];
+    }
+
+
+    private function resetPasswordFields(): void
+    {
+        $this->password = '';
+        $this->newPassword = '';
+        $this->newPassword_confirmation = '';
     }
 }

@@ -13,7 +13,7 @@
     <div class="grid grid-rows-[100px_auto_100px] w-[100px] min-h-full bg-[var(--adminMenuBackground)]">
       <livewire:admin.components.menu-item action="{{ route('admin.dashboard') }}" icon="logo" :title="__('pages.dashboard')" class="bg-[var(--themePrimaryColour)] hover:bg-[var(--themePrimaryColour)]" />
       <livewire:admin.components.menu />
-      <livewire:admin.components.menu-item action="{{ route('admin.settings') }}" icon="settings" :label="__('pages.settings.title')" :title="__('pages.settings.title')" class="border-t border-[var(--adminMainBackground)]" />
+      <livewire:admin.components.menu-item action="{{ route('admin.settings.index') }}" icon="settings" :label="__('pages.settings.title')" :title="__('pages.settings.title')" class="border-t border-[var(--adminMainBackground)]" />
     </div>
 
     <!-- Right -->
@@ -54,7 +54,9 @@
         <div class="grid {{ $showSidebar ? 'grid-cols-[250px_auto]' : 'grid-cols-[auto]' }} h-full">
           <!-- Left Submenu -->
           @if ($showSidebar)
-            <livewire:admin.components.sub-menu :menu-items="$sidebarMenuItems" />
+            <div class="flex-none flex flex-col  w-[250px] min-h-full bg-[var(--adminSubMenuBackground)]">
+              <x-layouts.sub-menu :menuItems="$sidebarMenuItems" />
+            </div>
           @endif
 
           <!-- Page content -->

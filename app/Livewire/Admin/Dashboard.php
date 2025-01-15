@@ -10,6 +10,9 @@ use Illuminate\Foundation\Application;
 
 class Dashboard extends BaseAdminComponent
 {
+    protected bool $showSidebar = false;
+
+
     public function render(): Application|View|Factory|\Illuminate\View\View
     {
         return $this->renderLayout(view: view('livewire.admin.dashboard'), title: __('pages.dashboard'));

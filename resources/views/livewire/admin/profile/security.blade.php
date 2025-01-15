@@ -6,6 +6,7 @@
       type="password"
       wire:model="password"
       :label="__('auth.currentPassword')"
+      :placeholder="__('user.passwordPlaceholder')"
       required
     />
 
@@ -13,6 +14,7 @@
       type="password"
       wire:model="newPassword"
       :label="__('auth.newPassword')"
+      :placeholder="__('user.newPasswordPlaceholder')"
       required
     />
 
@@ -20,6 +22,7 @@
       type="password"
       wire:model="newPassword_confirmation"
       :label="__('auth.newPasswordConfirmation')"
+      :placeholder="__('auth.newPasswordConfirmation')"
       required
     />
 

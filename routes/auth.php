@@ -1,10 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\Auth\AdminLogoutController;
 use App\Livewire\Admin\Login;
 use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 

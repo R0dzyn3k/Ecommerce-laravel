@@ -5,32 +5,29 @@
     <x-form-input.input
       :label="__('user.firstname')"
       wire:model="profile.firstname"
-      :placeholder="__('user.firstname_placeholder')"
+      :placeholder="__('user.firstnamePlaceholder')"
       required
     />
 
     <x-form-input.input
-      name="lastname"
       :label="__('user.lastname')"
       wire:model="profile.lastname"
-      :placeholder="__('user.lastname_placeholder')"
+      :placeholder="__('user.lastnamePlaceholder')"
       required
     />
 
     <x-form-input.input
-      name="email"
       type="email"
       :label="__('user.email')"
       wire:model="profile.email"
-      :placeholder="__('user.email_placeholder')"
+      :placeholder="__('user.emailPlaceholder')"
       required
     />
 
     <x-form-input.input
-      name="phone"
       :label="__('user.phone')"
       wire:model="profile.phone"
-      :placeholder="__('user.phone_placeholder')"
+      :placeholder="__('user.phonePlaceholder')"
     />
 
     <div class="flex items-center justify-center mt-4">

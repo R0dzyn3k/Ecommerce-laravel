@@ -11,26 +11,26 @@ enum AlertTypes: string
     case WARNING = 'warning';
 
 
-    public static function Error(): string
+    public static function Warning(): string
+    {
+        return self::WARNING->value;
+    }
+
+
+    public static function error(): string
     {
         return self::ERROR->value;
     }
 
 
-    public static function Info(): string
+    public static function info(): string
     {
         return self::INFO->value;
     }
 
 
-    public static function Success(): string
+    public static function success(): string
     {
         return self::SUCCESS->value;
-    }
-
-
-    public static function Warning(): string
-    {
-        return self::WARNING->value;
     }
 }

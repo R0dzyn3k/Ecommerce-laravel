@@ -18,7 +18,7 @@ return [
     'password' => 'Hasło',
     'currentPassword' => 'Obecne hasło',
     'newPassword' => 'Nowe hasło',
-    'newPasswordConfirmation' => 'Potwierdź hasło',
+    'newPasswordConfirmation' => 'Potwierdź nowe hasło',
     'rememberMe' => 'Pamiętaj mnie',
     'logIn' => 'Zaloguj się',
     'logout' => 'Wyloguj się',

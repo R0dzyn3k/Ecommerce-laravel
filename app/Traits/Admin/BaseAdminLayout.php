@@ -12,7 +12,7 @@ use Illuminate\View\View;
 
 trait BaseAdminLayout
 {
-    protected bool $showSidebar = false;
+    protected bool $showSidebar = true;
 
 
     protected array $sidebarMenuItems = [];
@@ -48,11 +48,17 @@ trait BaseAdminLayout
     }
 
 
+    protected function isShowSidebar(): bool
+    {
+        return $this->showSidebar;
+    }
+
+
     protected function renderLayout(\Illuminate\Contracts\Foundation\Application|Factory|ViewContracts $view, string $title): Application|Factory|ViewContracts|View
     {
         return $view->layout('components.layouts.base-admin', [
             'title' => $title,
-            'showSidebar' => $this->showSidebar,
+            'showSidebar' => $this->isShowSidebar(),
             'sidebarMenuItems' => $this->getSidebarMenuItems(),
         ]);
     }
