@@ -15,6 +15,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\App;
 use Livewire\Wireable;
 
 
@@ -79,6 +80,10 @@ class User extends BaseModel implements MustVerifyEmailContract, Authenticatable
 
     protected static function booted(): void
     {
+        static::creating(static function (self $model) {
+            $model->lang = App::currentLocale();
+        });
+
         static::saving(static function (self $model) {
             if ($model->isDirty('firstname') || $model->isDirty('lastname')) {
                 $model->name = $model->firstname . ' ' . $model->lastname;

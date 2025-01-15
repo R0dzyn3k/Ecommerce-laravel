@@ -24,7 +24,7 @@ class Admin extends User
         parent::booted();
 
         static::creating(static function (self $model) {
-            $model->role = UserType::admin();
+            $model->role = UserType::ADMIN;
         });
     }
 
