@@ -15,8 +15,8 @@ trait BaseWarehouseMenuItems
             new SubMenuItem(
                 label: __('pages.products.title'),
                 type: MenuItemType::InternalLink,
-                icon: 'heroicon-c-circle-stack',
-                route: 'admin.warehouse.categories.index',
+                icon: 'heroicon-s-archive-box',
+                route: 'admin.warehouse.products.index',
             ),
             new SubMenuItem(
                 label: __('pages.categories.title'),

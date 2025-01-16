@@ -19,4 +19,7 @@ return [
     'deactivateSuccess' => 'Pomyślnie dezaktywowano!',
     'deleteSuccess' => 'Pomyślnie usunięto!',
     'is_active' => 'Aktywny',
+    'activate' => 'Aktywuuj',
+    'deactivate' => 'Dezaktywuj',
+    'defaultSelectPlaceholder' => 'Wybierz',
 ];

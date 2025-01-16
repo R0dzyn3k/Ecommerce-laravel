@@ -2,6 +2,8 @@
 
 
 use App\Http\Controllers\Web\HomepageController;
+use App\Livewire\Admin\Warehouse\Products\ProductForm;
+use App\Livewire\Admin\Warehouse\Products\ProductTable;
 use App\Livewire\Admin\Customers\{CustomerForm, Customers};
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Profile\{ProfileEdit, ProfileSecurity};
@@ -34,21 +36,21 @@ Route::middleware(['auth:admin'])->prefix('/admin')->name('admin.')->group(funct
         $router->get('/', WarehouseTiles::class)->name('index');
 
         $router->as('products.')->prefix('products')->group(function (Router $router) {
-            $router->get('/', CategoryTable::class)->name('index');
-            $router->get('create', CategoryForm::class)->name('create');
-            $router->get('{admin}', CategoryForm::class)->name('show');
+            $router->get('/', ProductTable::class)->name('index');
+            $router->get('create', ProductForm::class)->name('create');
+            $router->get('{product}', ProductForm::class)->name('show');
         });
 
         $router->as('categories.')->prefix('categories')->group(function (Router $router) {
             $router->get('/', CategoryTable::class)->name('index');
             $router->get('create', CategoryForm::class)->name('create');
-            $router->get('{admin}', CategoryForm::class)->name('show');
+            $router->get('{category}', CategoryForm::class)->name('show');
         });
 
         $router->as('brands.')->prefix('brands')->group(function (Router $router) {
             $router->get('/', BrandTable::class)->name('index');
             $router->get('create', BrandForm::class)->name('create');
-            $router->get('{admin}', BrandForm::class)->name('show');
+            $router->get('{brand}', BrandForm::class)->name('show');
         });
     });
 
