@@ -7,7 +7,6 @@
     'name' => null,
     'label' => null,
     'value' => '1', // Domyślna wartość dla checkboxa
-    'checked' => false,
     'required' => false,
     'disabled' => false,
 ])
@@ -32,7 +31,6 @@
       id="{{ $id }}"
       @if($name) name="{{ $name }}" @endif
     @if($value) value="{{ $value }}" @endif
-    @if($checked) checked="checked" @endif
     @required($required)
     @disabled($disabled)
     wire:model="{{ $wireModel }}"

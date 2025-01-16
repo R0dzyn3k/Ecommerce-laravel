@@ -7,6 +7,7 @@
     'name' => null,
     'label' => null,
     'options' => [], // ['value' => 'label']
+    'addDefaultOption' => true,
     'placeholder' => null,
     'required' => false,
     'disabled' => false,
@@ -37,12 +38,12 @@
                    'rounded-md shadow-sm mt-1 w-full',
     ]) }}
   >
-    @if($placeholder)
-      <option value="">{{ $placeholder }}</option>
-    @endif
+
+    <option value="" @if(! $addDefaultOption) hidden @endif >{{ $placeholder ?? __('global.defaultSelectPlaceholder') }}</option>
 
     @foreach ($options as $value => $optionLabel)
       <option value="{{ $value }}">{{ $optionLabel }}</option>
     @endforeach
   </select>
+
 </x-form-input.base>

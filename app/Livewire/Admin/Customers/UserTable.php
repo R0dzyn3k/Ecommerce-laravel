@@ -49,8 +49,8 @@ class UserTable extends DataTableComponent
     public function bulkActions(): array
     {
         return [
-            'activate' => __('pages.customers.activate'),
-            'deactivate' => __('pages.customers.deactivate'),
+            'activate' => __('global.activate'),
+            'deactivate' => __('global.deactivate'),
             'delete' => __('global.delete'),
         ];
     }

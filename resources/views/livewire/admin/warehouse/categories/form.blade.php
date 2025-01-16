@@ -1,9 +1,9 @@
 <div>
   <h2 class="text-3xl font-bold pb-6">
     @if($this->isExist)
-      @lang('pages.taxes.edit')
+      @lang('pages.categories.edit')
     @else
-      @lang('pages.taxes.new')
+      @lang('pages.categories.new')
     @endif
   </h2>
 
@@ -23,6 +23,7 @@
     <x-form-input.checkbox
       :label="__('global.is_active')"
       wire:model="category.is_active"
+      :checked="$product->is_active ?? true"
     />
 
     <div class="flex items-center justify-center mt-4">

@@ -4,6 +4,8 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Livewire\Wireable;
 
 
@@ -29,6 +31,14 @@ class Brand extends BaseModel implements Wireable
         ]);
 
         return $brand;
+    }
+
+
+    public static function mapForSelect(): Collection
+    {
+        return DB::table('brands')
+            ->where('is_active', 1)
+            ->pluck('title', 'id');
     }
 
 

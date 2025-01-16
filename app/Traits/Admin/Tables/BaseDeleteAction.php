@@ -7,7 +7,7 @@ trait BaseDeleteAction
 {
     public function delete(): void
     {
-        $this->builder()->where('id', $this->getSelected())->delete();
+        $this->builder()->whereIn('id', $this->getSelected())->delete();
         $this->clearSelected();
         $this->alertSuccess(__('global.deleteSuccess'));
     }

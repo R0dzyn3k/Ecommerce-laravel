@@ -4,6 +4,8 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Livewire\Wireable;
 
 
@@ -31,6 +33,12 @@ class Tax extends BaseModel implements Wireable
     }
 
 
+    public static function mapForSelect(): Collection
+    {
+        return DB::table('taxes')->pluck('name', 'id');
+    }
+
+
     protected static function booted(): void
     {
         static::saving(static function (self $model) {
@@ -42,7 +50,7 @@ class Tax extends BaseModel implements Wireable
 
     public function discountsHistory(): HasMany
     {
-        return $this->hasMany(ProductDiscountHistory::class);
+        return $this->hasMany(ProductPriceHistories::class);
     }
 
 

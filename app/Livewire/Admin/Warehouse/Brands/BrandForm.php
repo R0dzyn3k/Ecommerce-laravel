@@ -78,7 +78,7 @@ class BrandForm extends BaseAdminComponent
             label: $this->isExist ? __('pages.brands.edit') : __('pages.brands.new'),
             type: MenuItemType::InternalLink,
             route: $this->isExist ? 'admin.warehouse.brands.show' : 'admin.warehouse.brands.create',
-            params: $this->isExist ? ['tax' => $this->brand->id] : [],
+            params: $this->isExist ? ['brand' => $this->brand->id] : [],
         );
 
         $sidebarMenu->firstOrFail(function (SubMenuItem $item) {

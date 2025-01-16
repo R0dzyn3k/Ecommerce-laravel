@@ -63,10 +63,10 @@ class CategoryForm extends BaseAdminComponent
     protected function rules(): array
     {
         return [
-            'brand.title' => ['required', 'string', 'max:255'],
-            'brand.description' => ['nullable', 'string', 'max:2048'],
-            'brand.is_active' => ['present', 'boolean'],
-            'brand.photo' => ['nullable'],
+            'category.title' => ['required', 'string', 'max:255'],
+            'category.description' => ['nullable', 'string', 'max:2048'],
+            'category.is_active' => ['present', 'boolean'],
+            'category.photo' => ['nullable'],
         ];
     }
 
@@ -78,7 +78,7 @@ class CategoryForm extends BaseAdminComponent
             label: $this->isExist ? __('pages.categories.edit') : __('pages.categories.new'),
             type: MenuItemType::InternalLink,
             route: $this->isExist ? 'admin.warehouse.categories.show' : 'admin.warehouse.categories.create',
-            params: $this->isExist ? ['tax' => $this->category->id] : [],
+            params: $this->isExist ? ['category' => $this->category->id] : [],
         );
 
         $sidebarMenu->firstOrFail(function (SubMenuItem $item) {

@@ -7,7 +7,7 @@ trait BaseDeactivateAction
 {
     public function deactivate(): void
     {
-        $this->builder()->where('id', $this->getSelected())->update(['is_active' => false]);
+        $this->builder()->whereIn('id', $this->getSelected())->update(['is_active' => false]);
         $this->clearSelected();
         $this->alertSuccess(__('global.deactivateSuccess'));
     }
