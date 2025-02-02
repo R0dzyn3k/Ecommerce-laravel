@@ -33,7 +33,6 @@
     <x-form-input.checkbox
       :label="__('global.is_active')"
       wire:model="product.is_active"
-      :checked="$product->is_active ?? true"
     />
 
     <x-form-input.select
@@ -105,4 +104,11 @@
       </x-buttons.primary>
     </div>
   </form>
+
+  @if($product?->exists)
+    <div class="max-w-[600px]">
+      <h1 class="text-2xl font-bold mb-4">{{ __('global.photo') }}</h1>
+      @livewire('file-uploader', ['model' => $product, 'collectionName' => 'product_photo', 'singleFile' => true, 'route' => route('admin.warehouse.products.show', $product->id) ])
+    </div>
+  @endif
 </div>

@@ -11,6 +11,7 @@ use App\Traits\Admin\Menu\BaseWarehouseMenuItems;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Validation\Rule;
 
 
 class BrandForm extends BaseAdminComponent
@@ -29,7 +30,7 @@ class BrandForm extends BaseAdminComponent
         if ($this->brand?->exists) {
             $this->isExist = true;
         } else {
-            $this->brand = new Brand();
+            $this->brand = new Brand(['is_active' => true]);
         }
     }
 
@@ -62,11 +63,16 @@ class BrandForm extends BaseAdminComponent
 
     protected function rules(): array
     {
+        $titleRule = Rule::unique('brands', 'title');
+
+        if ($this->isExist) {
+            $titleRule->ignore($this->brand);
+        }
+
         return [
-            'brand.title' => ['required', 'string', 'max:255'],
+            'brand.title' => ['required', 'string', 'max:255', $titleRule],
             'brand.description' => ['nullable', 'string', 'max:2048'],
             'brand.is_active' => ['present', 'boolean'],
-            'brand.photo' => ['nullable'],
         ];
     }
 

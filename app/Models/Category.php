@@ -3,19 +3,23 @@
 namespace App\Models;
 
 
+use App\Traits\SingleImageMedia;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Livewire\Wireable;
+use Spatie\MediaLibrary\HasMedia;
 
 
-class Category extends BaseModel implements Wireable
+class Category extends BaseModel implements Wireable, HasMedia
 {
+    use SingleImageMedia;
+
+
     protected $fillable = [
         'is_active',
         'title',
         'description',
-        'photo',
     ];
 
 
@@ -26,7 +30,6 @@ class Category extends BaseModel implements Wireable
         $brand->fill([
             'title' => $value['title'] ?? $brand->title,
             'description' => $value['description'] ?? $brand->description,
-            'photo' => $value['photo'] ?? $brand->photo,
             'is_active' => $value['is_active'] ?? $brand->is_active,
         ]);
 
@@ -54,7 +57,6 @@ class Category extends BaseModel implements Wireable
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description ?? '',
-            'photo' => $this->photo,
             'is_active' => $this->is_active,
         ];
     }
@@ -66,5 +68,4 @@ class Category extends BaseModel implements Wireable
             'is_active' => 'boolean',
         ];
     }
-
 }

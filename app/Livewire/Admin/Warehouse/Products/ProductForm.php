@@ -11,6 +11,7 @@ use App\Traits\Admin\Menu\BaseWarehouseMenuItems;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Validation\Rule;
 
 
 class ProductForm extends BaseAdminComponent
@@ -29,7 +30,11 @@ class ProductForm extends BaseAdminComponent
         if ($this->product?->exists) {
             $this->isExist = true;
         } else {
-            $this->product = new Product();
+            $this->product = new Product([
+                'is_active' => true,
+                'stock' => 0,
+                'price' => 0,
+            ]);
         }
     }
 
@@ -62,11 +67,16 @@ class ProductForm extends BaseAdminComponent
 
     protected function rules(): array
     {
+        $titleRule = Rule::unique('products', 'title');
+
+        if ($this->isExist) {
+            $titleRule->ignore($this->product);
+        }
+
         return [
-            'product.title' => ['required', 'string', 'max:255'],
+            'product.title' => ['required', 'string', 'max:255', $titleRule],
             'product.description' => ['nullable', 'string', 'max:2048'],
             'product.is_active' => ['present', 'boolean'],
-            'product.photo' => ['nullable'],
             'product.ean' => ['nullable', 'string', 'max:48'],
             'product.sku' => ['nullable', 'string', 'max:60'],
             'product.mpn' => ['nullable', 'string', 'max:60'],

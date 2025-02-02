@@ -2,8 +2,6 @@
 
 
 use App\Http\Controllers\Web\HomepageController;
-use App\Livewire\Admin\Warehouse\Products\ProductForm;
-use App\Livewire\Admin\Warehouse\Products\ProductTable;
 use App\Livewire\Admin\Customers\{CustomerForm, Customers};
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Profile\{ProfileEdit, ProfileSecurity};
@@ -14,6 +12,8 @@ use App\Livewire\Admin\Warehouse\Brands\BrandForm;
 use App\Livewire\Admin\Warehouse\Brands\BrandTable;
 use App\Livewire\Admin\Warehouse\Categories\CategoryForm;
 use App\Livewire\Admin\Warehouse\Categories\CategoryTable;
+use App\Livewire\Admin\Warehouse\Products\ProductForm;
+use App\Livewire\Admin\Warehouse\Products\ProductTable;
 use App\Livewire\Admin\Warehouse\WarehouseTiles;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
@@ -21,13 +21,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web'])->as('web.')->group(function (Router $router) {
     $router->get('/', [HomepageController::class, 'index'])->name('homepage.index');
+    $router->get('cart', [HomepageController::class, 'index'])->name('cart.index');
+    $router->get('profile', [HomepageController::class, 'index'])->name('profile.index');
 
 //    $router->resource('locale', LocaleController::class)->only(['store']);
 
 
 });
 
-Route::middleware(['auth:admin'])->prefix('/admin')->name('admin.')->group(function (Router $router) {
+Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function (Router $router) {
     $router->get('dashboard', Dashboard::class)->name('dashboard');
     $router->get('sales', Dashboard::class)->name('sales');
     $router->get('warehouse', Dashboard::class)->name('warehouse');

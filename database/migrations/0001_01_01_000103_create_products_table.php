@@ -15,7 +15,6 @@ return new class extends Migration {
             $table->id();
             $table->string('title')->unique();
             $table->text('description')->nullable();
-            $table->string('photo')->nullable();
             $table->boolean('is_active')->default(true);
             $table->string('ean', 48)->nullable();
             $table->string('sku', 60)->nullable();

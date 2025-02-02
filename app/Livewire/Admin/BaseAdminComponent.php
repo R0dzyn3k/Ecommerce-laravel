@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 
+use App\Traits\Admin\Alerts;
 use App\Traits\Admin\BaseAdminLayout;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
@@ -11,6 +12,7 @@ use Livewire\Component;
 abstract class BaseAdminComponent extends Component
 {
     use BaseAdminLayout;
+    use Alerts;
 
 
     protected bool $alertErrorOnFailed = false;

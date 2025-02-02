@@ -3,18 +3,22 @@
 namespace App\Models;
 
 
+use App\Traits\SingleImageMedia;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Livewire\Wireable;
+use Spatie\MediaLibrary\HasMedia;
 
 
-class Product extends BaseModel implements Wireable
+class Product extends BaseModel implements Wireable, HasMedia
 {
+    use SingleImageMedia;
+
+
     protected $fillable = [
         'is_active',
         'title',
         'description',
-        'photo',
         'ean',
         'sku',
         'mpn',
@@ -37,7 +41,6 @@ class Product extends BaseModel implements Wireable
             'is_active' => $value['is_active'] ?? $product->is_active,
             'title' => $value['title'] ?? $product->title,
             'description' => $value['description'] ?? $product->description,
-            'photo' => $value['photo'] ?? $product->photo,
             'ean' => $value['ean'] ?? $product->ean,
             'sku' => $value['sku'] ?? $product->sku,
             'mpn' => $value['mpn'] ?? $product->mpn,
@@ -101,7 +104,6 @@ class Product extends BaseModel implements Wireable
             'is_active' => $this->is_active,
             'title' => $this->title,
             'description' => $this->description,
-            'photo' => $this->photo,
             'ean' => $this->ean,
             'sku' => $this->sku,
             'mpn' => $this->mpn,

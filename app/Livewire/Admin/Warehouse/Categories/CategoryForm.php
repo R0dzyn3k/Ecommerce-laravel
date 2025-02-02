@@ -11,6 +11,7 @@ use App\Traits\Admin\Menu\BaseWarehouseMenuItems;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Validation\Rule;
 
 
 class CategoryForm extends BaseAdminComponent
@@ -29,7 +30,7 @@ class CategoryForm extends BaseAdminComponent
         if ($this->category?->exists) {
             $this->isExist = true;
         } else {
-            $this->category = new Category();
+            $this->category = new Category(['is_active' => true]);
         }
     }
 
@@ -62,11 +63,16 @@ class CategoryForm extends BaseAdminComponent
 
     protected function rules(): array
     {
+        $titleRule = Rule::unique('categories', 'title');
+
+        if ($this->isExist) {
+            $titleRule->ignore($this->category);
+        }
+
         return [
-            'category.title' => ['required', 'string', 'max:255'],
+            'category.title' => ['required', 'string', 'max:255', $titleRule],
             'category.description' => ['nullable', 'string', 'max:2048'],
             'category.is_active' => ['present', 'boolean'],
-            'category.photo' => ['nullable'],
         ];
     }
 

@@ -49,8 +49,7 @@ class CategoryTable extends DataTableComponent
                 ->sortable(),
             DateColumn::make(__('global.updated_at'), 'updated_at')
                 ->outputFormat('Y-m-d H:i:s')
-                ->sortable()
-                ->isHidden(),
+                ->sortable(),
         ];
     }
 

@@ -13,9 +13,6 @@ abstract class BaseModel extends Model
     use LogsActivity;
 
 
-    /**
-     * Domyślne opcje logowania dla modeli.
-     */
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()

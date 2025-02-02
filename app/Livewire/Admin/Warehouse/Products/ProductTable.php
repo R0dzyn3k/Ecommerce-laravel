@@ -3,7 +3,6 @@
 namespace App\Livewire\Admin\Warehouse\Products;
 
 
-use App\Models\Category;
 use App\Models\Product;
 use App\Traits\Admin\BaseAdminLayout;
 use App\Traits\Admin\Menu\BaseWarehouseMenuItems;
@@ -12,7 +11,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\{Column, Columns\BooleanColumn, Columns\CountColumn, Columns\DateColumn};
+use Rappasoft\LaravelLivewireTables\Views\{Column, Columns\BooleanColumn, Columns\DateColumn};
 
 
 class ProductTable extends DataTableComponent
@@ -49,16 +48,24 @@ class ProductTable extends DataTableComponent
                 ->sortable(),
             Column::make(__('pages.products.ean'), 'ean')
                 ->searchable()
+                ->sortable()
                 ->sortable(),
             Column::make(__('pages.products.sku'), 'sku')
                 ->searchable()
-                ->sortable()
-                ->isHidden(),
+                ->sortable(),
             Column::make(__('pages.products.mpn'), 'mpn')
                 ->searchable()
-                ->sortable()
-                ->isHidden(),
+                ->sortable(),
+            Column::make(__('pages.products.price'), 'price')
+                ->sortable(),
+            Column::make(__('pages.products.discountPrice'), 'discount_price')
+                ->sortable(),
+            Column::make(__('pages.products.tax'), 'tax_id')
+                ->format(fn($value, Product $model) => $model->tax->name)
+                ->searchable()
+                ->sortable(),
             Column::make(__('pages.products.category'), 'category_id')
+                ->format(fn($value, Product $model) => $model->category?->title)
                 ->searchable()
                 ->sortable(),
             DateColumn::make(__('global.created_at'), 'created_at')
@@ -66,8 +73,7 @@ class ProductTable extends DataTableComponent
                 ->sortable(),
             DateColumn::make(__('global.updated_at'), 'updated_at')
                 ->outputFormat('Y-m-d H:i:s')
-                ->sortable()
-                ->isHidden(),
+                ->sortable(),
         ];
     }
 
