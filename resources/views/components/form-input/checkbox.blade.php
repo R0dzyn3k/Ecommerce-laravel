@@ -9,15 +9,19 @@
     'value' => '1', // Domyślna wartość dla checkboxa
     'required' => false,
     'disabled' => false,
+    'class' => null,
+    'labelClass' => null,
 ])
 
 @php
   $id = $id ?? Str::random(8);
   $wireModel = $attributes->get('wire:model');
+  $defaultClass = 'border-gray-700 bg-gray-900 text-gray-300';
+  $labelDefaultClass = 'text-gray-300';
 @endphp
 
 <x-form-input.base
-  class="block font-medium text-sm text-gray-700 dark:text-gray-300"
+  class="block font-medium text-sm {{$labelClass ?? $labelDefaultClass}}"
   :id="$id"
   :label="$label"
   :wireModel="$wireModel"
@@ -35,11 +39,11 @@
     @disabled($disabled)
     wire:model="{{ $wireModel }}"
       {{ $attributes->merge([
-          'class' => 'rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:focus:ring-indigo-600',
+          'class' => 'rounded text-indigo-600 shadow-sm focus:ring-indigo-500 border-gray-700 focus:ring-indigo-600' . ($class ?? $defaultClass),
       ]) }}
     >
     @if($label)
-      <label for="{{ $id }}" class="ml-2 text-sm text-gray-700 dark:text-gray-300">
+      <label for="{{ $id }}" class="ml-2 text-sm {{ $labelClass ?? $labelDefaultClass }}">
         {{ $label }}
       </label>
     @endif

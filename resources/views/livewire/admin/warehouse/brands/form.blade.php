@@ -26,7 +26,7 @@
     />
 
     <div class="flex items-center justify-center mt-4">
-      <x-buttons.primary class="ms-3">
+      <x-buttons.primary>
         @if($this->isExist)
           @lang('global.save')
         @else

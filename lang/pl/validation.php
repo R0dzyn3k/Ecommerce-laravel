@@ -147,4 +147,10 @@ return [
         'newPassword' => 'nowe hasło',
         'newPassword_confirmation' => 'potwierdź nowego hasła',
     ],
+
+    'password' => [
+        'mixed' => "hasło musi zawierać co najmniej jedną wielką i jedną małą literę.",
+        'symbols' => "hasło musi zawierać co najmniej jeden symbol.",
+        'numbers' => "hasło musi zawierać co najmniej jedną cyfrę.",
+    ],
 ];

@@ -1,14 +1,15 @@
 <?php
 
 use App\Http\Controllers\Admin\Auth\AdminLogoutController;
-use App\Livewire\Admin\Login;
+use App\Livewire\Admin\Login as AdminLogin;
+use App\Livewire\Web\Login as CustomerLogin;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['web', 'guest:admin'])->prefix('/admin')->name('admin.auth.')->group(function (Router $router) {
     $router->get('/', fn() => Redirect::route('admin.auth.login'));
-    $router->get('login', Login::class)->name('login');
+    $router->get('login', AdminLogin::class)->name('login');
 });
 
 Route::middleware(['auth:admin'])->prefix('/admin')->name('admin.auth.')->group(function (Router $router) {

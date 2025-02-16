@@ -31,7 +31,7 @@
     />
 
     <div class="flex items-center justify-center mt-4">
-      <x-buttons.primary class="ms-3">{{ __('global.save') }}</x-buttons.primary>
+      <x-buttons.primary>{{ __('global.save') }}</x-buttons.primary>
     </div>
   </form>
 </div>
