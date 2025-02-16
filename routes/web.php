@@ -1,7 +1,9 @@
 <?php
 
 
+use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\HomepageController;
+use App\Http\Controllers\Web\ProfileController;
 use App\Livewire\Admin\Customers\{CustomerForm, Customers};
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Profile\{ProfileEdit, ProfileSecurity};
@@ -21,8 +23,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web'])->as('web.')->group(function (Router $router) {
     $router->get('/', [HomepageController::class, 'index'])->name('homepage.index');
+    $router->get('products', [HomepageController::class, 'index'])->name('products.index');
+    $router->get('categories', [HomepageController::class, 'index'])->name('categories.index');
+    $router->get('brands', [HomepageController::class, 'index'])->name('brands.index');
+    $router->get('contact', [ContactController::class, 'index'])->name('contact.index');
+
     $router->get('cart', [HomepageController::class, 'index'])->name('cart.index');
-    $router->get('profile', [HomepageController::class, 'index'])->name('profile.index');
+    $router->get('profile', [ProfileController::class, 'index'])->name('profile.index');
 
 //    $router->resource('locale', LocaleController::class)->only(['store']);
 

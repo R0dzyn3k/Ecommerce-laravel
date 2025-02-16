@@ -9,13 +9,24 @@
   --themePrimaryColour: #ff1818;
   --adminTextColour: #fff;
 
+  --webHeaderBackgroundColour: #fff;
+  --webHeaderTextColour: #6b7280;
+  --webPrimaryTextColour: #15141A;
+  --webSecondaryTextColour: #6b7280;
+  --webPrimaryLightTextColour: #fff;
+  --webSecondaryLightTextColour: #93a3af;
+
+  --webPrimaryBackgroundColour: #f2f2f2;
+  --webPrimaryTabBackgroundColour: #fff;
+  //--webLightColour: #ff1818;
+  --webLightHoverColour: #818cf8;
+  --webThirdLightTextColour: #4f46e5;
 
   --baseDark: #000000;
 }
 
 
-
-.form-group:has(input:required) label::after  {
+.form-group:has(input:required) label::after {
   content: "*";
   color: red;
 }
