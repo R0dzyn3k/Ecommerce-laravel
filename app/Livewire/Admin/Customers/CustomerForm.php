@@ -14,6 +14,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 
 
@@ -103,7 +104,7 @@ class CustomerForm extends BaseAdminComponent
             'customer.lastname' => ['required', 'string', 'max:30'],
             'customer.email' => ['required', 'email', 'max:255', Rule::unique(Customer::class, 'email')->ignore($this->customer)],
             'customer.phone' => ['nullable', 'string', 'max:20'],
-            'password' => ['sometimes', 'nullable', 'string', 'min:3', 'confirmed'],
+            'password' => ['sometimes', 'nullable', 'string', Password::default(), 'confirmed'],
             'password_confirmation' => ['sometimes', 'nullable', 'required_with:password', 'string', 'same:password'],
         ];
     }

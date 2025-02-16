@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 
 
@@ -77,7 +78,7 @@ class ProfileSecurity extends BaseProfileComponent
     {
         return [
             'password' => ['required', 'nullable', 'string', 'current_password:admin'],
-            'newPassword' => ['required', 'nullable', 'string', 'min:3', 'confirmed', 'different:password'],
+            'newPassword' => ['required', 'nullable', 'string', Password::default(), 'confirmed', 'different:password'],
             'newPassword_confirmation' => ['required', 'nullable', 'string'],
         ];
     }

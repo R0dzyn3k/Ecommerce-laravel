@@ -15,6 +15,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 
 
@@ -96,7 +97,7 @@ class AdministratorForm extends BaseAdminComponent
             'admin.lastname' => ['required', 'string', 'max:30'],
             'admin.email' => ['required', 'email', 'max:255', Rule::unique(Admin::class, 'email')->ignore($this->admin)],
             'admin.phone' => ['required', 'string', 'max:20'],
-            'password' => ['sometimes', 'nullable', 'string', 'min:3', 'confirmed'],
+            'password' => ['sometimes', 'nullable', 'string', Password::default(), 'confirmed'],
             'password_confirmation' => ['sometimes', 'nullable', 'required_with:password', 'string', 'same:password'],
         ];
     }
