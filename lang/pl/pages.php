@@ -80,4 +80,12 @@ return [
         'deactivateSuccess' => 'Użytkownik dezaktywowany pomyślnie!',
         'deleteSuccess' => 'Użytkownik usunięty pomyślnie!',
     ],
+    'newsletter' => [
+        'title' => 'Newsletter',
+        'new' => 'Tworzenie subskrybenta',
+        'edit' => 'Edycja subskrybenta',
+        'email' => 'Email',
+        'user' => 'Użytkownik',
+        'emailPlaceholder' => 'Wpisz email',
+    ],
 ];

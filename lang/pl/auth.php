@@ -22,4 +22,10 @@ return [
     'rememberMe' => 'Pamiętaj mnie',
     'logIn' => 'Zaloguj się',
     'logout' => 'Wyloguj się',
+    'registerSuccess' => 'Rejestracja zakończona sukcesem.',
+    'forgotPassword' => 'Zapomniałeś hasła?',
+    'setPassword' => 'Ustaw nowe hasło',
+    'resetPassword' => 'Zresetuj hasło',
+    'reset' => 'Zresetuj',
+    'verifyEmail' => 'Zweryfikuj e-mail',
 ];

@@ -28,4 +28,5 @@ return [
     'deactivate' => 'Dezaktywuj',
     'defaultSelectPlaceholder' => 'Wybierz',
     'copyright' => 'Wszelkie prawa zastrzeżone.',
+    'back' => 'Powrót',
 ];
