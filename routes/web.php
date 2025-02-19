@@ -7,6 +7,7 @@ use App\Livewire\Admin\Customers\{CustomerForm, Customers};
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Profile\{ProfileEdit, ProfileSecurity};
 use App\Livewire\Admin\Settings\Administrators\{AdministratorForm, Administrators};
+use App\Livewire\Admin\Settings\Newsletter\NewsletterTable;
 use App\Livewire\Admin\Settings\SettingsTiles;
 use App\Livewire\Admin\Settings\Taxes\{TaxForm, TaxTable};
 use App\Livewire\Admin\Warehouse\Brands\BrandForm;
@@ -16,6 +17,8 @@ use App\Livewire\Admin\Warehouse\Categories\CategoryTable;
 use App\Livewire\Admin\Warehouse\Products\ProductForm;
 use App\Livewire\Admin\Warehouse\Products\ProductTable;
 use App\Livewire\Admin\Warehouse\WarehouseTiles;
+use App\Livewire\Web\Profile\Profile;
+use App\Livewire\Web\Profile\Security;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
@@ -29,10 +32,9 @@ Route::middleware(['web'])->as('web.')->group(function (Router $router) {
 
     $router->get('cart', [HomepageController::class, 'index'])->name('cart');
 
-//    $router->resource('locale', LocaleController::class)->only(['store']);
-
     $router->as('profile.')->middleware('verified:web.verify-email')->prefix('profile')->group(function (Router $router) {
         $router->get('/', Profile::class)->name('edit');
+        $router->get('security', Security::class)->name('security');
     });
 
 });
@@ -90,6 +92,12 @@ Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(functi
             $router->get('/', TaxTable::class)->name('index');
             $router->get('create', TaxForm::class)->name('create');
             $router->get('{tax}', TaxForm::class)->name('show');
+        });
+
+        $router->as('newsletter.')->prefix('newsletter')->group(function (Router $router) {
+            $router->get('/', NewsletterTable::class)->name('index');
+            $router->get('create', BrandForm::class)->name('create');
+            $router->get('{brand}', BrandForm::class)->name('show');
         });
     });
 });
