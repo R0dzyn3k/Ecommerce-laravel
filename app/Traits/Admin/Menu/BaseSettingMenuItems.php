@@ -24,6 +24,12 @@ trait BaseSettingMenuItems
                 icon: 'heroicon-c-currency-euro',
                 route: 'admin.settings.taxes.index',
             ),
+            new SubMenuItem(
+                label: __('pages.newsletter.title'),
+                type: MenuItemType::InternalLink,
+                icon: 'heroicon-c-numbered-list',
+                route: 'admin.settings.newsletter.index',
+            ),
         ];
 
         return $this->isSettingsTilesToMenuItemsRequired ?? true

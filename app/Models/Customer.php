@@ -4,8 +4,8 @@ namespace App\Models;
 
 
 use App\Enums\UserType;
-use App\Models\Notifications\CustomerVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 class Customer extends User
@@ -41,13 +41,14 @@ class Customer extends User
     }
 
 
-    /**
-     * Send the email verification notification.
-     *
-     * @return void
-     */
-    public function sendEmailVerificationNotification(): void
+    public function newsletters(): HasMany
     {
-        $this->notify(new CustomerVerifyEmail());
+        return $this->hasMany(Newsletter::class, 'user_id');
+    }
+
+
+    public function subscribedNewsletter(): bool
+    {
+        return $this->newsletters()->exists();
     }
 }
