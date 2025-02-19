@@ -3,7 +3,6 @@
 
 use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\HomepageController;
-use App\Http\Controllers\Web\ProfileController;
 use App\Livewire\Admin\Customers\{CustomerForm, Customers};
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Profile\{ProfileEdit, ProfileSecurity};
@@ -22,17 +21,19 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['web'])->as('web.')->group(function (Router $router) {
-    $router->get('/', [HomepageController::class, 'index'])->name('homepage.index');
-    $router->get('products', [HomepageController::class, 'index'])->name('products.index');
-    $router->get('categories', [HomepageController::class, 'index'])->name('categories.index');
-    $router->get('brands', [HomepageController::class, 'index'])->name('brands.index');
-    $router->get('contact', [ContactController::class, 'index'])->name('contact.index');
+    $router->get('/', [HomepageController::class, 'index'])->name('homepage');
+    $router->get('products', [HomepageController::class, 'index'])->name('products');
+    $router->get('categories', [HomepageController::class, 'index'])->name('categories');
+    $router->get('brands', [HomepageController::class, 'index'])->name('brands');
+    $router->get('contact', [ContactController::class, 'index'])->name('contact');
 
-    $router->get('cart', [HomepageController::class, 'index'])->name('cart.index');
-    $router->get('profile', [ProfileController::class, 'index'])->name('profile.index');
+    $router->get('cart', [HomepageController::class, 'index'])->name('cart');
 
 //    $router->resource('locale', LocaleController::class)->only(['store']);
 
+    $router->as('profile.')->middleware('verified:web.verify-email')->prefix('profile')->group(function (Router $router) {
+        $router->get('/', Profile::class)->name('edit');
+    });
 
 });
 
@@ -92,18 +93,5 @@ Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(functi
         });
     });
 });
-
-
-//
-//
-//Route::view('/', 'home');
-//
-//Route::view('dashboard', 'dashboard')
-//    ->middleware(['auth', 'verified'])
-//    ->name('dashboard');
-//
-//Route::view('profile', 'profile')
-//    ->middleware(['auth'])
-//    ->name('profile');
 
 require __DIR__ . '/auth.php';

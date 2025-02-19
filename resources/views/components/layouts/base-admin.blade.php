@@ -38,12 +38,12 @@
           </x-slot>
 
           <x-slot name="content">
-            <x-dropdown-admin-link :href="route('admin.profile.edit')" wire:navigate>
+            <x-dropdown-link :href="route('admin.profile.edit')" wire:navigate>
               {{ __('pages.profile.title') }}
-            </x-dropdown-admin-link>
-            <x-dropdown-admin-link :href="route('admin.auth.logout')" wire:navigate>
+            </x-dropdown-link>
+            <x-dropdown-link :href="route('admin.auth.logout')" wire:navigate>
               {{ __('auth.logout') }}
-            </x-dropdown-admin-link>
+            </x-dropdown-link>
           </x-slot>
         </x-dropdown>
 
@@ -55,7 +55,7 @@
           <!-- Left Submenu -->
           @if ($showSidebar)
             <div class="flex-none flex flex-col  w-[250px] min-h-full bg-[var(--adminSubMenuBackground)]">
-              <x-layouts.sub-menu :menuItems="$sidebarMenuItems" />
+              @include('components.layouts.sub-menu' , ['menuItems' => $sidebarMenuItems])
             </div>
           @endif
 
@@ -66,7 +66,7 @@
         </div>
 
         <!-- Alert Section -->
-        <x-alert-message />
+        @include('components.alert-message')
       </div>
 
     </div>

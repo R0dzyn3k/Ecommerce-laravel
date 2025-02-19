@@ -11,6 +11,9 @@ use Illuminate\View\View;
 
 trait BaseAdminLayout
 {
+    use Alerts;
+
+
     protected bool $showSidebar = true;
 
 

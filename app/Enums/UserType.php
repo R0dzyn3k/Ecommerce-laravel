@@ -19,4 +19,16 @@ enum UserType: string
     {
         return self::CUSTOMER->value;
     }
+
+
+    public function isAdmin(): bool
+    {
+        return $this === self::ADMIN;
+    }
+
+
+    public function isCustomer(): bool
+    {
+        return $this === self::CUSTOMER;
+    }
 }

@@ -3,9 +3,10 @@
     'name' => null,
     'label' => null,
     'wireModel' => null,
+    'web' => false,
 ])
 
-<div class="form-group mb-5 relative">
+<div class="form-group relative {{ $web ? '' : 'mb-5' }}">
   @if($label)
     <label for="{{ $id }}" {{ $attributes->merge(['class' => '']) }}>
       {{ $label }}

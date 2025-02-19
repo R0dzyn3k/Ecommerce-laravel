@@ -1,5 +1,5 @@
 <div class="container mx-auto flex flex-col gap-16 lg:flex-row xl:gap-16 px-4 lg:px-0">
-  <div class="w-full lg:w-1/3 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl">
+  <div class="w-full lg:w-1/3 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl overflow-hidden transition-all duration-300 shadow-md cursor-pointer">
     <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center lg:text-left p-6">Artykuł</h3>
     <img
       src="{{ asset('storage/web/art1.webp') }}"
@@ -8,7 +8,7 @@
     >
   </div>
 
-  <div class="w-full lg:w-1/3 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl">
+  <div class="w-full lg:w-1/3 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl overflow-hidden transition-all duration-300 shadow-md cursor-pointer">
     <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center lg:text-left p-6">Artykuł</h3>
     <img
       src="{{ asset('storage/web/art2.webp') }}"
@@ -17,7 +17,7 @@
     >
   </div>
 
-  <div class="w-full lg:w-1/3 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl">
+  <div class="w-full lg:w-1/3 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl overflow-hidden transition-all duration-300 shadow-md cursor-pointer">
     <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center lg:text-left p-6">Artykuł</h3>
     <img
       src="{{ asset('storage/web/art3.webp') }}"

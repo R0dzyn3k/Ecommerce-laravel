@@ -1,4 +1,6 @@
 @php use App\Enums\AlertTypes; @endphp
+@props(['web' => false])
+
 <div
   x-data="{ show: false, type: '', message: '' }"
   x-cloak
@@ -11,7 +13,7 @@
         show = true;
         setTimeout(() => show = false, 3000)
     "
-  class="absolute top-4 right-4 text-white p-4 rounded shadow-lg"
+  class="{{ $web ? 'fixed top-[145px]' : 'absolute top-4' }} right-4 text-white p-4 rounded shadow-lg"
   x-bind:class="{
         'bg-green-500': type === '{{ AlertTypes::success() }}',
         'bg-blue-500': type === '{{ AlertTypes::info() }}',

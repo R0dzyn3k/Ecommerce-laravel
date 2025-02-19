@@ -45,7 +45,7 @@ class ProfileSecurity extends BaseProfileComponent
     public function save(): void
     {
         if ($this->wrongPasswordCounter >= 5) {
-            Auth::logout();
+            Auth::guard('admin')->logout();
 
             return;
         }

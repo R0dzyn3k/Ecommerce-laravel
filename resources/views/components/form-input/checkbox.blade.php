@@ -11,21 +11,28 @@
     'disabled' => false,
     'class' => null,
     'labelClass' => null,
+    'web' => false,
 ])
 
 @php
   $id = $id ?? Str::random(8);
   $wireModel = $attributes->get('wire:model');
-  $defaultClass = 'border-gray-700 bg-gray-900 text-gray-300';
-  $labelDefaultClass = 'text-gray-300';
+
+    if (! $class) {
+   $class = $web ? 'bg-white border-gray-400' : 'border-gray-700 bg-gray-900 text-gray-300';
+  }
+
+  if (! $labelClass) {
+    $labelClass = $web ? 'text-[var(--webPrimaryTextColour)]]' : 'text-gray-300';
+  }
 @endphp
 
 <x-form-input.base
-  class="block font-medium text-sm {{$labelClass ?? $labelDefaultClass}}"
+  class="block font-medium text-sm {{ $labelClass }}"
   :id="$id"
-  :label="$label"
   :wireModel="$wireModel"
   :name="$name"
+  web="{{ $web }}"
 >
   <div class="flex items-center">
     <input type="hidden" value="0" @if($wireModel) wire:model.fill="{{ $wireModel }}" @endif @if($name) name="{{ $name }}" @endif>
@@ -39,11 +46,11 @@
     @disabled($disabled)
     wire:model="{{ $wireModel }}"
       {{ $attributes->merge([
-          'class' => 'rounded text-indigo-600 shadow-sm focus:ring-indigo-500 border-gray-700 focus:ring-indigo-600' . ($class ?? $defaultClass),
+          'class' => 'rounded text-indigo-600 shadow-sm focus:ring-indigo-500 border-gray-700 focus:ring-indigo-600' . $class,
       ]) }}
     >
     @if($label)
-      <label for="{{ $id }}" class="ml-2 text-sm {{ $labelClass ?? $labelDefaultClass }}">
+      <label for="{{ $id }}" class="ml-2 text-sm {{ $labelClass }}">
         {{ $label }}
       </label>
     @endif

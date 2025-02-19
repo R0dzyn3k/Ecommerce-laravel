@@ -4,12 +4,12 @@
 
   <div class="container mx-auto flex flex-col lg:flex-row gap-16 py-16 px-4 lg:px-0">
     <!-- Product of the day -->
-    <div class="w-full lg:w-1/3 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl lg:rounded-s-2xl p-8">
+    <div class="w-full lg:w-1/3 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl p-8 shadow-md">
       <h3 class="text-2xl font-bold text-gray-800">Produkt dnia</h3>
     </div>
 
     <!-- Featured Products -->
-    <div class="w-full lg:w-2/3 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl lg:rounded-e-2xl p-8">
+    <div class="w-full lg:w-2/3 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl p-8 shadow-md">
       <div class="h-96 flex">
         <h3 class="text-2xl font-bold text-gray-800">Polecane produkty</h3>
       </div>
@@ -18,7 +18,7 @@
 
   <!-- New Products -->
   <div class="container mx-auto flex gap-16 px-4 lg:px-0">
-    <div class="w-full bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl p-8">
+    <div class="w-full bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl p-8 shadow-md">
       <div class="h-96 flex">
         <h3 class="text-2xl font-bold text-gray-800">Nowe produkty</h3>
       </div>
@@ -34,6 +34,6 @@
   @include('components.web.blog')
 
   <!-- Newsletter -->
-  @include('components.web.newsletter')
+  <livewire:web.newsletter />
 
 </x-layouts.web>

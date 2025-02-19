@@ -16,21 +16,31 @@
     'min' => null,
     'max' => null,
     'step' => 1,
-    'class' => 'border-gray-700 bg-gray-900 text-gray-300',
-    'labelClass' => 'text-gray-300',
+    'web' => false,
+    'class' => null,
+    'labelClass' => null,
 ])
 
 @php
   $id = $id ?? Str::random(8);
   $wireModel = $attributes->get('wire:model');
+
+  if (! $class) {
+   $class = $web ? 'bg-white border-gray-400' : 'border-gray-700 bg-gray-900 text-gray-300 mt-1';
+  }
+
+  if (! $labelClass) {
+    $labelClass = $web ? 'text-[var(--webPrimaryTextColour)]]' : 'text-gray-300';
+  }
 @endphp
 
 <x-form-input.base
-  class="block font-medium text-sm {{  $labelClass }}"
+  class="block font-medium text-sm {{ $labelClass }}"
   :id="$id"
   :label="$label"
   :wireModel="$wireModel"
   :name="$name"
+  web="{{ $web }}"
 >
   <input
     id="{{ $id }}"
@@ -43,10 +53,10 @@
   @if($min) min="{{ max((int) $min, 0) }}" @endif
   @if($max) max="{{ max((int) $max, 0) }}" @endif
   @if($step) step="{{ max((int) $step, 0) }}" @endif
-  @disabled($disabled)
-  @readonly($readonly)
-  {{ $attributes->merge([
-      'class' => 'block focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 w-full ' . $class,
-]) }}
+    @disabled($disabled)
+    @readonly($readonly)
+    {{ $attributes->merge([
+        'class' => 'block focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full ' . $class,
+  ]) }}
   >
 </x-form-input.base>

@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
                 return route('admin.dashboard');
             }
 
-            return route('web.homepage.index');
+            return route('web.homepage');
         });
     }
 
