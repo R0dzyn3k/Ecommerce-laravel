@@ -99,6 +99,15 @@ class User extends BaseModel implements MustVerifyEmailContract, Authenticatable
     }
 
 
+    public function sendEmailVerificationNotification(): void
+    {
+        if ($this->role->isAdmin()) {
+            return;
+        }
+
+        $this->notify(new CustomerVerifyEmail());
+    }
+
 
     public function sendPasswordResetNotification(#[\SensitiveParameter] $token): void
     {
