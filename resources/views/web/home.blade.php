@@ -7,11 +7,7 @@
     <livewire:web.product-of-the-day />
 
     <!-- Featured Products -->
-    <div class="w-full lg:w-2/3 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl p-8 shadow-md">
-      <div class="h-96 flex">
-        <h3 class="text-2xl font-bold text-gray-800">Polecane produkty</h3>
-      </div>
-    </div>
+    <livewire:web.featured-products />
   </div>
 
   <!-- New Products -->
