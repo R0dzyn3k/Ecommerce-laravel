@@ -27,7 +27,7 @@
 
   <!-- Banner -->
   <div class="mx-full py-16 flex">
-    <img src="{{ asset('storage/web/banner.webp') }}" alt="banner" class="w-full h-full object-cover max-h-[400px] bg-cover bg-center" />
+    <img src="{{ asset('images/banner.webp') }}" alt="banner" class="w-full h-full object-cover max-h-[400px] bg-cover bg-center" />
   </div>
 
   <!-- Blog -->

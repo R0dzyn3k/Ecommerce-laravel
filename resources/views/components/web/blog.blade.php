@@ -2,7 +2,7 @@
   <div class="w-full lg:w-1/3 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl overflow-hidden transition-all duration-300 shadow-md cursor-pointer">
     <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center lg:text-left p-6">Artykuł</h3>
     <img
-      src="{{ asset('storage/web/art1.webp') }}"
+      src="{{ asset('images/art1.webp') }}"
       class="w-full h-48 md:h-64 object-cover"
       alt="Nowości w świecie kawy"
     >
@@ -11,7 +11,7 @@
   <div class="w-full lg:w-1/3 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl overflow-hidden transition-all duration-300 shadow-md cursor-pointer">
     <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center lg:text-left p-6">Artykuł</h3>
     <img
-      src="{{ asset('storage/web/art2.webp') }}"
+      src="{{ asset('images/art2.webp') }}"
       class="w-full h-48 md:h-64 object-cover"
       alt="Porady baristyczne"
     >
@@ -20,7 +20,7 @@
   <div class="w-full lg:w-1/3 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl overflow-hidden transition-all duration-300 shadow-md cursor-pointer">
     <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center lg:text-left p-6">Artykuł</h3>
     <img
-      src="{{ asset('storage/web/art3.webp') }}"
+      src="{{ asset('images/art3.webp') }}"
       class="w-full h-48 md:h-64 object-cover"
       alt="Recenzje produktów"
     >

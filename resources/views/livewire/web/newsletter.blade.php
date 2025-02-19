@@ -16,7 +16,7 @@
   <!-- Right section -->
   <div class="w-full max-h-[200px] relative md:w-5/12 lg:w-1/2 bg-[var(--webPrimaryTabBackgroundColour)] rounded-b-2xl md:rounded-e-2xl md:rounded-bl-none overflow-hidden shadow-md">
     <img
-      src="{{ asset('storage/web/newsletter.webp') }}"
+      src="{{ asset('images/newsletter.webp') }}"
       class="w-full object-cover md:absolute md:bottom-0 max-lg:h-[200px]"
       alt="newsletter"
     />

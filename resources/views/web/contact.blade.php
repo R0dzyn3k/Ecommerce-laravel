@@ -11,13 +11,13 @@
     <x-web.contact-card :contact="$contactData" />
 
     <div class="bg-[var(--webPrimaryTabBackgroundColour)] text-[var(--webHeaderTextColour)] p-8 rounded-xl shadow-md max-w-full w-1/3 max-md:hidden">
-      <img src="{{ asset('storage/web/contact.svg') }}" alt="banner" class="h-full object-cover max-h-[400px] bg-cover bg-center w-fit m-auto" />
+      <img src="{{ asset('images/contact.svg') }}" alt="banner" class="h-full object-cover max-h-[400px] bg-cover bg-center w-fit m-auto" />
     </div>
   </div>
 
   <!-- Banner -->
   <div class="mx-full flex">
-    <img src="{{ asset('storage/web/banner.webp') }}" alt="banner" class="w-full h-full object-cover max-h-[400px] bg-cover bg-center" />
+    <img src="{{ asset('images/banner.webp') }}" alt="banner" class="w-full h-full object-cover max-h-[400px] bg-cover bg-center" />
   </div>
 
   <!-- Newsletter -->
