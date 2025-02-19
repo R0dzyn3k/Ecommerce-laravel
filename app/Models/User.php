@@ -4,10 +4,11 @@ namespace App\Models;
 
 
 use App\Enums\UserType;
+use App\Notifications\CustomerResetPassword;
+use App\Notifications\CustomerVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
-use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
@@ -21,7 +22,7 @@ use Livewire\Wireable;
 
 class User extends BaseModel implements MustVerifyEmailContract, AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, Wireable
 {
-    use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
+    use Authenticatable, Authorizable, MustVerifyEmail;
 
 
     /** @use HasFactory<UserFactory> */
@@ -89,6 +90,23 @@ class User extends BaseModel implements MustVerifyEmailContract, Authenticatable
                 $model->name = $model->firstname . ' ' . $model->lastname;
             }
         });
+    }
+
+
+    public function getEmailForPasswordReset(): string
+    {
+        return $this->email;
+    }
+
+
+
+    public function sendPasswordResetNotification(#[\SensitiveParameter] $token): void
+    {
+        if ($this->role->isAdmin()) {
+            return;
+        }
+
+        $this->notify(new CustomerResetPassword($token));
     }
 
 
