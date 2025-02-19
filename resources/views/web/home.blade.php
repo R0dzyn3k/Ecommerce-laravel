@@ -10,18 +10,14 @@
     <livewire:web.featured-products />
   </div>
 
-  <!-- New Products -->
-  <div class="container mx-auto flex gap-16 px-4 lg:px-0">
-    <div class="w-full bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl p-8 shadow-md">
-      <div class="h-96 flex">
-        <h3 class="text-2xl font-bold text-gray-800">Nowe produkty</h3>
-      </div>
-    </div>
+  <!-- Banner -->
+  <div class="mx-full flex">
+    <img src="{{ asset('images/banner.webp') }}" alt="banner" class="w-full h-full object-cover max-h-[400px] bg-cover bg-center" />
   </div>
 
-  <!-- Banner -->
-  <div class="mx-full py-16 flex">
-    <img src="{{ asset('images/banner.webp') }}" alt="banner" class="w-full h-full object-cover max-h-[400px] bg-cover bg-center" />
+  <!-- New Products -->
+  <div class="container mx-auto flex gap-16 px-4 lg:px-0 py-16">
+    <livewire:web.new-products />
   </div>
 
   <!-- Blog -->
