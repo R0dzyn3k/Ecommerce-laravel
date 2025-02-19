@@ -4,9 +4,7 @@
 
   <div class="container mx-auto flex flex-col lg:flex-row gap-16 py-16 px-4 lg:px-0">
     <!-- Product of the day -->
-    <div class="w-full lg:w-1/3 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl p-8 shadow-md">
-      <h3 class="text-2xl font-bold text-gray-800">Produkt dnia</h3>
-    </div>
+    <livewire:web.product-of-the-day />
 
     <!-- Featured Products -->
     <div class="w-full lg:w-2/3 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl p-8 shadow-md">
