@@ -85,7 +85,7 @@ class ProductForm extends BaseAdminComponent
             'product.category_id' => ['nullable', 'integer', 'exists:categories,id'],
             'product.brand_id' => ['nullable', 'integer', 'exists:brands,id'],
             'product.price' => ['required', 'numeric', 'min:0'],
-            'product.discount_price' => ['nullable', 'numeric', 'min:0', 'lte:product.price'],
+            'product.discount_price' => ['sometimes', 'nullable', 'numeric', 'min:0', 'lte:product.price'],
         ];
     }
 

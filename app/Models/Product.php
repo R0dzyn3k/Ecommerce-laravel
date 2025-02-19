@@ -48,7 +48,7 @@ class Product extends BaseModel implements Wireable, HasMedia
             'tax_id' => $value['tax_id'] ?? $product->tax_id,
             'brand_id' => $value['brand_id'] ?? $product->brand_id,
             'price' => $value['price'] ?? $product->price,
-            'discount_price' => $value['discount_price'] ?? $product->discount_price,
+            'discount_price' => empty($value['discount_price']) ? null : $value['discount_price'],
             'stock' => $value['stock'] ?? $product->stock,
         ]);
 
@@ -104,14 +104,14 @@ class Product extends BaseModel implements Wireable, HasMedia
             'is_active' => $this->is_active,
             'title' => $this->title,
             'description' => $this->description,
-            'ean' => $this->ean,
-            'sku' => $this->sku,
-            'mpn' => $this->mpn,
+            'ean' => $this->ean ?? null,
+            'sku' => $this->sku ?? null,
+            'mpn' => $this->mpn ?? null,
             'category_id' => $this->category_id,
             'tax_id' => $this->tax_id,
             'brand_id' => $this->brand_id,
             'price' => $this->price,
-            'discount_price' => $this->discount_price,
+            'discount_price' => $this->discount_price ?? null,
             'stock' => $this->stock,
         ];
     }
@@ -122,10 +122,14 @@ class Product extends BaseModel implements Wireable, HasMedia
         return [
             'is_active' => 'boolean',
             'price' => 'decimal:4',
-            'discount_price' => 'decimal:4',
             'stock' => 'integer',
             'reviews_count' => 'integer',
             'reviews_average' => 'decimal:2',
         ];
+    }
+
+    public function setDiscountPriceAttribute($value): void
+    {
+        $this->attributes['discount_price'] = empty($value) ? null : number_format($value, 4, '.', '');
     }
 }
