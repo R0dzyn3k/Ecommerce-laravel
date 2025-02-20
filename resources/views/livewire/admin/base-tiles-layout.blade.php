@@ -20,9 +20,5 @@
         <h3 class="pt-5 text-lg font-bold">{{ $menuItem->label }}</h3>
       </a>
     @endforeach
-
-    <div class="h-[150px] w-[300px] bg-[var(--adminSubMenuBackground)]"></div>
-    <div class="h-[150px] w-[300px] bg-[var(--adminSubMenuBackground)]"></div>
-    <div class="h-[150px] w-[300px] bg-[var(--adminSubMenuBackground)]"></div>
   </div>
 </div>
