@@ -38,6 +38,13 @@
       x-bind:disabled="isUploading"
       accept="image/*"
     />
+      @if($errors->has('file'))
+        <ul class="text-sm text-red-600 dark:text-red-400 space-y-1 mt-2">
+          @foreach ($errors->get('file') as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      @endif
   </form>
 
 </div>

@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 
 use App\Traits\Admin\Alerts;
+use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -39,7 +40,7 @@ class FileUploader extends Component
             $this->model->clearMediaCollection($this->collectionName);
 
             $this->alertSuccess('Zdjęcie zostało usunięte pomyślnie!');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->alertError('Wystąpił błąd podczas usuwania zdjęcia. ' . $e->getMessage());
         } finally {
             $this->reset('file');
@@ -57,7 +58,7 @@ class FileUploader extends Component
 
     public function updatedFile(): void
     {
-        $this->validate(['file' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048']]);
+        $this->validate(['file' => ['required', 'image', 'max:2048']]);
 
         try {
             if ($this->singleFile) {
@@ -67,7 +68,7 @@ class FileUploader extends Component
             $this->model->addMedia($this->file->getRealPath())->toMediaCollection($this->collectionName);
 
             $this->alertSuccess('Plik został przesłany pomyślnie!');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->alertError('Wystąpił błąd podczas przesyłania pliku. ' . $e->getMessage());
         } finally {
             $this->reset('file');
