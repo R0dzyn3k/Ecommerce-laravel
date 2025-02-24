@@ -242,9 +242,13 @@ class ProductSeeder extends Seeder
                 'is_active' => true,
             ]);
 
+            if (! isset($productData['image'])) {
+                continue;
+            }
 
             if (File::exists(public_path('images/products/' . $productData['image']))) {
                 $product->addMedia(public_path('images/products/' . $productData['image']))
+                    ->preservingOriginal()
                     ->toMediaCollection('product_photo');
             }
         }
