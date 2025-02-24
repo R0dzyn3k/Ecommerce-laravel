@@ -12,9 +12,9 @@
       <div class="text-center md:text-left">
         <h4 class="text-lg font-semibold mb-4">{{ __('web.legal') }}</h4>
         <ul class="space-y-2 text-[var(--webSecondaryLightTextColour)]" >
-          <li><a href="{{ route('web.homepage') }}" wire:navigate class="hover:text-[var(--webLightHoverColour)] transition-colors" >{{ __('web.terms') }}</a></li>
-          <li><a href="{{ route('web.homepage') }}" wire:navigate class="hover:text-[var(--webLightHoverColour)] transition-colors" >{{ __('web.privacy_policy') }}</a></li>
-          <li><a href="{{ route('web.homepage') }}" wire:navigate class="hover:text-[var(--webLightHoverColour)] transition-colors" >{{ __('web.cookie_policy') }}</a></li>
+          <li><a href="{{ route('web.terms') }}" wire:navigate class="hover:text-[var(--webLightHoverColour)] transition-colors" >{{ __('web.terms') }}</a></li>
+          <li><a href="{{ route('web.privacy') }}" wire:navigate class="hover:text-[var(--webLightHoverColour)] transition-colors" >{{ __('web.privacy_policy') }}</a></li>
+          <li><a href="{{ route('web.cookies') }}" wire:navigate class="hover:text-[var(--webLightHoverColour)] transition-colors" >{{ __('web.cookie_policy') }}</a></li>
         </ul>
       </div>
       <!-- Sekcja 3: Contact -->

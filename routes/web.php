@@ -37,6 +37,9 @@ Route::middleware(['web'])->as('web.')->group(function (Router $router) {
         $router->get('security', Security::class)->name('security');
     });
 
+    $router->get('regulamin', [PageController::class, 'terms'])->name('terms');
+    $router->get('polityka-prywatnosci', [PageController::class, 'privacy'])->name('privacy');
+    $router->get('polityka-cookies', [PageController::class, 'cookies'])->name('cookies');
 });
 
 Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function (Router $router) {
