@@ -15,7 +15,7 @@ class ProductController extends Controller
             ->orderBy('title')
             ->paginate(9);
 
-        return view('web.products', compact('products'));
+        return view('web.products.index', compact('products'));
     }
 
 
@@ -23,6 +23,6 @@ class ProductController extends Controller
     {
         $product = Product::where('slug', $slug)->firstOrFail();
 
-        return view('web.product', compact('product'));
+        return view('web.products.show', compact('product'));
     }
 }
