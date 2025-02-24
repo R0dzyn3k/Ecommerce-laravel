@@ -3,7 +3,7 @@
 @php
   $links = [
     ['route' => 'web.homepage', 'label' => 'Strona główna'],
-    ['route' => 'web.products', 'label' => 'Produkty'],
+    ['route' => 'web.products.index', 'label' => 'Produkty'],
     ['route' => 'web.categories', 'label' => 'Kategorie'],
     ['route' => 'web.brands', 'label' => 'Marki'],
     ['route' => 'web.contact', 'label' => 'Kontakt'],

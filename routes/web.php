@@ -3,6 +3,8 @@
 
 use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\HomepageController;
+use App\Http\Controllers\Web\PageController;
+use App\Http\Controllers\Web\ProductController;
 use App\Livewire\Admin\Customers\{CustomerForm, Customers};
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Profile\{ProfileEdit, ProfileSecurity};
@@ -25,16 +27,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web'])->as('web.')->group(function (Router $router) {
     $router->get('/', [HomepageController::class, 'index'])->name('homepage');
-    $router->get('products', [HomepageController::class, 'index'])->name('products');
-    $router->get('categories', [HomepageController::class, 'index'])->name('categories');
-    $router->get('brands', [HomepageController::class, 'index'])->name('brands');
-    $router->get('contact', [ContactController::class, 'index'])->name('contact');
+    $router->get('produkty', [ProductController::class, 'index'])->name('products.index');
+    $router->get('produkty/{slug}', [ProductController::class, 'show'])->name('products.show');
+    $router->get('kategorie', [HomepageController::class, 'index'])->name('categories');
+    $router->get('marki', [HomepageController::class, 'index'])->name('brands');
+    $router->get('kontakt', [ContactController::class, 'index'])->name('contact');
+    $router->get('koszyk', [HomepageController::class, 'index'])->name('cart');
 
-    $router->get('cart', [HomepageController::class, 'index'])->name('cart');
-
-    $router->as('profile.')->middleware('verified:web.verify-email')->prefix('profile')->group(function (Router $router) {
+    $router->as('profil.')->middleware('verified:web.verify-email')->prefix('profile')->group(function (Router $router) {
         $router->get('/', Profile::class)->name('edit');
-        $router->get('security', Security::class)->name('security');
+        $router->get('bezpieczenstwo', Security::class)->name('security');
     });
 
     $router->get('regulamin', [PageController::class, 'terms'])->name('terms');
