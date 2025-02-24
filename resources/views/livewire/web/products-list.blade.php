@@ -50,7 +50,7 @@
     @forelse ($products as $product)
       <x-web.product-tile
         :product="$product"
-        :url="$product->getFirstMediaUrl('product_photo') ?? asset('images/sample.webp')"
+        :url="$product->getFirstMediaUrl('product_photo') ?: asset('images/sample.webp')"
       />
     @empty
       <div class="col-span-full text-center text-gray-500 py-8">
