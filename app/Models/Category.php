@@ -7,6 +7,7 @@ use App\Traits\SingleImageMedia;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Livewire\Wireable;
 use Spatie\MediaLibrary\HasMedia;
 
@@ -19,6 +20,7 @@ class Category extends BaseModel implements Wireable, HasMedia
     protected $fillable = [
         'is_active',
         'title',
+        'slug',
         'description',
     ];
 
@@ -42,6 +44,16 @@ class Category extends BaseModel implements Wireable, HasMedia
         return DB::table('categories')
             ->where('is_active', 1)
             ->pluck('title', 'id');
+    }
+
+
+    protected static function booted(): void
+    {
+        static::saving(static function (self $category) {
+            if (empty($category->slug) || $category->isDirty('title')) {
+                $category->slug = Str::slug($category->title);
+            }
+        });
     }
 
 

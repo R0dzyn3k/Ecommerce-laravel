@@ -7,6 +7,7 @@ use App\Traits\SingleImageMedia;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Livewire\Wireable;
 use Spatie\MediaLibrary\HasMedia;
 
@@ -42,6 +43,16 @@ class Brand extends BaseModel implements Wireable, HasMedia
         return DB::table('brands')
             ->where('is_active', 1)
             ->pluck('title', 'id');
+    }
+
+
+    protected static function booted(): void
+    {
+        static::saving(static function (self $brand) {
+            if (empty($brand->slug) || $brand->isDirty('title')) {
+                $brand->slug = Str::slug($brand->title);
+            }
+        });
     }
 
 

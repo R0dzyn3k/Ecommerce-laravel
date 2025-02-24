@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Traits\SingleImageMedia;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 use Livewire\Wireable;
 use Spatie\MediaLibrary\HasMedia;
 
@@ -18,6 +19,7 @@ class Product extends BaseModel implements Wireable, HasMedia
     protected $fillable = [
         'is_active',
         'title',
+        'slug',
         'description',
         'ean',
         'sku',
@@ -70,6 +72,12 @@ class Product extends BaseModel implements Wireable, HasMedia
                 ]);
             }
         });
+
+        static::saving(static function (self $product) {
+            if (empty($product->slug) || $product->isDirty('title')) {
+                $product->slug = Str::slug($product->title);
+            }
+        });
     }
 
 
@@ -88,6 +96,12 @@ class Product extends BaseModel implements Wireable, HasMedia
     public function pricesHistory(): HasMany
     {
         return $this->hasMany(ProductPriceHistories::class);
+    }
+
+
+    public function setDiscountPriceAttribute($value): void
+    {
+        $this->attributes['discount_price'] = empty($value) ? null : number_format($value, 4, '.', '');
     }
 
 
@@ -126,10 +140,5 @@ class Product extends BaseModel implements Wireable, HasMedia
             'reviews_count' => 'integer',
             'reviews_average' => 'decimal:2',
         ];
-    }
-
-    public function setDiscountPriceAttribute($value): void
-    {
-        $this->attributes['discount_price'] = empty($value) ? null : number_format($value, 4, '.', '');
     }
 }
