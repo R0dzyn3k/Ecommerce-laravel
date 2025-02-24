@@ -21,7 +21,7 @@ class FeaturedProducts extends Component
 
     public function mount(): void
     {
-        $this->products = Product::query()->orderBy('id')->limit(2)->get();
+        $this->products = Product::query()->where('is_active', true)->orderBy('id')->limit(2)->get();
 
         $this->products->map(function (Product $product) {
             $product->url = $product->hasMedia('product_photo')

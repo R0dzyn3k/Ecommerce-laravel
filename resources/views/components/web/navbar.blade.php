@@ -103,7 +103,7 @@
     x-transition:leave-end="opacity-0 scale-95"
     class="md:hidden fixed top-16 left-0 w-full bg-[var(--webHeaderBackgroundColour)] shadow-md border-b border-gray-300 z-10">
 
-    <!-- Search bar przeniesiony do hamburgera -->
+    <!-- Search bar -->
     <div class="p-4">
       @livewire('web.search-bar')
     </div>

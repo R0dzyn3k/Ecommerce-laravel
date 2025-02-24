@@ -4,6 +4,7 @@ namespace App\Providers;
 
 
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
@@ -32,6 +33,8 @@ class AppServiceProvider extends ServiceProvider
 
     private function bootRedirect(): void
     {
+        Paginator::useTailwind();
+
         RedirectIfAuthenticated::redirectUsing(static function () {
             if (Auth::guard('admin')->check()) {
                 return route('admin.dashboard');

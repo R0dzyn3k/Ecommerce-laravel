@@ -20,13 +20,12 @@ class ProductOfTheDay extends Component
 
     public function mount(): void
     {
-        $product = Product::query()->inRandomOrder()->first();
+        $product = Product::query()->where('id', 6)->first();
 
         $this->product = $product;
         $this->url = $product->hasMedia('product_photo')
             ? $product->getFirstMediaUrl('product_photo', 'thumbnail')
             : null;
-
     }
 
 
