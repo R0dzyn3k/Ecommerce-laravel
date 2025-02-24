@@ -32,5 +32,12 @@ trait SingleImageMedia
             ->format('webp')
             ->quality(90)
             ->nonQueued();
+
+        $this->addMediaConversion('miniature')
+            ->width(64)
+            ->height(64)
+            ->format('webp')
+            ->quality(75)
+            ->nonQueued();
     }
 }
