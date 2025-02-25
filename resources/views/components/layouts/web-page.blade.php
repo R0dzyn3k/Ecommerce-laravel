@@ -9,7 +9,7 @@
 
     @if($breadcrumbs)
       <!-- Breadcrumbs -->
-      <nav class="text-sm mb-6 text-[var(--breadcrumbsColour)]]">
+      <nav class="text-sm mb-6 text-[var(--breadcrumbsColour)]">
         <a href="{{ route('web.homepage') }}" class="hover:underline" wire:navigate>Strona główna</a> /
         {{ $breadcrumbs }}
       </nav>

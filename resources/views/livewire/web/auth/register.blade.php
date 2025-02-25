@@ -17,7 +17,7 @@
         :placeholder="__('user.lastnamePlaceholder')"
         required
         web="true"
-        labelClass="text-[var(--webPrimaryTextColour)]] pt-2"
+        labelClass="text-[var(--webPrimaryTextColour)] pt-2"
       />
 
       <x-form-input.input
@@ -27,7 +27,7 @@
         :placeholder="__('user.emailPlaceholder')"
         required
         web="true"
-        labelClass="text-[var(--webPrimaryTextColour)]] pt-2"
+        labelClass="text-[var(--webPrimaryTextColour)] pt-2"
       />
 
       <x-form-input.input
@@ -35,7 +35,7 @@
         wire:model="customer.phone"
         :placeholder="__('user.phonePlaceholder')"
         web="true"
-        labelClass="text-[var(--webPrimaryTextColour)]] pt-2"
+        labelClass="text-[var(--webPrimaryTextColour)] pt-2"
       />
 
       <x-form-input.input
@@ -44,7 +44,7 @@
         :label="__('auth.newPassword')"
         :placeholder="__('user.passwordPlaceholder')"
         web="true"
-        labelClass="text-[var(--webPrimaryTextColour)]] pt-2"
+        labelClass="text-[var(--webPrimaryTextColour)] pt-2"
       />
 
       <x-form-input.input
@@ -53,7 +53,7 @@
         :label="__('auth.newPasswordConfirmation')"
         :placeholder="__('auth.newPasswordConfirmation')"
         web="true"
-        labelClass="text-[var(--webPrimaryTextColour)]] pt-2"
+        labelClass="text-[var(--webPrimaryTextColour)] pt-2"
       />
 
       <div class="flex items-center justify-center mt-4">

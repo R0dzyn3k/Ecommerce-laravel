@@ -30,7 +30,7 @@
   }
 
   if (! $labelClass) {
-    $labelClass = $web ? 'text-[var(--webPrimaryTextColour)]]' : 'text-gray-300';
+    $labelClass = $web ? 'text-[var(--webPrimaryTextColour)]' : 'text-gray-300';
   }
 @endphp
 

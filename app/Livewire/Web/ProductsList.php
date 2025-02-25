@@ -24,7 +24,6 @@ class ProductsList extends Component
         'priceTo' => ['except' => null],
         'sortBy' => ['except' => 'title'],
         'sortDirection' => ['except' => 'asc'],
-        'page' => ['except' => 1],
     ];
 
     public function updating($key): void

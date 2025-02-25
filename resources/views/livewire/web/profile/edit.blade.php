@@ -8,7 +8,7 @@
       :placeholder="__('user.firstnamePlaceholder')"
       required
       web="true"
-      labelClass="text-[var(--webPrimaryTextColour)]] pt-2"
+      labelClass="text-[var(--webPrimaryTextColour)] pt-2"
     />
 
     <x-form-input.input
@@ -17,7 +17,7 @@
       :placeholder="__('user.lastnamePlaceholder')"
       required
       web="true"
-      labelClass="text-[var(--webPrimaryTextColour)]] pt-2"
+      labelClass="text-[var(--webPrimaryTextColour)] pt-2"
     />
 
     <x-form-input.input
@@ -27,7 +27,7 @@
       :placeholder="__('user.emailPlaceholder')"
       required
       web="true"
-      labelClass="text-[var(--webPrimaryTextColour)]] pt-2"
+      labelClass="text-[var(--webPrimaryTextColour)] pt-2"
     />
     <p class="text-sm">Zweryfikowany e-mail</p>
 
@@ -36,7 +36,7 @@
       wire:model="profile.phone"
       :placeholder="__('user.phonePlaceholder')"
       web="true"
-      labelClass="text-[var(--webPrimaryTextColour)]] pt-2"
+      labelClass="text-[var(--webPrimaryTextColour)] pt-2"
     />
 
     <div class="flex items-center justify-center mt-4">

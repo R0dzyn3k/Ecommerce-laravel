@@ -1,7 +1,7 @@
 <x-layouts.web-page :title="$product->title">
   <x-slot:breadcrumbs>
     <a href="{{ route('web.products.index') }}" class="hover:underline" wire:navigate>Produkty</a> /
-    <span class="text-[var(--webPrimaryTextColour)]]">{{ $product->title }}</span>
+    <span class="text-[var(--webPrimaryTextColour)]">{{ $product->title }}</span>
   </x-slot:breadcrumbs>
 
   <!-- Product section -->
@@ -17,7 +17,7 @@
 
     <!-- Product details -->
     <div class="flex flex-col gap-6">
-      <h1 class="text-3xl font-bold text-[var(--webPrimaryTextColour)]]">{{ $product->title }}</h1>
+      <h1 class="text-3xl font-bold text-[var(--webPrimaryTextColour)]">{{ $product->title }}</h1>
 
       <p class="text-[var(--webHeaderTextColour)] text-lg">{{ $product->description }}</p>
 

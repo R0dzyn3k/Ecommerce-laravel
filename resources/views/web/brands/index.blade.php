@@ -1,14 +1,13 @@
 <x-layouts.web-page title="Marki">
   <!-- Breadcrumbs -->
   <x-slot:breadcrumbs>
-    <span class="text-[var(--webPrimaryTextColour)]]">Marki</span>
+    <span class="text-[var(--webPrimaryTextColour)]">Marki</span>
   </x-slot:breadcrumbs>
 
   <!-- Page title -->
-  <h1 class="text-3xl font-bold text-[var(--webPrimaryTextColour)]] mb-6">Nasze marki</h1>
+  <h1 class="text-3xl font-bold text-[var(--webPrimaryTextColour)] mb-6">Nasze marki</h1>
 
   <!-- Brands grid -->
-
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
     @foreach ($brands as $brand)
       <div class="flex flex-col items-center text-center">

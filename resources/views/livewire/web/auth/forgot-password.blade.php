@@ -10,7 +10,7 @@
         :placeholder="__('user.emailPlaceholder')"
         required
         web="true"
-        labelClass="text-[var(--webPrimaryTextColour)]]"
+        labelClass="text-[var(--webPrimaryTextColour)]"
       />
 
       <div class="flex items-center justify-center mt-4 gap-4">

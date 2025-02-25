@@ -9,7 +9,7 @@
       :placeholder="__('user.passwordPlaceholder')"
       required
       web="true"
-      labelClass="text-[var(--webPrimaryTextColour)]] pt-2"
+      labelClass="text-[var(--webPrimaryTextColour)] pt-2"
     />
 
     <x-form-input.input
@@ -19,7 +19,7 @@
       :placeholder="__('user.newPasswordPlaceholder')"
       required
       web="true"
-      labelClass="text-[var(--webPrimaryTextColour)]] pt-2"
+      labelClass="text-[var(--webPrimaryTextColour)] pt-2"
     />
 
     <x-form-input.input
@@ -29,7 +29,7 @@
       :placeholder="__('auth.newPasswordConfirmation')"
       required
       web="true"
-      labelClass="text-[var(--webPrimaryTextColour)]] pt-2"
+      labelClass="text-[var(--webPrimaryTextColour)] pt-2"
     />
 
     <p>{{ __('pages.profile.passwordExpiryAt', ['attribute' => $profile->password_expiry_at ?? __('global.never') ]) }}</p>

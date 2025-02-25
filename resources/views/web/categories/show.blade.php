@@ -1,7 +1,8 @@
 <x-layouts.web-page :title="$category->title">
+  <!-- Breadcrumbs -->
   <x-slot:breadcrumbs>
     <a href="{{ route('web.categories.index') }}" class="hover:underline" wire:navigate>Kategorie</a> /
-    <span class="text-[var(--webPrimaryTextColour)]]">{{ $category->title }}</span>
+    <span class="text-[var(--webPrimaryTextColour)]">{{ $category->title }}</span>
   </x-slot:breadcrumbs>
 
   <!-- Category details -->
@@ -12,7 +13,7 @@
       class="w-48 h-48 object-cover rounded-xl shadow-md"
     >
     <div class="flex-1">
-      <h1 class="text-3xl font-bold text-[var(--webPrimaryTextColour)]] mb-4">{{ $category->title }}</h1>
+      <h1 class="text-3xl font-bold text-[var(--webPrimaryTextColour)] mb-4">{{ $category->title }}</h1>
       <p class="text-[var(--webHeaderTextColour)]">{{ $category->description }}</p>
     </div>
   </div>

@@ -10,7 +10,7 @@
         :label="__('auth.email')"
         required
         web="true"
-        labelClass="text-[var(--webPrimaryTextColour)]] pt-2"
+        labelClass="text-[var(--webPrimaryTextColour)] pt-2"
       />
 
       <x-form-input.input
@@ -20,7 +20,7 @@
         :label="__('auth.password')"
         required
         web="true"
-        labelClass="text-[var(--webPrimaryTextColour)]] pt-2"
+        labelClass="text-[var(--webPrimaryTextColour)] pt-2"
       />
       <div class="w-full flex justify-end">
         <a wire:click.prevent="forgotPassword" class="cursor-pointer p-1 hover:text-[var(--webLightHoverColour)]">Zapomniałeś hasła?</a>
@@ -31,7 +31,7 @@
         wire:model="remember"
         :label="__('auth.rememberMe')"
         web="true"
-        labelClass="text-[var(--webPrimaryTextColour)]]"
+        labelClass="text-[var(--webPrimaryTextColour)]"
       />
 
       <div class="flex items-center justify-center mt-4">

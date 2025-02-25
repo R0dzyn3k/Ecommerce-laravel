@@ -1,11 +1,11 @@
 <x-layouts.web-page title="Kategorie">
   <!-- Breadcrumbs -->
   <x-slot:breadcrumbs>
-    <span class="text-[var(--webPrimaryTextColour)]]">Kategorie</span>
+    <span class="text-[var(--webPrimaryTextColour)]">Kategorie</span>
   </x-slot:breadcrumbs>
 
   <!-- Page title -->
-  <h1 class="text-3xl font-bold text-[var(--webPrimaryTextColour)]] mb-6">Nasze kategorie</h1>
+  <h1 class="text-3xl font-bold text-[var(--webPrimaryTextColour)] mb-6">Nasze kategorie</h1>
 
   <!-- Categories grid -->
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
