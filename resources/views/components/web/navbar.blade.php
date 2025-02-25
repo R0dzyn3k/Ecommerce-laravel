@@ -6,6 +6,7 @@
     ['route' => 'web.products.index', 'label' => 'Produkty'],
     ['route' => 'web.categories.index', 'label' => 'Kategorie'],
     ['route' => 'web.brands.index', 'label' => 'Marki'],
+    ['route' => 'web.blog.index', 'label' => 'Blog'],
     ['route' => 'web.contact', 'label' => 'Kontakt'],
   ];
 @endphp

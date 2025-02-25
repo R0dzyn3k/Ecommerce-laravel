@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Web\BlogController;
 use App\Http\Controllers\Web\BrandController;
 use App\Http\Controllers\Web\CategoryController;
 use App\Http\Controllers\Web\ContactController;
@@ -29,23 +30,37 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web'])->as('web.')->group(function (Router $router) {
     $router->get('/', [HomepageController::class, 'index'])->name('homepage');
-    $router->get('produkty', [ProductController::class, 'index'])->name('products.index');
-    $router->get('produkty/{slug}', [ProductController::class, 'show'])->name('products.show');
-    $router->get('kategorie', [CategoryController::class, 'index'])->name('categories.index');
-    $router->get('kategorie/{slug}', [CategoryController::class, 'show'])->name('categories.show');
-    $router->get('marki', [BrandController::class, 'index'])->name('brands.index');
-    $router->get('marki/{slug}', [BrandController::class, 'show'])->name('brands.show');
     $router->get('kontakt', [ContactController::class, 'index'])->name('contact');
     $router->get('koszyk', [HomepageController::class, 'index'])->name('cart');
+
+    $router->get('regulamin', [PageController::class, 'terms'])->name('terms');
+    $router->get('polityka-prywatnosci', [PageController::class, 'privacy'])->name('privacy');
+    $router->get('polityka-cookies', [PageController::class, 'cookies'])->name('cookies');
+
+    $router->as('products.')->prefix('produkty')->group(function (Router $router) {
+        $router->get('/', [ProductController::class, 'index'])->name('index');
+        $router->get('/{slug}', [ProductController::class, 'show'])->name('show');
+    });
+
+    $router->as('categories.')->prefix('kategorie')->group(function (Router $router) {
+        $router->get('/', [CategoryController::class, 'index'])->name('index');
+        $router->get('/{slug}', [CategoryController::class, 'show'])->name('show');
+    });
+
+    $router->as('brands.')->prefix('marki')->group(function (Router $router) {
+        $router->get('/', [BrandController::class, 'index'])->name('index');
+        $router->get('/{slug}', [BrandController::class, 'show'])->name('show');
+    });
 
     $router->as('profile.')->middleware('verified:web.verify-email')->prefix('profil')->group(function (Router $router) {
         $router->get('/', Profile::class)->name('edit');
         $router->get('bezpieczenstwo', Security::class)->name('security');
     });
 
-    $router->get('regulamin', [PageController::class, 'terms'])->name('terms');
-    $router->get('polityka-prywatnosci', [PageController::class, 'privacy'])->name('privacy');
-    $router->get('polityka-cookies', [PageController::class, 'cookies'])->name('cookies');
+    $router->as('blog.')->prefix('blog')->group(function (Router $router) {
+        $router->get('/', [BlogController::class, 'index'])->name('index');
+        $router->get('/{slug}', [BlogController::class, 'show'])->name('show');
+    });
 });
 
 Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function (Router $router) {

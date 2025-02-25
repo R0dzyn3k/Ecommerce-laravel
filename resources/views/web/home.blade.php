@@ -25,7 +25,7 @@
   </div>
 
   <!-- Blog -->
-  @include('components.web.blog')
+  <livewire:web.blog-list />
 
   <!-- Newsletter -->
   <livewire:web.newsletter />
