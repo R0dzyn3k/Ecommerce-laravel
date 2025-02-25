@@ -2,12 +2,16 @@
   <!-- Hero section -->
   @include('components.web.hero')
 
-  <div class="container mx-auto flex flex-col lg:flex-row gap-16 py-16 px-4 lg:px-0">
+  <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 py-16 px-4 lg:px-0">
     <!-- Product of the day -->
+    <div class="col-span-2 lg:col-span-1">
     <livewire:web.product-of-the-day />
+    </div>
 
     <!-- Featured Products -->
-    <livewire:web.featured-products />
+    <div class="col-span-2">
+      <livewire:web.featured-products />
+    </div>
   </div>
 
   <!-- Banner -->
