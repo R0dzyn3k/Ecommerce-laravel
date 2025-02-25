@@ -1,12 +1,13 @@
 @props(['title' => '', 'menuItems' => []])
 
-<x-layouts.web :title="$title">
-  <div class="container mx-auto flex flex-col lg:flex-row pt-24 pb-16 px-4">
-    <div class="w-full lg:w-1/3 bg-[var(--webPrimaryTabBackgroundColour)] max-lg:rounded-t-2xl lg:rounded-s-2xl max-lg:border-b border-black p-8 shadow-md">
+<x-layouts.web-page :title="$title">
+  <div class="flex flex-col lg:flex-row gap-8 lg:gap-16">
+    <div class="w-full lg:w-1/3 max-lg:border-b lg:border-r border-[var(--webSecondaryLightTextColour)] pb-8 lg:pb-0">
       @include('components.layouts.sub-menu' , ['menuItems' => $menuItems, 'web' => true])
     </div>
-    <div class="w-full lg:w-2/3 bg-[var(--webPrimaryTabBackgroundColour)] max-lg:rounded-b-2xl  lg:rounded-e-2xl p-8 shadow-md">
+
+    <div class="w-full lg:w-2/3">
       {{ $slot }}
     </div>
   </div>
-</x-layouts.web>
+</x-layouts.web-page>
