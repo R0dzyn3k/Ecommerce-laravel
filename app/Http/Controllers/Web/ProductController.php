@@ -19,10 +19,22 @@ class ProductController extends Controller
     }
 
 
-    public function show($slug)
+    public function show(string $slug)
     {
         $product = Product::where('slug', $slug)->firstOrFail();
 
-        return view('web.products.show', compact('product'));
+        if (! $product || ! $product->is_active) {
+            abort(404);
+        }
+
+        $relatedProducts = $product->category_id
+            ? Product::where('category_id', $product->category_id)
+                ->where('id', '!=', $product->id)
+                ->where('is_active', true)
+                ->limit(3)
+                ->get()
+            : collect();
+
+        return view('web.products.show', compact('product', 'relatedProducts'));
     }
 }

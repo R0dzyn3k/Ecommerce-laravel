@@ -33,7 +33,7 @@ class NewProducts extends Component
 
     public function render(): Application|Factory|View|\Illuminate\View\View
     {
-        return view('livewire.web.new-products');
+        return view('components.web.products-bar', ['products' => $this->products, 'title' => 'Nowości']);
     }
 }
 

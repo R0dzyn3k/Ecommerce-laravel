@@ -15,7 +15,7 @@
   }
 
   if (! $linkClass) {
-    $linkClass = $web ? 'hover:bg-[var(--webPrimaryBackgroundColour)] hover:font-semibold border-b border-[var(--webSecondaryLightTextColour)]  text-lg' : 'hover:bg-[var(--adminMainBackground)] border-b border-[var(--adminMainBackground)]';
+    $linkClass = $web ? 'hover:bg-[var(--webPrimaryBackgroundColour)] p-3 hover:font-semibold border-b border-[var(--webSecondaryLightTextColour)]  text-lg' : 'hover:bg-[var(--adminMainBackground)] border-b border-[var(--adminMainBackground)]';
   }
 
 if (! $activeClass) {

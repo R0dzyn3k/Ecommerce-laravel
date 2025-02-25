@@ -23,7 +23,7 @@
       <input type="number" wire:model.live.debounce.500ms="priceTo" placeholder="Cena do" class="border rounded-md px-4 py-2 w-32">
 
       <!-- Clear filters button -->
-      <button wire:click="clearFilters" class="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 transition">
+      <button wire:click="clearFilters" class="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 focus:ring-2 transition duration-300 ease-in-out">
         Wyczyść filtry
       </button>
     </div>
@@ -36,21 +36,19 @@
         <option value="created_at">Data dodania</option>
       </select>
 
-      <button wire:click="setSorting" class="ml-2 px-4 py-2 text-nowrap tracking-widest uppercase  rounded-md focus:ring-2
-        text-[var(--webPrimaryLightTextColour)] bg-[var(--webLightHoverColour)]
-        hover:bg-[var(--webThirdLightTextColour)] border border-[var(--webLightHoverColour)]
-        hover:border-[var(--webThirdLightTextColour)] hover:scale-105 transition delay-150 duration-300 ease-in-out">
+      <x-web.primary-button wire:click="setSorting" class="">
         @if ($sortDirection === 'asc') ▲ @else ▼ @endif
-      </button>
+      </x-web.primary-button>
     </div>
   </div>
 
   <!-- Products grid -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-16">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
     @forelse ($products as $product)
       <x-web.product-tile
         :product="$product"
         :url="$product->getFirstMediaUrl('product_photo') ?: asset('images/sample.webp')"
+        class="w-full"
       />
     @empty
       <div class="col-span-full text-center text-gray-500 py-8">

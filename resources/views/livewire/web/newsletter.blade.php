@@ -6,9 +6,8 @@
 
     <form wire:submit.prevent="addToNewsletter" class="flex items-center sm:items-start justify-center md:justify-start mt-4 gap-2 max-sm:flex-col">
       <x-form-input.input name="email" type="email" wire:model="email" :placeholder="__('auth.email')" required web="true" :disabled="$subscribed" />
-      <button @if($subscribed) disabled @endif class="disabled:bg-gray-500 inline-flex items-center px-4 py-3 rounded-md font-semibold text-xs uppercase tracking-widest focus:ring-2 text-[var(--webPrimaryLightTextColour)] bg-[var(--webLightHoverColour)] hover:bg-[var(--webThirdLightTextColour)] border border-[var(--webLightHoverColour)] hover:border-[var(--webThirdLightTextColour)]" type="submit">
-        Zapisz się
-      </button>
+
+      <x-web.primary-button type="submit" :disabled="$subscribed">Zapisz się</x-web.primary-button>
     </form>
 
   </div>

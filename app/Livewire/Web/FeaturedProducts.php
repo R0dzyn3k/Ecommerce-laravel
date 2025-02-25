@@ -33,7 +33,11 @@ class FeaturedProducts extends Component
 
     public function render(): Application|Factory|View|\Illuminate\View\View
     {
-        return view('livewire.web.featured-products');
+        return view('components.web.products-bar', [
+            'products' => $this->products,
+            'title' => 'Polecane produkty',
+            'gridCols' => 2,
+        ]);
     }
 }
 
