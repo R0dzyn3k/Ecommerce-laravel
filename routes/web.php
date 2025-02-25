@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Web\BrandController;
+use App\Http\Controllers\Web\CategoryController;
 use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\HomepageController;
 use App\Http\Controllers\Web\PageController;
@@ -30,8 +31,8 @@ Route::middleware(['web'])->as('web.')->group(function (Router $router) {
     $router->get('/', [HomepageController::class, 'index'])->name('homepage');
     $router->get('produkty', [ProductController::class, 'index'])->name('products.index');
     $router->get('produkty/{slug}', [ProductController::class, 'show'])->name('products.show');
-    $router->get('kategorie', [HomepageController::class, 'index'])->name('categories');
-    $router->get('marki', [HomepageController::class, 'index'])->name('brands');
+    $router->get('kategorie', [CategoryController::class, 'index'])->name('categories.index');
+    $router->get('kategorie/{slug}', [CategoryController::class, 'show'])->name('categories.show');
     $router->get('marki', [BrandController::class, 'index'])->name('brands.index');
     $router->get('marki/{slug}', [BrandController::class, 'show'])->name('brands.show');
     $router->get('kontakt', [ContactController::class, 'index'])->name('contact');
