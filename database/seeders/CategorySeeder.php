@@ -73,7 +73,7 @@ class CategorySeeder extends Seeder
             ]);
 
 
-            if (! isset($brandData['image'])) {
+            if (! isset($categoryData['image'])) {
                 continue;
             }
 

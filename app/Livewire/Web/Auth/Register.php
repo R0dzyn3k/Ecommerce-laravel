@@ -65,7 +65,7 @@ class Register extends Component
 
         Auth::login($user);
 
-        $this->alertSuccess('auth.registerSuccess');
+        $this->alertSuccess(__('auth.registerSuccess'));
 
         $this->redirectRoute('web.homepage', navigate: true);
     }
