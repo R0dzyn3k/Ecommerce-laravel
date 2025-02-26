@@ -9,6 +9,7 @@ use App\Livewire\Web\Auth\Register;
 use App\Livewire\Web\Auth\ResetPassword;
 use App\Livewire\Web\Auth\VerifyEmail;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 

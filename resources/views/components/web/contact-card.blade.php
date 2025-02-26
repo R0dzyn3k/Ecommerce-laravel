@@ -1,6 +1,6 @@
 @props(['contact'])
 
-<div class="flex flex-col items-center md:items-start bg-[var(--webPrimaryTabBackgroundColour)] text-[var(--webPrimaryTextColour)] p-8 rounded-xl shadow-md max-w-full w-2/3 max-md:w-full">
+<div class="flex flex-col items-center md:items-start bg-[var(--webPrimaryTabBackgroundColour)] text-[var(--webPrimaryTextColour)] p-8 rounded-2xl shadow-md max-w-full w-2/3 max-md:w-full">
   <h3 class="text-3xl font-bold mb-6 gap-2 w-fit">
     Skontaktuj się z nami
   </h3>

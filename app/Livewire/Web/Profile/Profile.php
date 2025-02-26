@@ -24,13 +24,7 @@ class Profile extends Component
 
     public function mount(): void
     {
-        $profile = Auth::guard('web')->user();
-
-        if ($profile) {
-            $this->profile = $profile;
-        } else {
-            $this->redirectRoute('web.login', navigate: true);
-        }
+        $this->profile = Auth::guard('web')->user();
     }
 
 
