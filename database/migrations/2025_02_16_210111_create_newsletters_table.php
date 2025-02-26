@@ -11,7 +11,7 @@ return new class extends Migration
     {
         Schema::create('newsletters', static function (Blueprint $table) {
             $table->id();
-            $table->string('email');
+            $table->string('email', 254);
             $table->foreignId('user_id')->nullable()->constrained();
             $table->timestamps();
         });

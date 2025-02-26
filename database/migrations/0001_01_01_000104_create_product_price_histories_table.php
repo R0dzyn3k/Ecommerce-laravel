@@ -5,7 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -13,7 +14,6 @@ return new class extends Migration {
     {
         Schema::create('product_price_histories', static function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->foreignId('tax_id')->constrained()->restrictOnDelete();
             $table->decimal('price', 19, 4)->unsigned();
