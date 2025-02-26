@@ -56,6 +56,18 @@
         labelClass="text-[var(--webPrimaryTextColour)] pt-2"
       />
 
+      <x-form-input.checkbox
+        name="term"
+        wire:model="term"
+        web="true"
+        labelClass="text-[var(--webPrimaryTextColour)] mt-4"
+        class="bg-white border-gray-400 mt-4"
+      >
+        <x-slot:label>
+          Akceptuję <a href="{{ route('web.terms') }}" wire:navigate class='text-[var(--webLightHoverColour)] hover:text-[var(--webThirdLightTextColour)]'>regulamin</a>
+        </x-slot:label>
+      </x-form-input.checkbox>
+
       <div class="flex items-center justify-center mt-4">
         <x-buttons.primary web="true">
           Zarejestruj się

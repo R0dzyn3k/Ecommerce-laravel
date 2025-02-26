@@ -32,6 +32,9 @@ class Register extends Component
     public string $password_confirmation = '';
 
 
+    public bool $term = false;
+
+
     public function login(): void
     {
         $this->redirectRoute('web.login', navigate: true);
@@ -67,7 +70,7 @@ class Register extends Component
 
         $this->alertSuccess(__('auth.registerSuccess'));
 
-        $this->redirectRoute('web.homepage', navigate: true);
+        $this->redirectRoute('web.verify-email', navigate: true);
     }
 
 
@@ -86,6 +89,7 @@ class Register extends Component
             'customer.phone' => ['nullable', 'string', 'max:20'],
             'password' => ['sometimes', 'nullable', 'string', Password::default(), 'confirmed'],
             'password_confirmation' => ['sometimes', 'nullable', 'required_with:password', 'string', 'same:password'],
+            'term' => ['required', 'accepted'],
         ];
     }
 

@@ -9,7 +9,7 @@
 
       <x-web.primary-button type="submit" :disabled="$subscribed">Zapisz się</x-web.primary-button>
     </form>
-
+    <span class="pt-2 text-sm text-gray-600">Zapisując się na newsletter akceptujesz <a class="text-[var(--webLightHoverColour)] hover:text-[var(--webThirdLightTextColour)]" href="{{route('web.terms')}}" wire:navigate>regulamin</a></span>
   </div>
 
   <!-- Right section -->
