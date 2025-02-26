@@ -29,13 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['web'])->as('web.')->group(function (Router $router) {
-    $router->get('/', [HomepageController::class, 'index'])->name('homepage');
-    $router->get('kontakt', [ContactController::class, 'index'])->name('contact');
     $router->get('koszyk', [HomepageController::class, 'index'])->name('cart');
-
-    $router->get('regulamin', [PageController::class, 'terms'])->name('terms');
-    $router->get('polityka-prywatnosci', [PageController::class, 'privacy'])->name('privacy');
-    $router->get('polityka-cookies', [PageController::class, 'cookies'])->name('cookies');
 
     $router->as('products.')->prefix('produkty')->group(function (Router $router) {
         $router->get('/', [ProductController::class, 'index'])->name('index');
@@ -57,9 +51,19 @@ Route::middleware(['web'])->as('web.')->group(function (Router $router) {
         $router->get('bezpieczenstwo', Security::class)->name('security');
     });
 
-    $router->as('blog.')->prefix('blog')->group(function (Router $router) {
-        $router->get('/', [BlogController::class, 'index'])->name('index');
-        $router->get('/{slug}', [BlogController::class, 'show'])->name('show');
+    $router->middleware('cache')->group(function (Router $router) { //TODO: Uncomment cache middleware
+        $router->get('/', [HomepageController::class, 'index'])->name('homepage');
+
+        $router->get('kontakt', [ContactController::class, 'index'])->name('contact');
+
+        $router->get('regulamin', [PageController::class, 'terms'])->name('terms');
+        $router->get('polityka-prywatnosci', [PageController::class, 'privacy'])->name('privacy');
+        $router->get('polityka-cookies', [PageController::class, 'cookies'])->name('cookies');
+
+        $router->as('blog.')->prefix('blog')->group(function (Router $router) {
+            $router->get('/', [BlogController::class, 'index'])->name('index');
+            $router->get('/{slug}', [BlogController::class, 'show'])->name('show');
+        });
     });
 });
 
