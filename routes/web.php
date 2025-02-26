@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Web\BlogController;
 use App\Http\Controllers\Web\BrandController;
+use App\Http\Controllers\Web\CartController;
 use App\Http\Controllers\Web\CategoryController;
 use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\HomepageController;
@@ -29,7 +30,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['web'])->as('web.')->group(function (Router $router) {
-    $router->get('koszyk', [HomepageController::class, 'index'])->name('cart');
+    $router->get('koszyk', [CartController::class, 'show'])->name('cart');
 
     $router->as('products.')->prefix('produkty')->group(function (Router $router) {
         $router->get('/', [ProductController::class, 'index'])->name('index');
@@ -51,7 +52,7 @@ Route::middleware(['web'])->as('web.')->group(function (Router $router) {
         $router->get('bezpieczenstwo', Security::class)->name('security');
     });
 
-    $router->middleware('cache')->group(function (Router $router) { //TODO: Uncomment cache middleware
+    $router->middleware('cache')->group(function (Router $router) {
         $router->get('/', [HomepageController::class, 'index'])->name('homepage');
 
         $router->get('kontakt', [ContactController::class, 'index'])->name('contact');

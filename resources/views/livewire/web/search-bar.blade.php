@@ -1,7 +1,6 @@
 <div
   x-data
   x-on:keydown.escape.window="$wire.closeSearchResults()"
-  x-on:click.outside="$wire.closeSearchResults()"
   class="w-full relative"
 >
   <input
