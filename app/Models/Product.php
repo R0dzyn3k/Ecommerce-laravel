@@ -27,7 +27,7 @@ class Product extends BaseModel implements Wireable, HasMedia
         'category_id',
         'tax_id',
         'brand_id',
-        'price',
+        'price_gross',
         'discount_price',
         'stock',
         'reviews_average',
@@ -49,7 +49,7 @@ class Product extends BaseModel implements Wireable, HasMedia
             'category_id' => $value['category_id'] ?? $product->category_id,
             'tax_id' => $value['tax_id'] ?? $product->tax_id,
             'brand_id' => $value['brand_id'] ?? $product->brand_id,
-            'price' => $value['price'] ?? $product->price,
+            'price_gross' => $value['price_gross'] ?? $product->price_gross,
             'discount_price' => empty($value['discount_price']) ? null : $value['discount_price'],
             'stock' => $value['stock'] ?? $product->stock,
         ]);
@@ -61,12 +61,12 @@ class Product extends BaseModel implements Wireable, HasMedia
     protected static function booted(): void
     {
         static::saved(static function (self $product) {
-            if ($product->isDirty('price')
+            if ($product->isDirty('price_gross')
                 || $product->isDirty('discount_price')
                 || $product->isDirty('tax_id')
             ) {
                 $product->pricesHistory()->create([
-                    'price' => $product->price,
+                    'price_gross' => $product->price_gross,
                     'discount_price' => $product->discount_price,
                     'tax_id' => $product->tax_id,
                 ]);
@@ -90,6 +90,12 @@ class Product extends BaseModel implements Wireable, HasMedia
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+
+    public function onStock(): bool
+    {
+        return $this->stock > 0;
     }
 
 
@@ -124,7 +130,7 @@ class Product extends BaseModel implements Wireable, HasMedia
             'category_id' => $this->category_id,
             'tax_id' => $this->tax_id,
             'brand_id' => $this->brand_id,
-            'price' => $this->price,
+            'price_gross' => $this->price_gross,
             'discount_price' => $this->discount_price ?? null,
             'stock' => $this->stock,
         ];
@@ -135,7 +141,7 @@ class Product extends BaseModel implements Wireable, HasMedia
     {
         return [
             'is_active' => 'boolean',
-            'price' => 'decimal:4',
+            'price_gross' => 'decimal:4',
             'stock' => 'integer',
             'reviews_count' => 'integer',
             'reviews_average' => 'decimal:2',

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('tax_id')->constrained()->restrictOnDelete();
             $table->foreignId('brand_id')->nullable()->constrained()->nullOnDelete();
-            $table->decimal('price', 19, 4)->unsigned()->default('0.0000');
+            $table->decimal('price_gross', 19, 4)->unsigned()->default('0.0000');
             $table->decimal('discount_price', 19, 4)->nullable()->unsigned();
             $table->unsignedInteger('stock');
             $table->decimal('reviews_average', 2, 1)->unsigned()->default('0.0');

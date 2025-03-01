@@ -33,14 +33,14 @@
           <div class="text-right">
             @if($product->discount_price)
               <span class="text-sm line-through text-gray-400">
-                {{ number_format($product->price, 2) }} zł
+                {{ number_format($product->price_gross, 2) }} zł
               </span>
               <span class="font-bold text-indigo-600 ml-1">
                 {{ number_format($product->discount_price, 2) }} zł
               </span>
             @else
               <span class="font-bold text-indigo-600">
-                {{ number_format($product->price, 2) }} zł
+                {{ number_format($product->price_gross, 2) }} zł
               </span>
             @endif
           </div>

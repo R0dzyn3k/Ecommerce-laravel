@@ -11,7 +11,7 @@ return new class extends Migration
     {
         Schema::create('orders', static function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained('users', 'id')->nullOnDelete();
+            $table->foreignId('customer_id')->nullable()->constrained('users', 'id')->nullOnDelete();
             $table->string('status', 30);
             $table->string('email', 254)->nullable();
             $table->decimal('items_net', 19, 4)->unsigned()->default('0.0000');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('total_tax', 19, 4)->unsigned()->default('0.0000');
             $table->decimal('total_gross', 19, 4)->unsigned()->default('0.0000');
             $table->decimal('discount_gross', 19, 4)->unsigned()->default('0.0000');
-            $table->decimal('shipping_gross', 19, 4)->unsigned()->default('0.0000');
+            $table->decimal('shipping_cost', 19, 4)->unsigned()->default('0.0000');
             $table->string('shipping_method')->nullable();
             $table->string('billing_method')->nullable();
             $table->text('customer_note')->nullable();

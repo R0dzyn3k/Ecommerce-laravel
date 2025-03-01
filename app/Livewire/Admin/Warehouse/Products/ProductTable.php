@@ -56,7 +56,7 @@ class ProductTable extends DataTableComponent
             Column::make(__('pages.products.mpn'), 'mpn')
                 ->searchable()
                 ->sortable(),
-            Column::make(__('pages.products.price'), 'price')
+            Column::make(__('pages.products.price'), 'price_gross')
                 ->sortable(),
             Column::make(__('pages.products.discountPrice'), 'discount_price')
                 ->sortable(),

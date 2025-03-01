@@ -7,6 +7,16 @@
 ])
 
 <x-layouts.app :title="$title">
+  <x-slot:styles>
+    @rappasoftTableStyles
+    @rappasoftTableThirdPartyStyles
+  </x-slot:styles>
+
+  <x-slot:scripts>
+    @rappasoftTableScripts
+    @rappasoftTableThirdPartyScripts
+  </x-slot:scripts>
+
   <div class="relative flex flex-row w-full h-[100dvh] text-[var(--adminTextColour)]">
 
     <!-- Left menu panel -->

@@ -14,7 +14,6 @@ class Customer extends User
     {
         parent::boot();
 
-
         static::addGlobalScope(UserType::customer(), static function (Builder $builder) {
             $builder->where('role', UserType::CUSTOMER);
         });

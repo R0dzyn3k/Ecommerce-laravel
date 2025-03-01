@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->foreignId('tax_id')->constrained()->restrictOnDelete();
-            $table->decimal('price', 19, 4)->unsigned();
+            $table->decimal('price_gross', 19, 4)->unsigned();
             $table->decimal('discount_price', 19, 4)->nullable()->unsigned();
             $table->timestamps();
         });

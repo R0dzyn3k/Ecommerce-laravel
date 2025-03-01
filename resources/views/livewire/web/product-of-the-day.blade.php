@@ -18,14 +18,14 @@
       <div class="flex flex-col">
         @if ($product->discount_price)
           <span class="text-sm text-[var(--webSecondaryLightTextColour)] line-through">
-            {{ number_format($product->price, 2) }} zł
+            {{ number_format($product->price_gross, 2) }} zł
           </span>
           <span class="text-lg font-bold text-[var(--webThirdLightTextColour)]">
             {{ number_format($product->discount_price, 2) }} zł
           </span>
         @else
           <span class="text-lg font-bold text-[var(--webThirdLightTextColour)] mt-auto">
-            {{ number_format($product->price, 2) }} zł
+            {{ number_format($product->price_gross, 2) }} zł
           </span>
         @endif
       </div>

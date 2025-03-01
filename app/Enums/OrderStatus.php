@@ -43,4 +43,10 @@ enum OrderStatus: string
      * Order is completed.
      */
     case COMPLETED = 'COMPLETED';
+
+
+    /**
+     * Order is cancelled.
+     */
+    case CANCELLED = 'CANCELLED';
 }

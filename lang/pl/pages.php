@@ -51,7 +51,7 @@ return [
         'skuPlaceholder' => 'Wpisz SKU',
         'mpn' => 'MPN',
         'mpnPlaceholder' => 'Wpisz MPN',
-        'price' => 'Cena',
+        'price_gross' => 'Cena brutto',
         'pricePlaceholder' => 'Wpisz cenę',
         'discountPrice' => 'Cena promocyjna',
         'discountPricePlaceholder' => 'Wpisz cenę promocyjną',

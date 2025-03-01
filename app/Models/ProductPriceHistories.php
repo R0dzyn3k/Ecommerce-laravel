@@ -10,7 +10,7 @@ class ProductPriceHistories extends BaseModel
 {
     protected $casts = [
         'date' => 'datetime',
-        'price' => 'decimal:4',
+        'price_gross' => 'decimal:4',
         'discount_price' => 'decimal:4',
     ];
 
@@ -18,7 +18,7 @@ class ProductPriceHistories extends BaseModel
     protected $fillable = [
         'product_id',
         'tax_id',
-        'price',
+        'price_gross',
         'discount_price',
     ];
 

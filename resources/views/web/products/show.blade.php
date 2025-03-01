@@ -23,11 +23,11 @@
 
       <div class="flex items-center gap-4">
         <span class="text-2xl font-bold text-[var(--webThirdLightTextColour)]">
-          {{ number_format($product->discount_price ?? $product->price, 2) }} zł
+          {{ number_format($product->discount_price ?? $product->price_gross, 2) }} zł
         </span>
         @if($product->discount_price)
           <span class="text-[var(--webHeaderTextColour)] line-through">
-            {{ number_format($product->price, 2) }} zł
+            {{ number_format($product->price_gross, 2) }} zł
           </span>
         @endif
       </div>

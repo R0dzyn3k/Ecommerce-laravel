@@ -52,11 +52,11 @@ class ProductsList extends Component
         }
 
         if ($this->priceFrom) {
-            $query->whereRaw('COALESCE(discount_price, price) >= ?', [(float)$this->priceFrom]);
+            $query->whereRaw('COALESCE(discount_price, price_gross) >= ?', [(float)$this->priceFrom]);
         }
 
         if ($this->priceTo) {
-            $query->whereRaw('COALESCE(discount_price, price) <= ?', [(float)$this->priceTo]);
+            $query->whereRaw('COALESCE(discount_price, price_gross) <= ?', [(float)$this->priceTo]);
         }
 
         $products = $query

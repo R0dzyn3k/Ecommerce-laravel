@@ -33,7 +33,7 @@ class ProductForm extends BaseAdminComponent
             $this->product = new Product([
                 'is_active' => true,
                 'stock' => 0,
-                'price' => 0,
+                'price_gross' => 0,
             ]);
         }
     }

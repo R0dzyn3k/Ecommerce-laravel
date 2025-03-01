@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['web'])->as('web.')->group(function (Router $router) {
-    $router->get('koszyk', [CartController::class, 'show'])->name('cart');
+    $router->get('koszyk', [CartController::class, 'index'])->name('cart');
 
     $router->as('products.')->prefix('produkty')->group(function (Router $router) {
         $router->get('/', [ProductController::class, 'index'])->name('index');
