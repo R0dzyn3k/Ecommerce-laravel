@@ -26,8 +26,12 @@ class CustomerVerifyEmail extends VerifyEmail
     /** @var User $notifiable */
     protected function verificationUrl($notifiable): string
     {
-        return URL::temporarySignedRoute('web.verify-email', now()->addMinutes(config('auth.passwords.users.expire')), [
-            'id' => $notifiable->getKey(),
-        ]);
+        return URL::temporarySignedRoute(
+            name: 'web.verified-email',
+            expiration: now()->addMinutes(config('auth.passwords.users.expire')),
+            parameters: [
+                'customer' => $notifiable->getKey(),
+            ]
+        );
     }
 }

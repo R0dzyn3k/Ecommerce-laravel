@@ -76,7 +76,7 @@ class Register extends Component
 
     public function render(): Application|Factory|View|\Illuminate\View\View
     {
-        return view('livewire.web.auth.register')->layout('components.layouts.web', ['title' => __('pages.register')]);
+        return view('livewire.web.auth.register')->layout('components.layouts.web-page-card', ['title' => __('pages.register')]);
     }
 
 
@@ -87,8 +87,8 @@ class Register extends Component
             'customer.lastname' => ['required', 'string', 'max:30'],
             'customer.email' => ['required', 'email', 'max:255', Rule::unique(Customer::class, 'email')->ignore($this->customer)],
             'customer.phone' => ['nullable', 'string', 'max:20'],
-            'password' => ['sometimes', 'nullable', 'string', Password::default(), 'confirmed'],
-            'password_confirmation' => ['sometimes', 'nullable', 'required_with:password', 'string', 'same:password'],
+            'password' => ['required', 'nullable', 'string', Password::default(), 'confirmed'],
+            'password_confirmation' => ['required', 'nullable', 'required_with:password', 'string', 'same:password'],
             'term' => ['required', 'accepted'],
         ];
     }

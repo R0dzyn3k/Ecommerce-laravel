@@ -147,6 +147,7 @@ return [
         'newPassword' => 'nowe hasło',
         'newPassword_confirmation' => 'potwierdź nowego hasła',
         'term' => 'Regulamin',
+        'password_confirmation' => 'potwierdzenie hasła',
     ],
 
     'password' => [

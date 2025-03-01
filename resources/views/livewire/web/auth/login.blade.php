@@ -1,7 +1,5 @@
-<div class="container mx-auto flex flex-col lg:flex-row gap-16 pt-24 max-w-[600px] pb-16 lg:max-w-[1100px] px-4">
-  <div class="w-full lg:w-1/2 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl p-8 shadow-md">
-    <h2 class="text-2xl font-bold text-center mb-6 text-[--webPrimaryTextColour]">{{ __('pages.login') }}</h2>
-
+<div class="w-full mx-auto flex flex-col lg:flex-row gap-16">
+  <x-web.card-half :title="__('pages.login')">
     <form wire:submit.prevent="auth">
       <x-form-input.input
         name="email"
@@ -22,6 +20,7 @@
         web="true"
         labelClass="text-[var(--webPrimaryTextColour)] pt-2"
       />
+
       <div class="w-full flex justify-end">
         <a wire:click.prevent="forgotPassword" class="cursor-pointer p-1 hover:text-[var(--webLightHoverColour)]">Zapomniałeś hasła?</a>
       </div>
@@ -34,16 +33,15 @@
         labelClass="text-[var(--webPrimaryTextColour)]"
       />
 
-      <div class="flex items-center justify-center mt-4">
+      <x-web.button-group>
         <x-buttons.primary web="true">
           Zaloguj się
         </x-buttons.primary>
-      </div>
+      </x-web.button-group>
     </form>
-  </div>
+  </x-web.card-half>
 
-  <div class="w-full h-fit lg:w-1/2 bg-[var(--webPrimaryTabBackgroundColour)] rounded-2xl p-8 shadow-md">
-    <h2 class="text-2xl font-bold text-center mb-6 text-[#15141Atext-[var(--webPrimaryTextColour)]">{{ __('pages.register') }}</h2>
+  <x-web.card-half :title="__('pages.register')">
 
     <p class="mb-4 text-[var(--webPrimaryTextColour)]">Dołącz, aby cieszyć się:</p>
     <ul class="list-disc list-inside mb-4">
@@ -52,10 +50,10 @@
       <li class="text-[var(--webPrimaryTextColour)]">Historią zamówień</li>
     </ul>
 
-    <div class="flex items-center justify-center mt-4">
+    <x-web.button-group>
       <x-buttons.primary wire:click="register" web="true">
         Załóż konto
       </x-buttons.primary>
-    </div>
-  </div>
+    </x-web.button-group>
+  </x-web.card-half>
 </div>

@@ -52,7 +52,7 @@ class ResetPassword extends Component
 
     public function render(): Application|Factory|View|\Illuminate\View\View
     {
-        return view('livewire.web.auth.reset-password')->layout('components.layouts.web', ['title' => __('auth.setPassword')]);
+        return view('livewire.web.auth.reset-password')->layout('components.layouts.web-page-card', ['title' => __('auth.setPassword')]);
     }
 
 

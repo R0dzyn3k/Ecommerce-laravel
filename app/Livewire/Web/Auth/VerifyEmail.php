@@ -5,12 +5,11 @@ namespace App\Livewire\Web\Auth;
 
 use App\Models\Customer;
 use App\Traits\Admin\Alerts;
-use Illuminate\Auth\Events\Verified;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\URL;
 use Livewire\Component;
 
 
@@ -22,24 +21,15 @@ class VerifyEmail extends Component
     public Customer $customer;
 
 
-    public bool $verify = false;
-
-
-    public function homepage(): void
+    public function logOut()
     {
-        $this->redirectRoute('web.homepage', navigate: true);
-    }
-
-
-    public function login(): void
-    {
-        $this->redirectRoute('web.login', navigate: true);
+        $this->redirectRoute('web.logout', navigate: true);
     }
 
 
     public function mount(): void
     {
-        $customer = request()->user('web');
+        $customer = Auth::guard('web')->user();
 
         if (! $customer) {
             $this->redirectRoute('web.login', navigate: true);
@@ -47,40 +37,19 @@ class VerifyEmail extends Component
             return;
         }
 
-        $this->customer = $customer;
-
         if ($customer->hasVerifiedEmail()) {
             $this->redirectRoute('web.profile.edit', navigate: true);
-
-            return;
         }
 
-        if (URL::hasValidSignature(request())) {
-            $this->verify = true;
-
-            $customer->markEmailAsVerified();
-
-            event(new Verified($customer));
-        }
-    }
-
-
-    public function profile(): void
-    {
-        $this->redirectRoute('web.profile.edit', navigate: true);
+        $this->customer = $customer;
     }
 
 
     public function render(): Application|Factory|View|\Illuminate\View\View
     {
-        return view('livewire.web.auth.verify-email')->layout('components.layouts.web', ['title' => __('auth.verifyEmail')]);
+        return view('livewire.web.auth.verify-email')->layout('components.layouts.web-page-card', ['title' => __('auth.verifyEmail')]);
     }
 
-
-    public function logOut()
-    {
-        $this->redirectRoute('web.logout', navigate: true);
-    }
 
     public function resend(): void
     {
