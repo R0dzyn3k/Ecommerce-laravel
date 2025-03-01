@@ -29,4 +29,5 @@ return [
     'defaultSelectPlaceholder' => 'Wybierz',
     'copyright' => 'Wszelkie prawa zastrzeżone.',
     'back' => 'Powrót',
+    'guest' => 'Gość',
 ];

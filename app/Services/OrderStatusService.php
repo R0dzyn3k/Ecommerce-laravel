@@ -4,6 +4,8 @@ namespace App\Services;
 
 
 use App\Enums\OrderStatus;
+use App\Events\OrderCanceledEvent;
+use App\Events\OrderCompletedEvent;
 use App\Events\OrderNewEvent;
 use App\Exceptions\InvalidOrderStatusTransitionException;
 use App\Models\Order;
@@ -36,6 +38,43 @@ class OrderStatusService
 
         return $order;
     }
+
+    public function completeOrder(Order $order): Order
+    {
+        $this->assertCanTransition($order->status, OrderStatus::COMPLETED);
+
+        $order->update([
+            'status' => OrderStatus::COMPLETED,
+            'realization_at' => now(),
+        ]);
+
+        if ($order->email) {
+            // Send email to customer
+        }
+
+        Event::dispatch(new OrderCompletedEvent($order));
+
+        return $order;
+    }
+
+    public function cancelOrder(Order $order): Order
+    {
+        $this->assertCanTransition($order->status, OrderStatus::CANCELLED);
+
+        $order->update([
+            'status' => OrderStatus::CANCELLED,
+        ]);
+
+        if ($order->email) {
+            // Send email to customer
+        }
+
+        Event::dispatch(new OrderCanceledEvent($order));
+
+        return $order;
+    }
+
+
 
 
     /**

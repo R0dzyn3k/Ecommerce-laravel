@@ -9,9 +9,14 @@ use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\HomepageController;
 use App\Http\Controllers\Web\PageController;
 use App\Http\Controllers\Web\ProductController;
+use App\Livewire\Admin\Sales\Carts\CartForm;
+use App\Livewire\Admin\Sales\Orders\OrderForm;
 use App\Livewire\Admin\Customers\{CustomerForm, Customers};
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Profile\{ProfileEdit, ProfileSecurity};
+use App\Livewire\Admin\Sales\Carts\CartTable;
+use App\Livewire\Admin\Sales\Orders\OrderTable;
+use App\Livewire\Admin\Sales\SalesTiles;
 use App\Livewire\Admin\Settings\Administrators\{AdministratorForm, Administrators};
 use App\Livewire\Admin\Settings\Newsletter\NewsletterTable;
 use App\Livewire\Admin\Settings\SettingsTiles;
@@ -70,8 +75,21 @@ Route::middleware(['web'])->as('web.')->group(function (Router $router) {
 
 Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function (Router $router) {
     $router->get('dashboard', Dashboard::class)->name('dashboard');
-    $router->get('sales', Dashboard::class)->name('sales');
-    $router->get('warehouse', Dashboard::class)->name('warehouse');
+
+    $router->as('sales.')->prefix('sales')->group(function (Router $router) {
+        $router->get('/', SalesTiles::class)->name('index');
+
+        $router->as('orders.')->prefix('orders')->group(function (Router $router) {
+            $router->get('/', OrderTable::class)->name('index');
+            $router->get('{order}', OrderForm::class)->name('show');
+        });
+
+        $router->as('carts.')->prefix('carts')->group(function (Router $router) {
+            $router->get('/', CartTable::class)->name('index');
+            $router->get('{cart}', CartForm::class)->name('show');
+        });
+
+    });
 
     $router->as('warehouse.')->prefix('warehouse')->group(function (Router $router) {
         $router->get('/', WarehouseTiles::class)->name('index');

@@ -18,10 +18,10 @@ class Menu extends Component
     {
         $this->menuItems = [
             [
-                'action' => route('admin.sales'),
+                'action' => route('admin.sales.index'),
                 'icon' => 'sales',
-                'label' => __('pages.sales'),
-                'title' => __('pages.sales'),
+                'label' => __('pages.sales.title'),
+                'title' => __('pages.sales.title'),
             ], [
                 'action' => route('admin.warehouse.index'),
                 'icon' => 'warehouse',
