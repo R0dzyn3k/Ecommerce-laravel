@@ -5,4 +5,6 @@
 
   <h1 class="text-3xl font-bold text-[var(--webPrimaryTextColour)] mb-6">Koszyk</h1>
 
+  <livewire:web.cart />
+
 </x-layouts.web-page>

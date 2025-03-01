@@ -31,7 +31,13 @@
       </div>
 
       <div class="mt-auto">
-        <x-web.primary-button type="button">Do koszyka</x-web.primary-button>
+        <x-web.primary-button
+          :disabled="!$product->onStock()"
+          type="button"
+          wire:click="$dispatch('addToCart', { productId: {{ $product->id }}})"
+        >
+          Do koszyka
+        </x-web.primary-button>
       </div>
     </div>
   </div>

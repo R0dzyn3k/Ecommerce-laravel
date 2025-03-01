@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 
+use App\Services\CartManager;
+use App\Services\OrderStatusService;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +29,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(CartManager::class, static function ($app) {
+            return new CartManager($app->make(OrderStatusService::class));
+        });
     }
 
 

@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Enums\UserType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
 class Customer extends User
@@ -34,9 +35,9 @@ class Customer extends User
     }
 
 
-    public function guardName(): string
+    public function cart(): HasOne
     {
-        return 'users';
+        return $this->hasOne(Cart::class);
     }
 
 
