@@ -74,13 +74,13 @@ class UserTable extends DataTableComponent
             DateColumn::make(__('pages.customers.email_verified_at'), 'email_verified_at')
                 ->outputFormat('Y-m-d H:i:s')
                 ->sortable(),
-            DateColumn::make(__('global.created_at'), 'created_at')
-                ->outputFormat('Y-m-d H:i:s')
-                ->sortable(),
             DateColumn::make(__('global.updated_at'), 'updated_at')
                 ->outputFormat('Y-m-d H:i:s')
                 ->sortable()
                 ->isHidden(),
+            DateColumn::make(__('global.created_at'), 'created_at')
+                ->outputFormat('Y-m-d H:i:s')
+                ->sortable(),
         ];
     }
 

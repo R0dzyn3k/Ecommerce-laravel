@@ -9,7 +9,7 @@ use App\Helpers\SubMenuItem;
 
 trait BaseSettingMenuItems
 {
-    private function getBaseSettingMenuItems(): array
+    private function getMenuItems(): array
     {
         $menuItems = [
             new SubMenuItem(
@@ -32,13 +32,13 @@ trait BaseSettingMenuItems
             ),
         ];
 
-        return $this->isSettingsTilesToMenuItemsRequired ?? true
-            ? array_merge([$this->getSettingsTilesMenuItem()], $menuItems)
+        return $this->addBaseTileToMenuItems ?? true
+            ? array_merge([$this->getTilesMenuItem()], $menuItems)
             : $menuItems;
     }
 
 
-    private function getSettingsTilesMenuItem(): SubMenuItem
+    private function getTilesMenuItem(): SubMenuItem
     {
         return new SubMenuItem(
             label: __('pages.settings.title'),

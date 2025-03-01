@@ -28,7 +28,7 @@ if (! $activeClass) {
   @foreach($menuItems as $menuItem)
     <a
       class="flex flex-col gap-1 p-6 {{ $linkClass }} @if($menuItem->isActive()) {{ $activeClass }} @endif @if($web) last:border-none @endif"
-      href="{{ $menuItem->url }}"
+      @if($menuItem->url) href="{{ $menuItem->url }}" @endif
       title="{{ $menuItem->title }}"
       wire:navigate
     >

@@ -44,10 +44,10 @@ class CategoryTable extends DataTableComponent
                 ->sortable(),
             BooleanColumn::make(__('global.is_active'), 'is_active')
                 ->sortable(),
-            DateColumn::make(__('global.created_at'), 'created_at')
+            DateColumn::make(__('global.updated_at'), 'updated_at')
                 ->outputFormat('Y-m-d H:i:s')
                 ->sortable(),
-            DateColumn::make(__('global.updated_at'), 'updated_at')
+            DateColumn::make(__('global.created_at'), 'created_at')
                 ->outputFormat('Y-m-d H:i:s')
                 ->sortable(),
         ];
@@ -78,6 +78,6 @@ class CategoryTable extends DataTableComponent
 
     protected function getSidebarMenuItems(): array
     {
-        return $this->getBaseWarehouseMenuItems();
+        return $this->getMenuItems();
     }
 }

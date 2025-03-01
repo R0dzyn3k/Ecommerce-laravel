@@ -57,7 +57,7 @@ class BrandForm extends BaseAdminComponent
 
     protected function getSidebarMenuItems(): array
     {
-        return $this->addTaxMenuItem();
+        return $this->addMenuItem();
     }
 
 
@@ -77,14 +77,12 @@ class BrandForm extends BaseAdminComponent
     }
 
 
-    private function addTaxMenuItem(): array
+    private function addMenuItem(): array
     {
-        $sidebarMenu = collect($this->getBaseWarehouseMenuItems());
+        $sidebarMenu = collect($this->getMenuItems());
         $newMenuItem = new SubMenuItem(
             label: $this->isExist ? __('pages.brands.edit') : __('pages.brands.new'),
             type: MenuItemType::InternalLink,
-            route: $this->isExist ? 'admin.warehouse.brands.show' : 'admin.warehouse.brands.create',
-            params: $this->isExist ? ['brand' => $this->brand->id] : [],
         );
 
         $sidebarMenu->firstOrFail(function (SubMenuItem $item) {

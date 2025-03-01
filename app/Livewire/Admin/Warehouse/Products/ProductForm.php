@@ -61,7 +61,7 @@ class ProductForm extends BaseAdminComponent
 
     protected function getSidebarMenuItems(): array
     {
-        return $this->addTaxMenuItem();
+        return $this->addMenuItem();
     }
 
 
@@ -90,14 +90,12 @@ class ProductForm extends BaseAdminComponent
     }
 
 
-    private function addTaxMenuItem(): array
+    private function addMenuItem(): array
     {
-        $sidebarMenu = collect($this->getBaseWarehouseMenuItems());
+        $sidebarMenu = collect($this->getMenuItems());
         $newMenuItem = new SubMenuItem(
             label: $this->isExist ? __('pages.products.edit') : __('pages.products.new'),
             type: MenuItemType::InternalLink,
-            route: $this->isExist ? 'admin.warehouse.products.show' : 'admin.warehouse.products.create',
-            params: $this->isExist ? ['product' => $this->product->id] : [],
         );
 
         $sidebarMenu->firstOrFail(function (SubMenuItem $item) {

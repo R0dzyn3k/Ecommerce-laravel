@@ -21,7 +21,7 @@ class OrderStatusService
     ];
 
 
-    public function orderNew(Order $order, $sendEmail = true): Order
+    public function newOrder(Order $order, $sendEmail = true): Order
     {
         $this->assertCanTransition($order->status, OrderStatus::NEW_ORDER);
 

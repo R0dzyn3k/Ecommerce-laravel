@@ -12,12 +12,12 @@ class SettingsTiles extends BaseTilesLayout
     use BaseSettingMenuItems;
 
 
-    private bool $isSettingsTilesToMenuItemsRequired = false;
+    private bool $addBaseTileToMenuItems = false;
 
 
     protected function getSidebarMenuItems(): array
     {
-        return $this->getBaseSettingMenuItems();
+        return $this->getMenuItems();
     }
 
 

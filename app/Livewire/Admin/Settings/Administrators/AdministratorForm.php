@@ -86,7 +86,7 @@ class AdministratorForm extends BaseAdminComponent
 
     protected function getSidebarMenuItems(): array
     {
-        return $this->addAdministratorMenuItem();
+        return $this->getMenuItems();
     }
 
 
@@ -103,14 +103,12 @@ class AdministratorForm extends BaseAdminComponent
     }
 
 
-    private function addAdministratorMenuItem(): array
+    private function getMenuItems(): array
     {
-        $sidebarMenu = collect($this->getBaseSettingMenuItems());
+        $sidebarMenu = collect($this->getMenuItems());
         $newMenuItem = new SubMenuItem(
             label: $this->isExist ? __('pages.administrators.edit') : __('pages.administrators.new'),
             type: MenuItemType::InternalLink,
-            route: $this->isExist ? 'admin.settings.administrators.show' : 'admin.settings.administrators.create',
-            params: $this->isExist ? ['admin' => $this->admin->id] : [],
         );
 
         $sidebarMenu->firstOrFail(function (SubMenuItem $item) {

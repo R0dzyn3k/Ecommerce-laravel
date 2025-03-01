@@ -41,6 +41,10 @@ class Profile extends Component
     {
         $this->validate();
 
+        if ($this->profile->isDirty('email')) {
+            $this->profile->email_verified_at = null;
+        }
+
         $this->profile->save();
 
         $this->alertSuccess(__('global.updateSuccess'));

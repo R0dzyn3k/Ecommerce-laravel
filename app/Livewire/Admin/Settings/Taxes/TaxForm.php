@@ -56,7 +56,7 @@ class TaxForm extends BaseAdminComponent
 
     protected function getSidebarMenuItems(): array
     {
-        return $this->addTaxMenuItem();
+        return $this->addMenuItem();
     }
 
 
@@ -68,14 +68,12 @@ class TaxForm extends BaseAdminComponent
     }
 
 
-    private function addTaxMenuItem(): array
+    private function addMenuItem(): array
     {
-        $sidebarMenu = collect($this->getBaseSettingMenuItems());
+        $sidebarMenu = collect($this->getMenuItems());
         $newMenuItem = new SubMenuItem(
             label: $this->isExist ? __('pages.taxes.edit') : __('pages.taxes.new'),
             type: MenuItemType::InternalLink,
-            route: $this->isExist ? 'admin.settings.taxes.show' : 'admin.settings.taxes.create',
-            params: $this->isExist ? ['tax' => $this->tax->id] : [],
         );
 
         $sidebarMenu->firstOrFail(function (SubMenuItem $item) {

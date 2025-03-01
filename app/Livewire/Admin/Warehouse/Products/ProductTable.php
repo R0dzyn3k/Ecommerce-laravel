@@ -68,10 +68,10 @@ class ProductTable extends DataTableComponent
                 ->format(fn($value, Product $model) => $model->category?->title)
                 ->searchable()
                 ->sortable(),
-            DateColumn::make(__('global.created_at'), 'created_at')
+            DateColumn::make(__('global.updated_at'), 'updated_at')
                 ->outputFormat('Y-m-d H:i:s')
                 ->sortable(),
-            DateColumn::make(__('global.updated_at'), 'updated_at')
+            DateColumn::make(__('global.created_at'), 'created_at')
                 ->outputFormat('Y-m-d H:i:s')
                 ->sortable(),
         ];
@@ -102,6 +102,6 @@ class ProductTable extends DataTableComponent
 
     protected function getSidebarMenuItems(): array
     {
-        return $this->getBaseWarehouseMenuItems();
+        return $this->getMenuItems();
     }
 }

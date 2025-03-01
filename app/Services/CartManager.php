@@ -38,7 +38,7 @@ class CartManager
         $cart = $this->getPersistentCart();
         $cart->ordered_at = now();
 
-        $order = $this->orderStatusService->orderNew($cart);
+        $order = $this->orderStatusService->newOrder($cart);
 
         $this->resetCart();
 

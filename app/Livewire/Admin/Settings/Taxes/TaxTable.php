@@ -44,13 +44,13 @@ class TaxTable extends DataTableComponent
             Column::make(__('pages.taxes.percentage'), 'percentage')
                 ->searchable()
                 ->sortable(),
-            DateColumn::make(__('global.created_at'), 'created_at')
-                ->outputFormat('Y-m-d H:i:s')
-                ->sortable(),
             DateColumn::make(__('global.updated_at'), 'updated_at')
                 ->outputFormat('Y-m-d H:i:s')
                 ->sortable()
                 ->isHidden(),
+            DateColumn::make(__('global.created_at'), 'created_at')
+                ->outputFormat('Y-m-d H:i:s')
+                ->sortable(),
         ];
     }
 
@@ -79,6 +79,6 @@ class TaxTable extends DataTableComponent
 
     protected function getSidebarMenuItems(): array
     {
-        return $this->getBaseSettingMenuItems();
+        return $this->getMenuItems();
     }
 }

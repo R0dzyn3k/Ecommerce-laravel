@@ -9,7 +9,7 @@ use App\Helpers\SubMenuItem;
 
 trait BaseWarehouseMenuItems
 {
-    private function getBaseWarehouseMenuItems(): array
+    private function getMenuItems(): array
     {
         $menuItems = [
             new SubMenuItem(
@@ -32,13 +32,13 @@ trait BaseWarehouseMenuItems
             ),
         ];
 
-        return $this->isWarehouseTilesToMenuItemsRequired ?? true
-            ? array_merge([$this->getWarehouseTilesMenuItem()], $menuItems)
+        return $this->addBaseTileToMenuItems ?? true
+            ? array_merge([$this->getTilesMenuItem()], $menuItems)
             : $menuItems;
     }
 
 
-    private function getWarehouseTilesMenuItem(): SubMenuItem
+    private function getTilesMenuItem(): SubMenuItem
     {
         return new SubMenuItem(
             label: __('pages.warehouse.title'),

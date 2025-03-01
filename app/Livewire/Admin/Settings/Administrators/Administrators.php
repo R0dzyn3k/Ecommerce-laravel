@@ -29,6 +29,6 @@ class Administrators extends BaseAdminComponent
 
     protected function getSidebarMenuItems(): array
     {
-        return $this->getBaseSettingMenuItems();
+        return $this->getMenuItems();
     }
 }

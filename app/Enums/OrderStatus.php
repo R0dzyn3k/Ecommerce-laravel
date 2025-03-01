@@ -13,7 +13,7 @@ enum OrderStatus: string
     /**
      * Order has been placed by the customer.
      */
-    case NEW_ORDER = 'NEW';
+    case NEW_ORDER = 'NEW_ORDER';
 
     /**
      * Payment is on hold.

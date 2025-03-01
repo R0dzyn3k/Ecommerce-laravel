@@ -4,7 +4,6 @@ namespace App\Helpers;
 
 
 use App\Enums\MenuItemType;
-use InvalidArgumentException;
 use JetBrains\PhpStorm\ArrayShape;
 use Livewire\Wireable;
 use Override;
@@ -74,12 +73,11 @@ class SubMenuItem implements Wireable
 
                 break;
             case MenuItemType::InternalLink:
-                if (is_null($route)) {
-                    throw new InvalidArgumentException('Route is required for internal link');
+                if ($route) {
+                    $this->route = $route;
+                    $this->params = $params ?? [];
+                    $this->url = route($route, $this->params, absolute: false);
                 }
-                $this->route = $route;
-                $this->params = $params ?? [];
-                $this->url = route($route, $this->params, absolute: false);
 
                 break;
             case MenuItemType::ExternalLink:

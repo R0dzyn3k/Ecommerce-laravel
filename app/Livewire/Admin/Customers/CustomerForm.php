@@ -90,8 +90,6 @@ class CustomerForm extends BaseAdminComponent
             new SubMenuItem(
                 label: $this->isExist ? __('pages.customers.edit') : __('pages.customers.new'),
                 type: MenuItemType::InternalLink,
-                route: $this->isExist ? 'admin.customers.show' : 'admin.customers.create',
-                params: $this->isExist ? ['customer' => $this->customer->id] : []
             ),
         ];
     }

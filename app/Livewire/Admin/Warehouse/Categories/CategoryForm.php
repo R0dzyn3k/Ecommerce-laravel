@@ -57,7 +57,7 @@ class CategoryForm extends BaseAdminComponent
 
     protected function getSidebarMenuItems(): array
     {
-        return $this->addTaxMenuItem();
+        return $this->addMenuItem();
     }
 
 
@@ -77,14 +77,12 @@ class CategoryForm extends BaseAdminComponent
     }
 
 
-    private function addTaxMenuItem(): array
+    private function addMenuItem(): array
     {
-        $sidebarMenu = collect($this->getBaseWarehouseMenuItems());
+        $sidebarMenu = collect($this->getMenuItems());
         $newMenuItem = new SubMenuItem(
             label: $this->isExist ? __('pages.categories.edit') : __('pages.categories.new'),
             type: MenuItemType::InternalLink,
-            route: $this->isExist ? 'admin.warehouse.categories.show' : 'admin.warehouse.categories.create',
-            params: $this->isExist ? ['category' => $this->category->id] : [],
         );
 
         $sidebarMenu->firstOrFail(function (SubMenuItem $item) {

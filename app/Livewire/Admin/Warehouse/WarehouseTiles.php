@@ -12,12 +12,12 @@ class WarehouseTiles extends BaseTilesLayout
     use BaseWarehouseMenuItems;
 
 
-    private bool $isWarehouseTilesToMenuItemsRequired = false;
+    private bool $addBaseTileToMenuItems = false;
 
 
     protected function getSidebarMenuItems(): array
     {
-        return $this->getBaseWarehouseMenuItems();
+        return $this->getMenuItems();
     }
 
 
