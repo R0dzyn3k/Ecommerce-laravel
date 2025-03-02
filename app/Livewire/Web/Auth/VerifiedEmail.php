@@ -19,7 +19,9 @@ class VerifiedEmail extends Component
 {
     use Alerts;
 
+
     public Customer $customer;
+
 
     public function homepage(): void
     {
@@ -31,7 +33,7 @@ class VerifiedEmail extends Component
     {
         abort_if(! URL::hasValidSignature(request()), Response::HTTP_NOT_FOUND);
 
-        if($this->customer->hasVerifiedEmail()) {
+        if ($this->customer->hasVerifiedEmail()) {
             $this->profile();
 
             return;

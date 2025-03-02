@@ -1,12 +1,8 @@
-<x-layouts.web-page title="Produkty">
-    <!-- Breadcrumbs -->
-    <x-slot:breadcrumbs>
-      <span class="text-[var(--webPrimaryTextColour)]">Produkty</span>
-    </x-slot:breadcrumbs>
-
-    <!-- Page title -->
-    <h1 class="text-3xl font-bold text-[var(--webPrimaryTextColour)] mb-6">Nasze produkty</h1>
+<x-layouts.web-page-card title="Produkty">
+  <x-slot:top>
+    <x-web.breadcrumbs :items="[\App\Helpers\BreadcrumbItem::make('Produkty')]" />
+  </x-slot:top>
 
     <!-- Products list -->
-    <livewire:web.products-list />
-</x-layouts.web-page>
+    <livewire:web.products-list title="Nasze produkty"/>
+</x-layouts.web-page-card>

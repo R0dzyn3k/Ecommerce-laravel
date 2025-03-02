@@ -2,20 +2,37 @@
 
 namespace App\Livewire\Web;
 
+
 use App\Models\{Brand, Category, Product};
 use Livewire\Component;
 use Livewire\WithPagination;
+
 
 class ProductsList extends Component
 {
     use WithPagination;
 
-    public ?int $categoryId = null;
+
     public ?int $brandId = null;
+
+
+    public ?int $categoryId = null;
+
+
     public ?string $priceFrom = null;
+
+
     public ?string $priceTo = null;
+
+
     public string $sortBy = 'title';
+
+
     public string $sortDirection = 'asc';
+
+
+    public string $title;
+
 
     protected $queryString = [
         'categoryId' => ['except' => null],
@@ -26,18 +43,13 @@ class ProductsList extends Component
         'sortDirection' => ['except' => 'asc'],
     ];
 
-    public function updating($key): void
-    {
-        if ($key !== 'page') {
-            $this->resetPage();
-        }
-    }
 
     public function clearFilters(): void
     {
         $this->reset(['categoryId', 'brandId', 'priceFrom', 'priceTo', 'sortBy', 'sortDirection']);
         $this->resetPage();
     }
+
 
     public function render()
     {
@@ -52,11 +64,11 @@ class ProductsList extends Component
         }
 
         if ($this->priceFrom) {
-            $query->whereRaw('COALESCE(discount_price, price_gross) >= ?', [(float)$this->priceFrom]);
+            $query->whereRaw('COALESCE(discount_price, price_gross) >= ?', [(float) $this->priceFrom]);
         }
 
         if ($this->priceTo) {
-            $query->whereRaw('COALESCE(discount_price, price_gross) <= ?', [(float)$this->priceTo]);
+            $query->whereRaw('COALESCE(discount_price, price_gross) <= ?', [(float) $this->priceTo]);
         }
 
         $products = $query
@@ -70,8 +82,17 @@ class ProductsList extends Component
         ]);
     }
 
+
     public function setSorting(): void
     {
         $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+    }
+
+
+    public function updating($key): void
+    {
+        if ($key !== 'page') {
+            $this->resetPage();
+        }
     }
 }

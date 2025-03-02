@@ -12,7 +12,7 @@ class BlogController extends Controller
 {
     public function index(): View
     {
-        $blogs = Blog::latest()->paginate(6);
+        $blogs = Blog::latest()->paginate(9);
 
         return view('web.blog.index', compact('blogs'));
     }

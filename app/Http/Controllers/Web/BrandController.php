@@ -12,7 +12,7 @@ class BrandController extends Controller
 {
     public function index(): View
     {
-        $brands = Brand::where('is_active', true)->get();
+        $brands = Brand::where('is_active', true)->paginate(12);
 
         return view('web.brands.index', compact('brands'));
     }

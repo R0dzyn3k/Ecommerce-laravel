@@ -4,9 +4,9 @@
 
 <div class="w-full bg-[var(--webPrimaryTabBackgroundColour)] p-8 rounded-2xl shadow-md h-full relative">
   <div class="flex flex-col gap-2 m-auto justify-between" style="height: inherit;">
-    <h3 class="text-2xl font-bold text-[var(--webPrimaryTextColour)] pb-4">
+    <h2 class="text-3xl font-bold text-[var(--webPrimaryTextColour)] pb-4">
       Produkt dnia
-    </h3>
+    </h2>
 
     <a href="{{ route('web.products.show', $product->slug) }}" wire:navigate>
       <img src="{{ $url }}" alt="{{ $product->title }}" class="w-full object-cover rounded-md hover:scale-105 transition delay-150 duration-300 ease-in-out" />

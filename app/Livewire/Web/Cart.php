@@ -7,6 +7,7 @@ use App\Facades\Cart as CartFacade;
 use App\Models\Cart as CartModel;
 use App\Models\OrderItem;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 
@@ -104,6 +105,10 @@ class Cart extends Component
 
     public function startCheckout(): void
     {
-        $this->redirectRoute('web.homepage', navigate: true);
+        if (Auth::guard('web')->check()) {
+            $this->redirectRoute('web.order.start');
+        } else {
+            $this->redirectRoute('web.order.login-or-register');
+        }
     }
 }

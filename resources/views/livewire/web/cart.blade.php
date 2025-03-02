@@ -1,4 +1,4 @@
-<div>
+<x-web.card-full title="Koszyk">
   @if($showCart)
     <div class="flex flex-col gap-4 max-h-[60vh]">
 
@@ -9,9 +9,10 @@
         @endphp
 
         @foreach($items as $item)
-          <div class="flex items-center justify-between p-4 gap-4 bg-[var(--webPrimaryBackgroundColour)] rounded-lg shadow-md">
+          <div class="flex items-center max-lg:flex-wrap justify-between p-4 gap-4 bg-[var(--webPrimaryBackgroundColour)] rounded-lg shadow-md relative">
+
             <!-- Product info -->
-            <div class="flex items-center w-3/5">
+            <div class="flex items-center w-full lg:w-3/5">
               <a href="{{ route('web.products.show', $item->product->slug) }}" wire:navigate>
                 <img
                   src="{{ $item->product->getFirstMediaUrl('product_photo') ?: asset('images/sample.webp') }}"
@@ -33,7 +34,7 @@
             </div>
 
             <!-- Amount -->
-            <div class="flex flex-nowrap items-center justify-center h-full w-1/5 gap-2">
+            <div class="flex flex-nowrap items-center justify-center h-full w-fit lg:w-1/5 gap-2">
               <button
                 class="flex items-center justify-center text-[var(--webPrimaryLightTextColour)]
                      p-2 rounded-md border border-[var(--webLightHoverColour)] hover:border-[var(--webThirdLightTextColour)]
@@ -50,7 +51,7 @@
 
               <x-form-input.input
                 type="number"
-                class="text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                class="max-md:w-full text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 wire:change="updateItem({{ $item->product_id }}, $event.target.value)"
                 :value="$item->amount"
                 min="0"
@@ -74,7 +75,7 @@
             </div>
 
             <!-- Price and remove btn -->
-            <div class="flex h-full items-center w-1/5 justify-between">
+            <div class="flex h-full items-center w-auto lg:w-1/5 justify-between">
               <div class="flex flex-col w-full gap-2">
                 <p class="w-full">Cena: {{ round($item->unit_price_gross, 2) }} zł</p>
                 <p class="text-[var(--webPrimaryTextColour)] text-base">Suma: {{ round($item->amount * $item->unit_price_gross, 2) }} zł</p>
@@ -86,7 +87,10 @@
                 class="text-[var(--webPrimaryLightTextColour)]
                      p-2 rounded-md border border-red-300 hover:border-red-500
                      bg-red-100 hover:bg-red-300
-                     focus:ring-2 transition duration-300 ease-in-out"
+                     focus:ring-2 transition duration-300 ease-in-out
+                     max-lg:absolute max-lg:top-2 max-lg:right-2
+
+                     "
                 wire:click="removeItem({{ $item->product_id }})"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" class="h-2 w-2"
@@ -118,4 +122,4 @@
   @else
     <p class="text-[var(--webPrimaryTextColour)]">Twój koszyk jest pusty.</p>
   @endif
-</div>
+</x-web.card-full>

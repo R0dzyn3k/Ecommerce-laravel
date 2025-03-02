@@ -1,10 +1,8 @@
-<x-layouts.web-page title="Koszyk">
-  <x-slot:breadcrumbs>
-    <span class="text-[var(--webPrimaryTextColour)]">Koszyk</span>
-  </x-slot:breadcrumbs>
+<x-layouts.web-page-card title="Koszyk">
+  <x-slot:top>
+    <x-web.breadcrumbs :items="[\App\Helpers\BreadcrumbItem::make('Koszyk')]" />
+  </x-slot:top>
 
-  <h1 class="text-3xl font-bold text-[var(--webPrimaryTextColour)] mb-6">Koszyk</h1>
-
+  <!-- Order items list -->
   <livewire:web.cart />
-
-</x-layouts.web-page>
+</x-layouts.web-page-card>

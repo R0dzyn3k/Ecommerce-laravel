@@ -22,12 +22,6 @@ class FeaturedProducts extends Component
     public function mount(): void
     {
         $this->products = Product::query()->where('is_active', true)->orderBy('id')->limit(2)->get();
-
-        $this->products->map(function (Product $product) {
-            $product->url = $product->hasMedia('product_photo')
-                ? $product->getFirstMediaUrl('product_photo', 'thumbnail')
-                : null;
-        });
     }
 
 
@@ -35,8 +29,6 @@ class FeaturedProducts extends Component
     {
         return view('components.web.products-bar', [
             'products' => $this->products,
-            'title' => 'Polecane produkty',
-            'gridCols' => 2,
         ]);
     }
 }

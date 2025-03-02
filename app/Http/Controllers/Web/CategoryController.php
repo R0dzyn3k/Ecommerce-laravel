@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Web;
 
 
 use App\Http\Controllers\Controller;
-use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\View\View;
 
@@ -13,7 +12,7 @@ class CategoryController extends Controller
 {
     public function index(): View
     {
-        $categories = Category::where('is_active', true)->get();
+        $categories = Category::where('is_active', true)->paginate(12);
 
         return view('web.categories.index', compact('categories'));
     }

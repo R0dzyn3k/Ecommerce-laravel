@@ -22,18 +22,18 @@ class NewProducts extends Component
     public function mount(): void
     {
         $this->products = Product::query()->where('is_active', true)->orderBy('created_at', 'desc')->limit(3)->get();
-
-        $this->products->map(function (Product $product) {
-            $product->url = $product->hasMedia('product_photo')
-                ? $product->getFirstMediaUrl('product_photo', 'thumbnail')
-                : null;
-        });
     }
 
 
     public function render(): Application|Factory|View|\Illuminate\View\View
     {
-        return view('components.web.products-bar', ['products' => $this->products, 'title' => 'Nowości']);
+        return view('livewire.web.new-products', [
+            'products' => Product::query()
+                ->where('is_active', true)
+                ->orderBy('created_at', 'desc')
+                ->limit(3)
+                ->get(),
+        ]);
     }
 }
 

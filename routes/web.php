@@ -11,6 +11,7 @@ use App\Http\Controllers\Web\PageController;
 use App\Http\Controllers\Web\ProductController;
 use App\Livewire\Admin\Sales\Carts\CartForm;
 use App\Livewire\Admin\Sales\Orders\OrderForm;
+use App\Livewire\Web\Order\LoginOrRegister;
 use App\Livewire\Admin\Customers\{CustomerForm, Customers};
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Profile\{ProfileEdit, ProfileSecurity};
@@ -36,6 +37,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web'])->as('web.')->group(function (Router $router) {
     $router->get('koszyk', [CartController::class, 'index'])->name('cart');
+
+    $router->as('order.')->prefix('zamowienie')->group(function (Router $router) {
+        $router->get('/', [CartController::class, 'index'])->name('start');
+        $router->get('logowanie-lub-rejestracja', LoginOrRegister::class)->name('login-or-register');
+
+
+        $router->get('dostawa', [CartController::class, 'index'])->name('delivery');
+        $router->get('platnosc', [CartController::class, 'index'])->name('payment');
+        $router->get('potwierdzenie', [CartController::class, 'index'])->name('confirmation');
+    });
 
     $router->as('products.')->prefix('produkty')->group(function (Router $router) {
         $router->get('/', [ProductController::class, 'index'])->name('index');

@@ -15,6 +15,8 @@ use Livewire\Component;
 class Login extends Component
 {
     use Alerts;
+
+
     public string $email;
 
 
