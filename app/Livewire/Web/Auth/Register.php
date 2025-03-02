@@ -35,12 +35,6 @@ class Register extends Component
     public bool $term = false;
 
 
-    public function login(): void
-    {
-        $this->redirectRoute('web.login', navigate: true);
-    }
-
-
     public function mount(): void
     {
         $this->customer = new Customer();

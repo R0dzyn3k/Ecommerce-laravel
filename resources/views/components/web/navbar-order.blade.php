@@ -11,76 +11,60 @@
 
         <div class="flex flex-1 justify-between items-center relative w-full">
           <div class="absolute top-[1.23rem] md:top-[2.23rem] left-2 w-[95%] border-t border-gray-400"></div>
-
           <div class="flex justify-between w-full">
 
-              <div class="z-10">
-                <a href="{{ route('web.cart') }}" wire:navigate class="group">
-                  <div class="mx-auto w-10 h-10 rounded-full border border-[var(--webLightHoverColour)] bg-[var(--webLightHoverColour)]
-                              group-hover:border-[var(--webThirdLightTextColour)] group-hover:bg-[var(--webThirdLightTextColour)]
-                              text-[var(--webPrimaryLightTextColour)] transition duration-300 ease-in-out flex justify-center items-center"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2L12 22M2 12H22" />
-                    </svg>
-                  </div>
+            @php
+              use Illuminate\Support\Facades\Auth;
 
-                  <div class="text-[var(--webPrimaryTextColour)] text-center font-medium group-hover:text-[var(--webThirdLightTextColour)]">
-                    Koszyk
-                  </div>
-                </a>
+              $userAuth = Auth::guard('web')->check();
+              $route = request()->route();
+
+              $isFinalizeOrder = $route->named('web.order.finalize-order');
+              $isDeliveryPayment = $route->named('web.order.delivery-and-payment');
+
+              $steps = [
+                [
+                  'title' => 'Koszyk',
+                  'route' => 'web.cart',
+                  'disabled' => false,
+                ],
+              ];
+
+              if (! $userAuth) {
+                $steps[] = [
+                  'title' => 'Logowanie lub rejestracja',
+                  'route' => 'web.order.login-or-register',
+                  'disabled' => !($isFinalizeOrder || $isDeliveryPayment),
+                ];
+              }
+
+              $steps[] = [
+                'title' => 'Dostawa i płatność',
+                'route' => 'web.order.delivery-and-payment',
+                'disabled' => !$isFinalizeOrder,
+              ];
+
+              $steps[] = [
+                'title' => 'Finalizacja',
+                'route' => 'web.order.finalize-order',
+                'disabled' => true,
+              ];
+            @endphp
+
+            @foreach($steps as $key => $step)
+              <div class="z-10">
+                <x-web.order-step-button
+                  :route="$step['route']"
+                  :disabled="$step['disabled']"
+                  number="{{ $key + 1 }}"
+                >
+                  {{ $step['title'] }}
+                </x-web.order-step-button>
               </div>
 
-              <div class="z-10">
-                <a href="{{ route('web.order.login-or-register') }}" wire:navigate class="group">
-                  <div class="mx-auto w-10 h-10 rounded-full border border-[var(--webLightHoverColour)] bg-[var(--webLightHoverColour)]
-                              group-hover:border-[var(--webThirdLightTextColour)] group-hover:bg-[var(--webThirdLightTextColour)]
-                              text-[var(--webPrimaryLightTextColour)] transition duration-300 ease-in-out flex justify-center items-center"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2L12 22M2 12H22" />
-                    </svg>
-                  </div>
+            @endforeach
 
-                  <div class="text-[var(--webPrimaryTextColour)] text-center font-medium group-hover:text-[var(--webThirdLightTextColour)]">
-                    Logowanie lub rejestracja
-                  </div>
-                </a>
-              </div>
 
-              <div class="z-10">
-                <a href="{{ route('web.cart') }}" wire:navigate class="group">
-                  <div class="mx-auto w-10 h-10 rounded-full border border-[var(--webLightHoverColour)] bg-[var(--webLightHoverColour)]
-                              group-hover:border-[var(--webThirdLightTextColour)] group-hover:bg-[var(--webThirdLightTextColour)]
-                              text-[var(--webPrimaryLightTextColour)] transition duration-300 ease-in-out flex justify-center items-center"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2L12 22M2 12H22" />
-                    </svg>
-                  </div>
-
-                  <div class="text-[var(--webPrimaryTextColour)] text-center font-medium group-hover:text-[var(--webThirdLightTextColour)]">
-                    Dostawa i płatność
-                  </div>
-                </a>
-              </div>
-
-              <div class="z-10">
-                <a href="{{ route('web.cart') }}" wire:navigate class="group">
-                  <div class="mx-auto w-10 h-10 rounded-full border border-[var(--webLightHoverColour)] bg-[var(--webLightHoverColour)]
-                              group-hover:border-[var(--webThirdLightTextColour)] group-hover:bg-[var(--webThirdLightTextColour)]
-                              text-[var(--webPrimaryLightTextColour)] transition duration-300 ease-in-out flex justify-center items-center"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2L12 22M2 12H22" />
-                    </svg>
-                  </div>
-
-                  <div class="text-[var(--webPrimaryTextColour)] text-center font-medium group-hover:text-[var(--webThirdLightTextColour)]">
-                    Finalizacja
-                  </div>
-                </a>
-              </div>
           </div>
         </div>
       </div>

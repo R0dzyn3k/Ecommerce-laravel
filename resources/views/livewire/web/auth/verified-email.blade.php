@@ -2,12 +2,12 @@
   <p class="text-center text-[var(--webPrimaryTextColour)]">Adres e-mail został potwierdzony.</p>
 
   <x-web.button-group>
-    <x-buttons.primary wire:click="homepage" web="true">
+    <x-web.primary-button href="{{ route('web.homepage') }}" wire:navigate>
       Przejdź do strony głównej
-    </x-buttons.primary>
+    </x-web.primary-button>
 
-    <x-buttons.primary wire:click="profile" web="true">
+    <x-web.primary-button href="{{ route('web.profile.edit') }}" wire:navigate>
       Przejdź do profilu
-    </x-buttons.primary>
+    </x-web.primary-button>
   </x-web.button-group>
 </x-web.card-half>

@@ -70,18 +70,18 @@
       </x-form-input.checkbox>
 
       <x-web.button-group>
-        <x-buttons.primary web="true">
+        <x-web.primary-button web="true">
           Zarejestruj się
-        </x-buttons.primary>
+        </x-web.primary-button>
       </x-web.button-group>
     </form>
   </x-web.card-half>
 
   <x-web.card-half title="Masz już konto?">
     <x-web.button-group>
-      <x-buttons.primary wire:click="login" web="true">
+      <x-web.primary-button href="{{ route('web.login') }}" wire:navigate>
         Zaloguj się
-      </x-buttons.primary>
+      </x-web.primary-button>
     </x-web.button-group>
   </x-web.card-half>
 </div>

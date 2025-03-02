@@ -1,5 +1,5 @@
 <div>
-  <h2 class="text-3xl font-bold pb-6">@lang('pages.profile.subTitle')</h2>
+  <h2 class="text-3xl font-bold text-[var(--webPrimaryTextColour)] mb-6">{{ __('pages.profile.subTitle') }}</h2>
 
   <form wire:submit.prevent="save" class="max-w-[600px]">
     <x-form-input.input
@@ -39,10 +39,10 @@
       labelClass="text-[var(--webPrimaryTextColour)] pt-2"
     />
 
-    <div class="flex items-center justify-center mt-4">
-      <x-buttons.primary web="true">
+    <x-web.button-group>
+      <x-web.primary-button>
         {{ __('global.save') }}
-      </x-buttons.primary>
-    </div>
+      </x-web.primary-button>
+    </x-web.button-group>
   </form>
 </div>

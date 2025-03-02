@@ -37,8 +37,8 @@
             <div class="flex flex-nowrap items-center justify-center h-full w-fit lg:w-1/5 gap-2">
               <button
                 class="flex items-center justify-center text-[var(--webPrimaryLightTextColour)]
-                     p-2 rounded-md border border-[var(--webLightHoverColour)] hover:border-[var(--webThirdLightTextColour)]
-                     bg-[var(--webLightHoverColour)] hover:bg-[var(--webThirdLightTextColour)]
+                     p-2 rounded-md border border-[var(--webThirdLightTextColour)] hover:border-[var(--webLightHoverColour)]
+                     bg-[var(--webThirdLightTextColour)] hover:bg-[var(--webLightHoverColour)]
                      focus:ring-2 transition duration-300 ease-in-out"
                 type="button"
                 title="Zmniejsz ilość o 1"
@@ -50,6 +50,7 @@
               </button>
 
               <x-form-input.input
+                title="Zmień ilość"
                 type="number"
                 class="max-md:w-full text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 wire:change="updateItem({{ $item->product_id }}, $event.target.value)"
@@ -61,8 +62,8 @@
 
               <button
                 class="flex items-center justify-center text-[var(--webPrimaryLightTextColour)]
-                     p-2 rounded-md border border-[var(--webLightHoverColour)] hover:border-[var(--webThirdLightTextColour)]
-                     bg-[var(--webLightHoverColour)] hover:bg-[var(--webThirdLightTextColour)]
+                     p-2 rounded-md border border-[var(--webThirdLightTextColour)] hover:border-[var(--webLightHoverColour)]
+                     bg-[var(--webThirdLightTextColour)] hover:bg-[var(--webLightHoverColour)]
                      focus:ring-2 transition duration-300 ease-in-out"
                 type="button"
                 title="Zwiększ ilość o 1"
@@ -85,9 +86,9 @@
                 type="button"
                 title="Usuń pozycję z koszyka"
                 class="text-[var(--webPrimaryLightTextColour)]
-                     p-2 rounded-md border border-red-300 hover:border-red-500
-                     bg-red-100 hover:bg-red-300
-                     focus:ring-2 transition duration-300 ease-in-out
+                     p-2 rounded-md border border-red-500 hover:border-red-500
+                     bg-red-300 hover:bg-red-500
+                     focus:ring-2 transition duration-500 ease-in-out
                      max-lg:absolute max-lg:top-2 max-lg:right-2
 
                      "
@@ -113,9 +114,14 @@
         <p class="text-[var(--webPrimaryTextColour] font-bold">
           Łącznie: {{ round($items->reduce(fn(float $sum, \App\Models\OrderItem $item) => $sum += ($item->unit_price_gross * $item->amount), 0), 2) }}
         </p>
-        <x-web.primary-button wire:click="startCheckout">
-          Do kasy
-        </x-web.primary-button>
+        @if ($this->showCart)
+          <x-web.primary-button
+            href="{{ \Illuminate\Support\Facades\Auth::guard('web')->check() ? route('web.order.delivery-and-payment') : route('web.order.login-or-register') }}"
+            wire:navigate
+          >
+            Do kasy
+          </x-web.primary-button>
+        @endif
       </div>
 
     </div>

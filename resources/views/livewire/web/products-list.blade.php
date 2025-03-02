@@ -36,10 +36,9 @@
       <input type="number" wire:model.live.debounce.500ms="priceTo" placeholder="Cena do" class="border rounded-md px-4 py-2 w-full  lg:col-span-2">
 
       <!-- Clear filters button -->
-      <button wire:click="clearFilters" class="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300
-       focus:ring-2 transition duration-300 ease-in-out sm:w-fit lg:w-full col-span-2 ms-auto">
+      <x-web.secondary-button wire:click="clearFilters" class="sm:w-fit lg:w-full col-span-2 ms-auto">
         Wyczyść
-      </button>
+      </x-web.secondary-button>
     </div>
 
   <!-- Products grid -->

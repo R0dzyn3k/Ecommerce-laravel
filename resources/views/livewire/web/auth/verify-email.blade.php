@@ -2,12 +2,12 @@
   <p class="text-center text-[var(--webPrimaryTextColour)]">Kliknij w link weryfikacyjny, który został wysłany na Twój adres e-mail.</p>
 
   <x-web.button-group>
-    <x-buttons.secondary wire:click="logOut" web="true">
+    <x-web.secondary-button href="{{ route('web.logout') }}" wire:navigate>
       wyloguj się
-    </x-buttons.secondary>
+    </x-web.secondary-button>
 
-    <x-buttons.primary wire:click="resend" web="true">
+    <x-web.primary-button wire:click="resend">
       Wyślij ponownie
-    </x-buttons.primary>
+    </x-web.primary-button>
   </x-web.button-group>
 </x-web.card-half>

@@ -19,15 +19,12 @@ class ForgotPassword extends Component
     public string $email;
 
 
-    public function login(): void
-    {
-        $this->redirectRoute('web.login', navigate: true);
-    }
-
-
     public function render(): Application|Factory|View|\Illuminate\View\View
     {
-        return view('livewire.web.auth.forgot-password')->layout('components.layouts.web-page-card', ['title' => __('auth.forgotPassword')]);
+        return view('livewire.web.auth.forgot-password')
+            ->layout('components.layouts.web-page-card', [
+                'title' => __('auth.forgotPassword'),
+            ]);
     }
 
 

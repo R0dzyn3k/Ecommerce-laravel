@@ -57,7 +57,7 @@ class Profile extends Component
             'profile.firstname' => ['required', 'string', 'max:30'],
             'profile.lastname' => ['required', 'string', 'max:30'],
             'profile.email' => ['required', 'email', 'max:255', Rule::unique(Customer::class, 'email')->ignore($this->profile)],
-            'profile.phone' => ['required', 'string', 'max:20'],
+            'profile.phone' => ['sometimes', 'nullable', 'string', 'max:20'],
         ];
     }
 }

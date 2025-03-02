@@ -23,18 +23,13 @@ class VerifiedEmail extends Component
     public Customer $customer;
 
 
-    public function homepage(): void
-    {
-        $this->redirectRoute('web.homepage', navigate: true);
-    }
-
-
     public function mount(): void
     {
         abort_if(! URL::hasValidSignature(request()), Response::HTTP_NOT_FOUND);
 
         if ($this->customer->hasVerifiedEmail()) {
-            $this->profile();
+
+            $this->redirectRoute('web.profile.edit');
 
             return;
         }
@@ -44,12 +39,6 @@ class VerifiedEmail extends Component
         event(new Verified($this->customer));
 
         Auth::login($this->customer);
-    }
-
-
-    public function profile(): void
-    {
-        $this->redirectRoute('web.profile.edit', navigate: true);
     }
 
 

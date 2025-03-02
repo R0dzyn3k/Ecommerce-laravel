@@ -11,6 +11,7 @@ use App\Http\Controllers\Web\PageController;
 use App\Http\Controllers\Web\ProductController;
 use App\Livewire\Admin\Sales\Carts\CartForm;
 use App\Livewire\Admin\Sales\Orders\OrderForm;
+use App\Livewire\Web\Order\DeliveryAndPayment;
 use App\Livewire\Web\Order\LoginOrRegister;
 use App\Livewire\Admin\Customers\{CustomerForm, Customers};
 use App\Livewire\Admin\Dashboard;
@@ -39,13 +40,9 @@ Route::middleware(['web'])->as('web.')->group(function (Router $router) {
     $router->get('koszyk', [CartController::class, 'index'])->name('cart');
 
     $router->as('order.')->prefix('zamowienie')->group(function (Router $router) {
-        $router->get('/', [CartController::class, 'index'])->name('start');
         $router->get('logowanie-lub-rejestracja', LoginOrRegister::class)->name('login-or-register');
-
-
-        $router->get('dostawa', [CartController::class, 'index'])->name('delivery');
-        $router->get('platnosc', [CartController::class, 'index'])->name('payment');
-        $router->get('potwierdzenie', [CartController::class, 'index'])->name('confirmation');
+        $router->get('dostawa-i-platnosc', DeliveryAndPayment::class)->name('delivery-and-payment');
+        $router->get('finalizacja', [CartController::class, 'index'])->name('finalize-order');
     });
 
     $router->as('products.')->prefix('produkty')->group(function (Router $router) {

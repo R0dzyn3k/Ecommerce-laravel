@@ -56,18 +56,6 @@ class Login extends Component
     }
 
 
-    public function forgotPassword(): void
-    {
-        $this->redirectRoute('web.forgot-password', navigate: true);
-    }
-
-
-    public function register(): void
-    {
-        $this->redirectRoute('web.register', navigate: true);
-    }
-
-
     public function render(): Application|Factory|View|\Illuminate\View\View
     {
         return view('livewire.web.auth.login')->layout('components.layouts.web-page-card', ['title' => __('pages.login')]);

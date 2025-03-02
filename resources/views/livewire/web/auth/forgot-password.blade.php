@@ -11,13 +11,13 @@
     />
 
     <x-web.button-group>
-      <x-buttons.secondary wire:click="login" web="true">
+      <x-web.secondary-button type="button" href="{{ route('web.login') }}" wire:navigate>
         {{ __('global.back') }}
-      </x-buttons.secondary>
+      </x-web.secondary-button>
 
-      <x-buttons.primary web="true">
+      <x-web.primary-button>
         {{ __('auth.reset') }}
-      </x-buttons.primary>
+      </x-web.primary-button>
     </x-web.button-group>
   </form>
 </x-web.card-half>

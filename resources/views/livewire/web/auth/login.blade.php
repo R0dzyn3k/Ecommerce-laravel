@@ -22,7 +22,7 @@
       />
 
       <div class="w-full flex justify-end">
-        <a wire:click.prevent="forgotPassword" class="cursor-pointer p-1 hover:text-[var(--webLightHoverColour)]">Zapomniałeś hasła?</a>
+        <a href="{{ route('web.forgot-password') }}" wire:navigate class="cursor-pointer p-1 hover:text-[var(--webLightHoverColour)]">Zapomniałeś hasła?</a>
       </div>
 
       <x-form-input.checkbox
@@ -34,9 +34,9 @@
       />
 
       <x-web.button-group>
-        <x-buttons.primary web="true">
+        <x-web.primary-button web="true">
           Zaloguj się
-        </x-buttons.primary>
+        </x-web.primary-button>
       </x-web.button-group>
     </form>
   </x-web.card-half>
@@ -51,9 +51,9 @@
     </ul>
 
     <x-web.button-group>
-      <x-buttons.primary wire:click="register" web="true">
+      <x-web.primary-button href="{{ route('web.register') }}" wire:navigate>
         Załóż konto
-      </x-buttons.primary>
+      </x-web.primary-button>
     </x-web.button-group>
   </x-web.card-half>
 </div>

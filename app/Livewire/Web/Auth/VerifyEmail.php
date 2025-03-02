@@ -21,12 +21,6 @@ class VerifyEmail extends Component
     public Customer $customer;
 
 
-    public function logOut()
-    {
-        $this->redirectRoute('web.logout', navigate: true);
-    }
-
-
     public function mount(): void
     {
         $customer = Auth::guard('web')->user();

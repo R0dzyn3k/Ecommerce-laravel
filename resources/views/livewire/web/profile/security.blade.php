@@ -1,5 +1,5 @@
 <div>
-  <h2 class="text-3xl font-bold pb-6">@lang('pages.profileSecurity.subTitle')</h2>
+  <h2 class="text-3xl font-bold text-[var(--webPrimaryTextColour)] mb-6">{{ __('pages.profileSecurity.subTitle') }}</h2>
 
   <form wire:submit.prevent="save" class="max-w-[600px]">
     <x-form-input.input
@@ -34,8 +34,10 @@
 
     <p>{{ __('pages.profile.passwordExpiryAt', ['attribute' => $profile->password_expiry_at ?? __('global.never') ]) }}</p>
 
-    <div class="flex items-center justify-center mt-4">
-      <x-buttons.primary web="true">{{ __('global.save') }}</x-buttons.primary>
-    </div>
+    <x-web.button-group>
+      <x-web.primary-button>
+        {{ __('global.save') }}
+      </x-web.primary-button>
+    </x-web.button-group>
   </form>
 </div>
