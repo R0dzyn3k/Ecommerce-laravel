@@ -9,7 +9,9 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Services\Middleware\ApplyShippingMiddleware;
 use App\Services\Middleware\RecalculateItemsMiddleware;
+use App\Services\Middleware\RecalculatePricesMiddleware;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -117,7 +119,9 @@ class CartManager
         $cart = $this->getPersistentCart()->refresh();
 
         Pipeline::send($cart)->through([
-            RecalculateItemsMiddleware::class
+            RecalculateItemsMiddleware::class,
+            RecalculatePricesMiddleware::class,
+            ApplyShippingMiddleware::class,
         ])->then(fn(Cart $cart) => $cart->save());
 
         $cart->refresh();

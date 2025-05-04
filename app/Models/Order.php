@@ -22,6 +22,8 @@ class Order extends BaseModel
         'total_tax',
         'total_gross',
         'discount_gross',
+        'billing_method_id',
+        'shipping_method_id',
         'shipping_cost',
         'customer_note',
         'ordered_at',
@@ -52,6 +54,12 @@ class Order extends BaseModel
     public function items(): HasMany
     {
         return $this->hasMany(OrderItem::class, 'order_id', 'id');
+    }
+
+
+    public function shippingMethod(): BelongsTo
+    {
+        return $this->belongsTo(ShippingMethod::class, 'shipping_method_id', 'id');
     }
 
 

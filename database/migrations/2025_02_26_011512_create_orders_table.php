@@ -23,6 +23,9 @@ return new class extends Migration
             $table->decimal('discount_gross', 19, 4)->unsigned()->default('0.0000');
             $table->decimal('shipping_cost', 19, 4)->unsigned()->default('0.0000');
 
+            $table->foreignId('shipping_method_id')->nullable()->constrained('shipping_methods', 'id')->nullOnDelete();
+            $table->foreignId('billing_method_id')->nullable()->constrained('billing_methods', 'id')->nullOnDelete();
+
             $table->string('shipping_driver', 255)->nullable();
             $table->json('shipping_data')->nullable();
             $table->string('billing_driver', 255)->nullable();

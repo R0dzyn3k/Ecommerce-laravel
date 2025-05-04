@@ -4,7 +4,9 @@ namespace App\Livewire\Web\Order;
 
 
 use App\Facades\Cart as CartFacade;
+use App\Models\BillingMethod;
 use App\Models\Cart;
+use App\Models\ShippingMethod;
 use App\Services\BillingManager;
 use App\Services\ShippingManager;
 use Illuminate\Contracts\View\Factory;
@@ -18,6 +20,18 @@ use Symfony\Component\HttpFoundation\Response;
 class DeliveryAndPayment extends Component
 {
     public Cart $cart;
+
+
+    public function getBillingDriver(): string
+    {
+        return BillingMethod::firstWhere('id', $this->cart->billing_method_id)->driver;
+    }
+
+
+    public function getShippingDriver(): string
+    {
+        return ShippingMethod::firstWhere('id', $this->cart->shipping_method_id)->driver;
+    }
 
 
     public function mount(): void
@@ -48,6 +62,11 @@ class DeliveryAndPayment extends Component
         $shippingManager = app(ShippingManager::class);
         $billingManager = app(BillingManager::class);
 
+        $this->cart->fill([
+            'shipping_driver' => $this->getShippingDriver(),
+            'billing_driver' => $this->getBillingDriver(),
+        ]);
+
         $this->validate(array_merge(
             $shippingManager->getDriver($this->cart->shipping_driver)->getValidationRules(),
             $billingManager->getDriver($this->cart->billing_driver)->getValidationRules()
@@ -55,18 +74,17 @@ class DeliveryAndPayment extends Component
 
         $this->cart->save();
 
+        CartFacade::recalculate();
+
         $this->redirectRoute('web.order.finalize-order', navigate: true);
     }
 
 
     protected function rules(): array
     {
-        $shippingManager = app(ShippingManager::class);
-        $billingManager = app(BillingManager::class);
-
         return [
-            'cart.shipping_driver' => ['required', 'string', Rule::in($shippingManager->getDrivers()->keys())],
-            'cart.billing_driver' => ['required', 'string', Rule::in($billingManager->getDrivers()->keys())],
+            'cart.shipping_method_id' => ['required', 'integer', Rule::exists('shipping_methods', 'id')->where('is_active', true)],
+            'cart.billing_method_id' => ['required', 'integer', Rule::exists('billing_methods', 'id')->where('is_active', true)],
             'cart.customer_note' => ['sometimes', 'nullable', 'string', 'max:500'],
         ];
     }

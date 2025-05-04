@@ -19,7 +19,6 @@ class RecalculateItemsMiddleware
         }
 
         $order->items->each(function (OrderItem $item) {
-
             if (! $this->ifProductActive($item)) {
                 return;
             }
@@ -27,6 +26,8 @@ class RecalculateItemsMiddleware
             if (! $this->isStockAvailable($item)) {
                 return;
             }
+
+            $this->recalculateUnitPrice($item);
 
             $item->save();
         });
@@ -70,5 +71,30 @@ class RecalculateItemsMiddleware
 
         return false;
 
+    }
+
+
+    private function recalculateUnitPrice(OrderItem $item): void
+    {
+        $product = $item->product;
+        $taxRate = $product->tax->value;
+        $discountPrice = $product->discount_price ? round($product->price_gross - $product->discount_price, 2) : 0;
+
+        $unitPriceGross = $product->discount_price ?? $product->price_gross;
+        $unitPriceNet = round($unitPriceGross / (1 + $taxRate), 2);
+        $unitPriceTax = round($unitPriceGross - $unitPriceNet, 2);
+
+        $item->fill([
+            'product_title' => $product->title,
+            'tax_id' => $product->tax_id,
+            'discount_gross' => $discountPrice,
+            'tax_rate_value' => $taxRate,
+            'unit_price_gross' => $unitPriceGross,
+            'unit_price_net' => $unitPriceNet,
+            'unit_price_tax' => $unitPriceTax,
+            'unit_final_price_gross' => $unitPriceGross,
+            'unit_final_price_net' => $unitPriceNet,
+            'unit_final_price_tax' => $unitPriceTax,
+        ]);
     }
 }

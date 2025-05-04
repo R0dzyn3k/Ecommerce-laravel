@@ -24,9 +24,6 @@ return new class extends Migration {
             $table->decimal('total_price_net', 19, 4)->unsigned()->default('0.0000');
             $table->decimal('total_price_tax', 19, 4)->unsigned()->default('0.0000');
             $table->decimal('total_price_gross', 19, 4)->unsigned()->default('0.0000');
-            $table->decimal('total_final_net', 19, 4)->unsigned()->default('0.0000');
-            $table->decimal('total_final_tax', 19, 4)->unsigned()->default('0.0000');
-            $table->decimal('total_final_gross', 19, 4)->unsigned()->default('0.0000');
             $table->decimal('discount_gross', 19, 4)->unsigned()->default('0.0000');
 
             $table->timestamps();

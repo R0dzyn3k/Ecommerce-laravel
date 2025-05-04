@@ -1,4 +1,4 @@
-<x-web.card-full title="Koszyk">
+<x-web.card-cart title="Koszyk">
   @if($showCart)
     <div class="flex flex-col gap-4 max-h-[60vh]">
 
@@ -128,4 +128,4 @@
   @else
     <p class="text-[var(--webPrimaryTextColour)]">Twój koszyk jest pusty.</p>
   @endif
-</x-web.card-full>
+</x-web.card-cart>

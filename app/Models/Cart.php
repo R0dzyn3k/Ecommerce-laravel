@@ -23,6 +23,8 @@ final class Cart extends Order implements Wireable
             'billing_driver' => $value['billing_driver'],
             'billing_data' => $value['billing_data'],
             'customer_note' => $value['customer_note'],
+            'shipping_method_id' => $value['shipping_method_id'],
+            'billing_method_id' => $value['billing_method_id'],
         ]);
 
         return $cart;
@@ -55,11 +57,12 @@ final class Cart extends Order implements Wireable
             'shipping_driver' => $this->shipping_driver,
             'ordered_at' => $this->ordered_at,
             'realization_at' => $this->realization_at,
-
             'shipping_data' => $this->shipping_data ?? [],
             'billing_driver' => $this->billing_driver,
             'billing_data' => $this->billing_data ?? [],
             'customer_note' => $this->customer_note,
+            'shipping_method_id' => $this->shipping_method_id,
+            'billing_method_id' => $this->billing_method_id,
         ];
     }
 }

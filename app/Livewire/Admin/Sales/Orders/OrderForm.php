@@ -63,7 +63,8 @@ class OrderForm extends BaseAdminComponent
     public function showCompleteButton(): bool
     {
         return match ($this->order->status) {
-            OrderStatus::PAYMENT_PAID => true,
+            OrderStatus::PAYMENT_PAID,
+            OrderStatus::NEW_ORDER => true,
             default => false,
         };
     }

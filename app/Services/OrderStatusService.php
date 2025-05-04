@@ -16,7 +16,7 @@ class OrderStatusService
 {
     private array $transitions = [
         OrderStatus::CART->value => [OrderStatus::NEW_ORDER->value],
-        OrderStatus::NEW_ORDER->value => [OrderStatus::PAYMENT_PENDING->value, OrderStatus::CANCELLED->value],
+        OrderStatus::NEW_ORDER->value => [OrderStatus::PAYMENT_PENDING->value, OrderStatus::CANCELLED->value, OrderStatus::COMPLETED->value],
         OrderStatus::PAYMENT_ON_HOLD->value => [OrderStatus::CANCELLED->value],
         OrderStatus::PAYMENT_PENDING->value => [OrderStatus::PAYMENT_PAID->value, OrderStatus::PAYMENT_FAILED->value, OrderStatus::CANCELLED->value],
         OrderStatus::PAYMENT_PAID->value => [OrderStatus::COMPLETED->value],

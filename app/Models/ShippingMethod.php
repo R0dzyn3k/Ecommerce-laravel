@@ -38,9 +38,15 @@ class ShippingMethod extends BaseModel implements Wireable
     }
 
 
-    public static function mapForSelect(): Collection
+    public static function mapForRadio(): Collection
     {
-        return self::all()->pluck('name', 'id');
+        return self::where('is_active', true)
+            ->get()
+            ->map(fn($item) => [
+                'id' => $item->id,
+                'name' => $item->name,
+                'cost' => $item->cost,
+            ]);
     }
 
 
