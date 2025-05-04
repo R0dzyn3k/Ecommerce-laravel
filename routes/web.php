@@ -9,19 +9,20 @@ use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\HomepageController;
 use App\Http\Controllers\Web\PageController;
 use App\Http\Controllers\Web\ProductController;
-use App\Livewire\Admin\Sales\Carts\CartForm;
-use App\Livewire\Admin\Sales\Orders\OrderForm;
-use App\Livewire\Web\Order\DeliveryAndPayment;
-use App\Livewire\Web\Order\LoginOrRegister;
 use App\Livewire\Admin\Customers\{CustomerForm, Customers};
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Profile\{ProfileEdit, ProfileSecurity};
+use App\Livewire\Admin\Sales\Carts\CartForm;
 use App\Livewire\Admin\Sales\Carts\CartTable;
+use App\Livewire\Admin\Sales\Orders\OrderForm;
 use App\Livewire\Admin\Sales\Orders\OrderTable;
 use App\Livewire\Admin\Sales\SalesTiles;
 use App\Livewire\Admin\Settings\Administrators\{AdministratorForm, Administrators};
+use App\Livewire\Admin\Settings\BillingMethods\{BillingMethodForm, BillingMethods};
 use App\Livewire\Admin\Settings\Newsletter\NewsletterTable;
 use App\Livewire\Admin\Settings\SettingsTiles;
+use App\Livewire\Admin\Settings\ShippingMethods\ShippingMethodForm;
+use App\Livewire\Admin\Settings\ShippingMethods\ShippingMethods;
 use App\Livewire\Admin\Settings\Taxes\{TaxForm, TaxTable};
 use App\Livewire\Admin\Warehouse\Brands\BrandForm;
 use App\Livewire\Admin\Warehouse\Brands\BrandTable;
@@ -30,6 +31,10 @@ use App\Livewire\Admin\Warehouse\Categories\CategoryTable;
 use App\Livewire\Admin\Warehouse\Products\ProductForm;
 use App\Livewire\Admin\Warehouse\Products\ProductTable;
 use App\Livewire\Admin\Warehouse\WarehouseTiles;
+use App\Livewire\Web\Order\DeliveryAndPayment;
+use App\Livewire\Web\Order\FinalizeOrder;
+use App\Livewire\Web\Order\LoginOrRegister;
+use App\Livewire\Web\Order\SummaryOrder;
 use App\Livewire\Web\Profile\Profile;
 use App\Livewire\Web\Profile\Security;
 use Illuminate\Routing\Router;
@@ -42,7 +47,8 @@ Route::middleware(['web'])->as('web.')->group(function (Router $router) {
     $router->as('order.')->prefix('zamowienie')->group(function (Router $router) {
         $router->get('logowanie-lub-rejestracja', LoginOrRegister::class)->name('login-or-register');
         $router->get('dostawa-i-platnosc', DeliveryAndPayment::class)->name('delivery-and-payment');
-        $router->get('finalizacja', [CartController::class, 'index'])->name('finalize-order');
+        $router->get('finalizacja', FinalizeOrder::class)->name('finalize-order');
+        $router->get('podsumowanie/{order}', SummaryOrder::class)->name('summary');
     });
 
     $router->as('products.')->prefix('produkty')->group(function (Router $router) {
@@ -65,7 +71,7 @@ Route::middleware(['web'])->as('web.')->group(function (Router $router) {
         $router->get('bezpieczenstwo', Security::class)->name('security');
     });
 
-    $router->middleware('cache')->group(function (Router $router) {
+    $router->middleware([/**'cache'*/])->group(function (Router $router) {
         $router->get('/', [HomepageController::class, 'index'])->name('homepage');
 
         $router->get('kontakt', [ContactController::class, 'index'])->name('contact');
@@ -147,6 +153,18 @@ Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(functi
             $router->get('/', TaxTable::class)->name('index');
             $router->get('create', TaxForm::class)->name('create');
             $router->get('{tax}', TaxForm::class)->name('show');
+        });
+
+        $router->as('billing-methods.')->prefix('billing-methods')->group(function (Router $router) {
+            $router->get('/', BillingMethods::class)->name('index');
+            $router->get('create', BillingMethodForm::class)->name('create');
+            $router->get('{method}', BillingMethodForm::class)->name('show');
+        });
+
+        $router->as('shipping-methods.')->prefix('shipping-methods')->group(function (Router $router) {
+            $router->get('/', ShippingMethods::class)->name('index');
+            $router->get('create', ShippingMethodForm::class)->name('create');
+            $router->get('{method}', ShippingMethodForm::class)->name('show');
         });
 
         $router->as('newsletter.')->prefix('newsletter')->group(function (Router $router) {

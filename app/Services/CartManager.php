@@ -9,6 +9,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Services\Middleware\RecalculateItemsMiddleware;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -61,29 +62,10 @@ class CartManager
             return $item;
         }
 
-        $taxRate = $product->tax->value;
-        $unitPriceGross = $product->discount_price ?? $product->price_gross;
-        $unitPriceNet = round($unitPriceGross / (1 + $taxRate), 4);
-        $unitPriceTax = round($unitPriceGross - $unitPriceNet, 4);
 
         return $cart->items()->make([
             'product_id' => $product->id,
             'product_title' => $product->title,
-            'tax_id' => $product->tax_id,
-            'tax_rate_value' => $taxRate,
-            'unit_price_net' => $unitPriceNet,
-            'unit_price_tax' => $unitPriceTax,
-            'unit_price_gross' => $unitPriceGross,
-            'unit_final_price_net ' => $unitPriceNet,
-            'unit_final_price_tax' => $unitPriceTax,
-            'unit_final_price_gross' => $unitPriceGross,
-            'discount_gross' => 0,
-            'total_price_net' => $unitPriceNet,
-            'total_price_tax' => $unitPriceTax,
-            'total_price_gross' => $unitPriceGross,
-            'total_final_net' => $unitPriceNet,
-            'total_final_tax' => $unitPriceTax,
-            'total_final_gross' => $unitPriceGross,
             'amount' => 0,
         ]);
     }
@@ -135,7 +117,7 @@ class CartManager
         $cart = $this->getPersistentCart()->refresh();
 
         Pipeline::send($cart)->through([
-
+            RecalculateItemsMiddleware::class
         ])->then(fn(Cart $cart) => $cart->save());
 
         $cart->refresh();

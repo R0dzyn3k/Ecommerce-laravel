@@ -30,6 +30,18 @@ trait BaseSettingMenuItems
                 icon: 'heroicon-c-numbered-list',
                 route: 'admin.settings.newsletter.index',
             ),
+            new SubMenuItem(
+                label: 'Metody płatności',
+                type: MenuItemType::InternalLink,
+                icon: 'heroicon-c-currency-euro',
+                route: 'admin.settings.billing-methods.index',
+            ),
+            new SubMenuItem(
+                label: 'Metody dostawy',
+                type: MenuItemType::InternalLink,
+                icon: 'heroicon-c-truck',
+                route: 'admin.settings.shipping-methods.index',
+            ),
         ];
 
         return $this->addBaseTileToMenuItems ?? true

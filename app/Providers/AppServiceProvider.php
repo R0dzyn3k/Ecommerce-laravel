@@ -3,8 +3,14 @@
 namespace App\Providers;
 
 
+use App\Drivers\Billing\BankTransfer;
+use App\Drivers\Billing\Cash;
+use App\Drivers\Shipping\Courier;
+use App\Drivers\Shipping\SelfCollection;
+use App\Services\BillingManager;
 use App\Services\CartManager;
 use App\Services\OrderStatusService;
+use App\Services\ShippingManager;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
@@ -29,9 +35,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(CartManager::class, static function ($app) {
-            return new CartManager($app->make(OrderStatusService::class));
-        });
+        $this->registerManagers();
     }
 
 
@@ -63,6 +67,30 @@ class AppServiceProvider extends ServiceProvider
 
             return Password::min(3);
         });
+    }
 
+
+    private function registerManagers(): void
+    {
+        $this->app->singleton(CartManager::class, static function ($app) {
+            return new CartManager($app->make(OrderStatusService::class));
+        });
+
+
+        $this->app->singleton(ShippingManager::class, fn() => tap(
+            new ShippingManager(),
+            function (ShippingManager $manager) {
+                $manager->register($this->app, SelfCollection::class);
+                $manager->register($this->app, Courier::class);
+            })
+        );
+
+        $this->app->singleton(BillingManager::class, fn() => tap(
+            new BillingManager(),
+            function (BillingManager $manager) {
+                $manager->register($this->app, Cash::class);
+                $manager->register($this->app, BankTransfer::class);
+            })
+        );
     }
 }

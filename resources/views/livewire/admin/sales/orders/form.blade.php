@@ -96,7 +96,7 @@
           {{ __('pages.orders.shippingMethod') }}
         </label>
         <div class="mt-1 text-gray-400">
-          {{ $order->shipping_method ?? '—' }}
+          {{ $order->shipping_driver ?? '—' }}
         </div>
       </div>
       <div class="w-1/2">
@@ -104,7 +104,7 @@
           {{ __('pages.orders.billingMethod') }}
         </label>
         <div class="mt-1 text-gray-400">
-          {{ $order->billing_method ?? '—' }}
+          {{ $order->billing_driver ?? '—' }}
         </div>
       </div>
     </div>

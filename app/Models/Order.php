@@ -23,11 +23,13 @@ class Order extends BaseModel
         'total_gross',
         'discount_gross',
         'shipping_cost',
-        'shipping_method',
-        'billing_method',
         'customer_note',
         'ordered_at',
         'realization_at',
+        'shipping_driver',
+        'shipping_data',
+        'billing_driver',
+        'billing_data',
     ];
 
 
@@ -67,6 +69,8 @@ class Order extends BaseModel
             'shipping_cost' => 'decimal:4',
             'ordered_at' => 'date',
             'realization_at' => 'date',
+            'shipping_data' => 'json',
+            'billing_data' => 'json',
         ];
     }
 }

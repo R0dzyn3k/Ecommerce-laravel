@@ -39,7 +39,7 @@
               }
 
               $steps[] = [
-                'title' => 'Dostawa i płatność',
+                'title' => 'Dostawa i płatność',
                 'route' => 'web.order.delivery-and-payment',
                 'disabled' => !$isFinalizeOrder,
               ];

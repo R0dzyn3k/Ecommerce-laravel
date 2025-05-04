@@ -23,21 +23,23 @@ class OrderStatusService
     ];
 
 
-    public function newOrder(Order $order, $sendEmail = true): Order
+    public function cancelOrder(Order $order): Order
     {
-        $this->assertCanTransition($order->status, OrderStatus::NEW_ORDER);
+        $this->assertCanTransition($order->status, OrderStatus::CANCELLED);
 
-        $order->update(['status' => OrderStatus::NEW_ORDER]);
+        $order->update([
+            'status' => OrderStatus::CANCELLED,
+        ]);
 
-        if ($sendEmail) {
+        if ($order->email) {
             // Send email to customer
         }
 
-        Event::dispatch(new OrderNewEvent($order));
-
+        Event::dispatch(new OrderCanceledEvent($order));
 
         return $order;
     }
+
 
     public function completeOrder(Order $order): Order
     {
@@ -57,24 +59,38 @@ class OrderStatusService
         return $order;
     }
 
-    public function cancelOrder(Order $order): Order
+
+    public function newOrder(Order $order, $sendEmail = true): Order
     {
-        $this->assertCanTransition($order->status, OrderStatus::CANCELLED);
+        $this->assertCanTransition($order->status, OrderStatus::NEW_ORDER);
 
-        $order->update([
-            'status' => OrderStatus::CANCELLED,
-        ]);
+        $order->update(['status' => OrderStatus::NEW_ORDER]);
 
-        if ($order->email) {
+        if ($sendEmail) {
             // Send email to customer
         }
 
-        Event::dispatch(new OrderCanceledEvent($order));
+        Event::dispatch(new OrderNewEvent($order));
+
 
         return $order;
     }
 
 
+    public function shouldNotRecalculateItems(Order $order): bool
+    {
+        return ! $this->shouldRecalculateItems($order);
+    }
+
+
+    public function shouldRecalculateItems(Order $order): bool
+    {
+        return match ($order->status) {
+            OrderStatus::CART => true,
+
+            default => false,
+        };
+    }
 
 
     /**

@@ -6,12 +6,16 @@ namespace App\Livewire\Web;
 use App\Facades\Cart as CartFacade;
 use App\Models\Cart as CartModel;
 use App\Models\OrderItem;
+use App\Traits\Admin\Alerts;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
 
 class Cart extends Component
 {
+    use Alerts;
+
+
     public ?CartModel $cart = null;
 
 
@@ -53,6 +57,8 @@ class Cart extends Component
 
     public function mount(): void
     {
+        CartFacade::recalculate();
+
         $cart = CartFacade::getCart();
         $this->cart = $cart;
         $this->showCart = $cart && $cart->items()->exists();

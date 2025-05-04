@@ -28,7 +28,8 @@
 }
 
 
-.form-group:has(input:required) label::after {
+.form-group:has(input:required) label::after,
+.form-group:has(select:required) label::after{
   content: "*";
   color: red;
 }
@@ -36,4 +37,3 @@
 [x-cloak] {
   display: none;
 }
-

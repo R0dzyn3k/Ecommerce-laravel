@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class ResetPassword extends Component
@@ -43,7 +44,7 @@ class ResetPassword extends Component
 
     public function mount(): void
     {
-        abort_if(! URL::hasValidSignature(request()), 404);
+        abort_if(! URL::hasValidSignature(request()), Response::HTTP_NOT_FOUND);
 
         $this->email = request()->query('email');
         $this->token = request()->route('token');

@@ -14,7 +14,7 @@
 >
   <div class="mx-auto w-10 h-10 rounded-full border
     {{ $isActive ? 'border-[var(--webThirdLightTextColour)] bg-[var(--webThirdLightTextColour)]' : 'border-[var(--webLightHoverColour)] bg-[var(--webLightHoverColour)]' }}
-    {{ $disabled
+    {{ $disabled && ! $isActive
         ? 'border-gray-300 bg-gray-300 '
         : 'group-hover:border-[var(--webThirdLightTextColour)] group-hover:bg-[var(--webThirdLightTextColour)] group-focus:border-[var(--webThirdLightTextColour)] group-focus:bg-[var(--webThirdLightTextColour)] '
     }}  text-[var(--webPrimaryLightTextColour)] transition duration-300 ease-in-out flex justify-center items-center"
