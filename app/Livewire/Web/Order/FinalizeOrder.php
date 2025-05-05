@@ -43,6 +43,7 @@ class FinalizeOrder extends Component
         CartFacade::recalculate();
 
         $cart = CartFacade::getPersistentCart();
+
         $this->billing = app(BillingManager::class)->getDriver($cart->billing_driver);
         $this->shipping = app(ShippingManager::class)->getDriver($cart->shipping_driver);
 

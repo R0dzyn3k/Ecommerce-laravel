@@ -105,7 +105,6 @@ class CartManager
     {
         $cart = $this->getCart();
 
-
         if (is_null($cart)) {
             throw new CartNotFoundException();
         }

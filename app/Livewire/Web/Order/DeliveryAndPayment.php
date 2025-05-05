@@ -14,7 +14,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
-use Symfony\Component\HttpFoundation\Response;
 
 
 class DeliveryAndPayment extends Component
@@ -36,11 +35,7 @@ class DeliveryAndPayment extends Component
 
     public function mount(): void
     {
-        $cart = CartFacade::getPersistentCart();
-
-        abort_if(! $cart->items()->exists(), Response::HTTP_NOT_FOUND);
-
-        $this->cart = $cart;
+        $this->cart = CartFacade::getPersistentCart();
     }
 
 

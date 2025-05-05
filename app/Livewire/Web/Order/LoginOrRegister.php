@@ -16,9 +16,9 @@ class LoginOrRegister extends Component
 {
     public function mount(): void
     {
-        $cart = Cart::getCart();
+        $cart = Cart::getPersistentCart();
 
-        abort_if(! $cart || ! $cart->items()->exists(), Response::HTTP_NOT_FOUND);
+        abort_if(! $cart->items()->exists(), Response::HTTP_NOT_FOUND);
 
         if (Auth::guard('web')->check()) {
             $this->redirectRoute('web.order.delivery-and-payment', navigate: true);

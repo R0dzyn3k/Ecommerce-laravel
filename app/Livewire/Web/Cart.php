@@ -57,9 +57,14 @@ class Cart extends Component
 
     public function mount(): void
     {
-        CartFacade::recalculate();
-
         $cart = CartFacade::getCart();
+
+        if ($cart) {
+            CartFacade::recalculate();
+        }
+
+        $cart?->fresh();
+
         $this->cart = $cart;
         $this->showCart = $cart && $cart->items()->exists();
         $this->items = $this->showCart
